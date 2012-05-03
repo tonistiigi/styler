@@ -1,0 +1,18 @@
+.project-item(class=(isActive ? "expanded" : "") + " " + (clientCount ? "has-clients" : ""))
+  .project-line
+    .expand
+      .inner
+    .project-name
+      .name= name
+    if clientCount > 0
+      .num-clients= clientCount + (clientCount > 1 ? " connections":" connection")
+    else
+      .no-clients No connections
+    .buttons
+      a.btn.delete
+      a.btn.edit
+      a.btn.launch.projectlaunch Start
+      a.btn.open(href=baseurl, target="_blank") Open page
+      
+  if isActive
+    .clients

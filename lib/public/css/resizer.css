@@ -1,0 +1,44 @@
+.resizer {
+  position: relative;
+  z-index: 2;
+}
+.resizer.resizer-horizontal {
+  width: 6px;
+  cursor: ew-resize;
+  pobox: horizontal;
+}
+.resizer.resizer-horizontal > .inner {
+  position: relative;
+  top: 20%;
+}
+.resizer.resizer-horizontal > .inner > .thumb {
+  background: url("../img/resizer_h.png") no-repeat 50% 50%;
+  position: absolute;
+  width: 10px;
+  height: 50px;
+  top: 250px;
+  left: 2px;
+}
+.no-sidebar .resizer.resizer-horizontal {
+  display: none;
+}
+.resizer.resizer-vertical {
+  position: relative;
+  cursor: ns-resize;
+  background: #fff;
+  padding-top: 3px;
+}
+.resizer.resizer-vertical > .inner {
+  background: #ddd;
+  height: 1px;
+  margin: 0 4px;
+  border-top: 1px solid #ccc;
+}
+.resizer.resizer-vertical > .inner > .thumb {
+  position: relative;
+  width: 42px;
+  height: 12px;
+  top: -10px;
+  margin: 0 auto;
+  background: url("../img/resizer.png") no-repeat 50% 50%;
+}

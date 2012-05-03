@@ -1,0 +1,80 @@
+.filebrowser {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -ms-box-flex: 1;
+  box-flex: 1;
+  overflow-y: auto;
+  min-height: 200px;
+  position: relative;
+  background-color: #fff;
+}
+.filebrowser:focus {
+  outline: none;
+}
+.is-editormode .filebrowser {
+  display: none;
+}
+.file-item {
+  height: 68px;
+  float: left;
+  text-align: center;
+  cursor: pointer;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+.file-item > .inner {
+  border: 1px solid #ccc;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  margin: 2px 4px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 10px;
+  height: 60px;
+  -webkit-box-shadow: 1px 1px 2px #ccc;
+  -moz-box-shadow: 1px 1px 2px #ccc;
+  box-shadow: 1px 1px 2px #ccc;
+}
+.file-item > .inner.is-helper {
+  opacity: 0.6;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+}
+.file-item > .inner > .name {
+  font-weight: bold;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #333;
+  overflow: hidden;
+}
+.file-item > .inner > .name > .ext {
+  color: #888;
+}
+.file-item > .inner > .active-indicator,
+.file-item > .inner > .open-indicator {
+  background: #fdd;
+  position: absolute;
+  bottom: 12px;
+  padding: 1px 5px;
+  color: #666;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  left: 12px;
+}
+.file-item > .inner > .open-indicator {
+  right: 15px;
+  left: auto;
+  background: #dfd;
+}
+.file-item > .inner:hover {
+  background-color: #f3f6fc;
+}
+.file-item.is-selected > .inner {
+  background: #f3f6fc;
+  border: 1px solid #999;
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+<style>
+  body {
+    width: 180px;
+    font-family: sans-serif;
+    font-size: 13px;
+    background: #f5fff5;
+  }
+  a {
+    color: #00acfc;
+    text-decoration: underline;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+  .head {
+    display: none;
+    color: #666;
+  }
+  .head .hint {
+    background: #fbffcb;
+    padding: 2px;
+    font-style: italic;
+    color: #888;
+    margin: 4px 0;
+  }
+  .head .status span {
+    font-weight: bold;
+  }
+  .head#is_connected .status span {
+    color: #090;
+  }
+  .head#not_connected .status span {
+    color: #c00;
+  }
+  .info {
+    height: 45px;
+    margin: 5px 0;
+    border-bottom: 1px solid #ddd;
+  }
+  .info .url {
+    float: left;
+    max-width: 150px;
+    margin-right: 5px;
+    color: #666;
+    font-size: 13px;
+    padding: 1px;
+  }
+  .info input {
+    border: 1px solid #ddd;
+    width: 170px;
+  }
+  .info .buttons {
+    margin-top: 2px;
+  }
+  .btn {
+    cursor: pointer;
+    border: 1px solid #444;
+    padding:0px 2px;
+    font-size: 12px;
+    font-weight: bold;
+    float: left;
+    color: #333;
+    margin-right: 4px;
+  }
+  .btn.save {
+  }
+  .btn.cancel {
+    border: none;
+    color: #666;
+  }
+  .item {
+    display: none;
+  }
+</style>
+
+</head>
+<body>
+    <div class="head" id="is_connected">
+      <div class="status">
+        Status: <span>Connected</span>
+      </div>
+    </div>
+    <div class="head" id="not_connected">
+      <div class="status">
+        Status: <span>No connection</span>
+      </div>
+      <div class="hint">
+        Please check that Styler daemon is running and the URL to Styler is correct or <a href="javascript:void()" class="reconnect">try to reconnect</a>
+      </div>
+    </div>
+    <div class="info view">
+      <div class="url"></div><div class="btn edit">Edit</div>
+    </div>
+    <div class="info edit">
+      <input type="text" id="url"><br>
+      <div class="buttons">
+        <div class="btn save">Save</div>
+        <div class="btn cancel">Cancel</div>
+      </div>
+    </div>
+    <div id="items">
+    <a href="javascript:void(0)" class="item start">Start using Styler on this page</a>
+    <a href="javascript:void(0)" class="item launch">Launch Styler console</a>
+    <a href="javascript:void(0)" class="item home">Styler homepage</a>
+    </div>
+
+</body>
+</html>

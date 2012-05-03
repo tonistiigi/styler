@@ -1,0 +1,14 @@
+.selected-item
+    .agenttype(class=selectedClient.agenttype)
+    - if (clients.length > 1) {
+        .more #{clients.length-1} more
+    - }
+    .useragent= selectedClient.useragent
+.items
+    - clients.forEach( function (client) {
+        .item(data-client-id=client.id, class=(selectedClient.id === client.id?"is-active":""))
+            .agenttype(class=client.agenttype)
+            .agentinfo
+              .useragent= client.useragent
+              .url= client.url
+    - } )

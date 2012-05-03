@@ -1,0 +1,129 @@
+@import nib
+
+.client-select
+  position relative
+  box-sizing border-box
+  outline none
+  font-size 14px
+  color #f2f2f2
+  user-select none
+  
+  &.client-select-sidebar
+    overflow visible
+    height 22px
+    box-sizing border-box
+    background #000 url(../img/icons.png) repeat-x 0px -770px
+    margin 5px 0
+    border 1px solid #666
+    border-radius 3px
+  
+  &.client-select-toolbar
+    height 0px
+    opacity 0
+    margin-top 15px
+    width 30px
+    border 0
+    transition opacity .4s , height .4s
+    background none
+    margin 0 0 -5px 0
+    
+    > .selected-item
+      > .more
+      > .useragent
+        display none
+    
+    .items
+      width 275px
+      top 0px
+      left 32px
+    
+    .agenttype
+      margin 0 3px
+            
+    .no-sidebar &
+      opacity 1
+      height 30px
+  
+  > .selected-item
+    box-sizing border-box
+    padding 0px 3px 0px 4px
+    overflow hidden
+    cursor pointer
+    height 19px
+    white-space nowrap
+    font-size 13px
+
+  &:focus > .items
+    display block
+  
+  > .items
+    display none
+    z-index 10
+    background #FFF
+    position absolute
+    width 99%
+    border-radius 3px
+    top 22px
+    left 0px
+    border 1px solid #666
+    overflow hidden
+  
+    .switch2 &
+      left 30px
+      top 0px
+
+    > .item
+      padding: 3px
+      box horizontal
+      height 40px
+      cursor pointer
+      box-sizing border-box
+      width 100%
+      font-size 12px
+      overflow hidden
+      color #333
+      
+      &.is-highlight
+        background: #eee
+        border-radius 5px
+      
+      &.is-active
+        font-weight bold
+
+      > .agenttype
+        float none
+        width 28px
+        height 28px
+        background-size 28px
+        margin 3px 0
+        overflow hidden
+
+  .agentinfo
+    box-flex 1 
+    padding 0 5px
+    overflow hidden
+
+    > .url
+      font-size 12px
+      color #666
+      white-space nowrap
+      font-weight normal
+      text-overflow ellipsis
+      overflow hidden
+
+  .useragent
+    padding 2px 0 0
+    line-height 140%
+
+  .more
+    float: right
+    padding 3px 1px
+    font-weight bold
+    font-size 12px
+    
+    &:after
+      content "▾"
+      color #ddcdcd
+      font-size 10px
+      padding-left 3px
+

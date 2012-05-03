@@ -1,0 +1,48 @@
+.infotip {
+  border: 1px solid #ddd;
+  position: absolute;
+  background: #fefef3;
+  z-index: 100;
+  border-radius: 3px;
+}
+.infotip > .imagepreview {
+  height: 80px;
+}
+.infotip > .imagepreview > .image {
+  margin: auto;
+  position: relative;
+  top: 10px;
+  border: none;
+}
+.infotip > .imagepreview > .image > .inner {
+  width: 100%;
+  height: 100%;
+  background-size: 100%;
+}
+.infotip > .imagepreview > .imginfo {
+  position: absolute;
+  top: 85px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.infotip > .imagepreview > .imginfo > .name {
+  display: none;
+}
+.infotip > .imagepreview > .imginfo > .size {
+  text-align: center;
+  color: #999;
+}
+.colorinfo .sample {
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  float: left;
+}
+.colorinfo .values {
+  float: left;
+  line-height: 12px;
+  width: 40px;
+  color: #333;
+  padding-top: 2px;
+}

@@ -1,0 +1,29 @@
+#browser-limit {
+  min-width: 750px;
+}
+#browser-limit .warning-img {
+  background: url("../img/allowed_browsers.jpg") no-repeat;
+  width: 679px;
+  height: 153px;
+  margin: 100px auto 40px;
+}
+#browser-limit .warning-message {
+  font-family: Georgia;
+  color: #444;
+  font-size: 17px;
+  width: 730px;
+  line-height: 160%;
+  text-align: center;
+  margin: 0 auto;
+}
+#browser-limit .ignore-button {
+  margin: 50px 20px 20px;
+  color: #0648b4;
+  font-size: 15px;
+  text-align: center;
+  font-family: Georgia;
+  cursor: pointer;
+}
+#browser-limit .ignore-button:hover {
+  text-decoration: underline;
+}

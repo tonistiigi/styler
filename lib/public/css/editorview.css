@@ -1,0 +1,407 @@
+.editor-container {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -o-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -ms-box-orient: vertical;
+  box-orient: vertical;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -ms-box-flex: 1;
+  box-flex: 1;
+  position: relative;
+}
+.editor-container > .toolbar {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -o-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -ms-box-orient: horizontal;
+  box-orient: horizontal;
+  height: 32px;
+  background-color: #333;
+  -webkit-transition: margin-bottom 0.2s;
+  -moz-transition: margin-bottom 0.2s;
+  -o-transition: margin-bottom 0.2s;
+  -ms-transition: margin-bottom 0.2s;
+  transition: margin-bottom 0.2s;
+}
+.editor-container > .toolbar > .tools-group {
+  height: 30px;
+  width: 53px;
+  margin-left: 5px;
+  margin-top: 4px;
+}
+.editor-container > .toolbar > .tools-group > .tool {
+  float: left;
+  width: 23px;
+  height: 23px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 3px 3px 0 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 11px;
+  color: #888;
+  background: url("../img/icons.png") no-repeat 0px -30px;
+  cursor: default;
+}
+.editor-container > .toolbar > .tools-group > .tool.is-selected {
+  opacity: 0.8;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+}
+.editor-container > .toolbar > .tools-group > .tool:hover {
+  opacity: 0.9;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
+}
+.editor-container > .toolbar > .tools-group > .tool.tool-save {
+  background-position: 0px -150px;
+  cursor: pointer;
+}
+.editor-container > .toolbar > .tools-group > .tool.is-disabled {
+  opacity: 0.3;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
+  cursor: default;
+}
+.editor-container > .editor {
+  display: none;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -ms-box-flex: 1;
+  box-flex: 1;
+  position: relative;
+  background-color: #fff;
+}
+.is-editormode .editor-container > .editor {
+  display: block;
+}
+.editor-container > .statusbar {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -o-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -ms-box-orient: horizontal;
+  box-orient: horizontal;
+  height: 14px;
+  padding-left: 15px;
+  border-top: 1px solid #ddd;
+  -webkit-border-radius: 0 0 3px 3px;
+  -moz-border-radius: 0 0 3px 3px;
+  border-radius: 0 0 3px 3px;
+  line-height: 100%;
+  background: #fff;
+}
+.editor-container .ace-tm .ace_gutter {
+  background: #eee;
+}
+.search {
+  display: none;
+  position: absolute;
+  top: 26px;
+  right: 30px;
+  z-index: 12;
+  width: 140px;
+  padding: 5px 6px;
+  border: 1px solid #bbb;
+  -webkit-border-radius: 0 0 3px 3px;
+  -moz-border-radius: 0 0 3px 3px;
+  border-radius: 0 0 3px 3px;
+  background: #f4f4f4;
+}
+.search > input {
+  width: 133px;
+  border: 1px solid #ccc;
+}
+.search > .results {
+  display: none;
+  padding: 1px;
+}
+.search > .results > .msg {
+  padding: 2px 0;
+}
+.search > .results > .msg > span {
+  font-weight: bold;
+}
+.search > .results > .hint {
+  font-size: 11px;
+  font-style: italic;
+  color: #666;
+}
+.ace_editor {
+  line-height: normal;
+}
+.ace_editor .highlight-marker {
+  border-right: 10px solid #cde;
+  position: absolute;
+  margin-left: -15px;
+}
+.ace_editor .selection-marker {
+  background: rgba(255,200,0,0.1);
+  position: absolute;
+  margin-left: -4px;
+}
+.ace_editor .editor-command-highlight {
+  position: absolute;
+  display: none;
+  z-index: 10000;
+  background: rgba(255,0,0,0.2);
+  cursor: ns-resize;
+}
+.ace_editor .editor-command-highlight.is-selectable {
+  cursor: pointer;
+}
+.tabs {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -ms-box-flex: 1;
+  box-flex: 1;
+  height: 30px;
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  margin-top: 3px;
+}
+.tabs .editor-error {
+  overflow: hidden;
+  z-index: 100;
+  position: absolute;
+  right: 23px;
+  top: 33px;
+  max-height: 12px;
+  padding: 2px 6px 3px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #fff;
+  background: #c00;
+}
+.tabs > .tab {
+  position: absolute;
+  top: 0px;
+  z-index: 1;
+  float: left;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 27px;
+  padding: 6px 25px 1px 7px;
+  margin: 2px 6px 0 0;
+  -webkit-border-radius: 3px 3px 0 0;
+  -moz-border-radius: 3px 3px 0 0;
+  border-radius: 3px 3px 0 0;
+  font-family: Helvetica, sans-serif;
+  color: #fff;
+  font-size: 12px;
+  background: url("../img/icons.png") repeat-x 0px -770px;
+  cursor: default;
+}
+.tabs > .tab.is-loaded {
+  -webkit-transition: left 0.3s;
+  -moz-transition: left 0.3s;
+  -o-transition: left 0.3s;
+  -ms-transition: left 0.3s;
+  transition: left 0.3s;
+}
+.tabs > .tab.is-dragging {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  -ms-transition: none;
+  transition: none;
+  z-index: 2;
+}
+.tabs > .tab.is-selected {
+  border-bottom-color: #fff;
+  background: #fff;
+  color: #000;
+}
+.tabs > .tab.is-highlight {
+  border-left: 2px solid #def;
+}
+.tabs > .tab > .close-btn {
+  position: absolute;
+  top: 6px;
+  right: 5px;
+  width: 14px;
+  height: 14px;
+  background: url("../img/icons.png") no-repeat 0px -750px;
+}
+.tabs > .tab > .close-btn:hover {
+  opacity: 0.8;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+}
+.infobar {
+  height: 0px;
+  -webkit-transition: height 0.2s;
+  -moz-transition: height 0.2s;
+  -o-transition: height 0.2s;
+  -ms-transition: height 0.2s;
+  transition: height 0.2s;
+}
+.has-infobar .infobar {
+  height: 21px;
+  border-bottom: 2px solid #fff;
+}
+.infobar-editor {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -o-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -ms-box-orient: horizontal;
+  box-orient: horizontal;
+  width: 100%;
+  background: #eee;
+}
+.infobar-editor > .infobar-toggle {
+  position: absolute;
+  top: -25px;
+  right: 0px;
+  width: 25px;
+  height: 20px;
+  z-index: 3;
+  background: url("../img/icons.png") no-repeat -10px -267px;
+  cursor: pointer;
+  -webkit-transition: top 0.2s, -webkit-transform 0.4s;
+  -moz-transition: top 0.2s, -webkit-transform 0.4s;
+  -o-transition: top 0.2s, -webkit-transform 0.4s;
+  -ms-transition: top 0.2s, -webkit-transform 0.4s;
+  transition: top 0.2s, -webkit-transform 0.4s;
+}
+.infobar-editor > .infobar-toggle:hover {
+  opacity: 0.8;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+}
+.has-infobar .infobar-editor > .infobar-toggle {
+  top: -1px;
+  background-position: -10px -285px;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.infobar-editor > .editor-info {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -o-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -ms-box-orient: horizontal;
+  box-orient: horizontal;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -ms-box-flex: 1;
+  box-flex: 1;
+  visibility: hidden;
+  padding-right: 25px;
+  width: 95%;
+}
+.has-infobar .infobar-editor > .editor-info {
+  visibility: visible;
+}
+.infobar-editor > .editor-info > .locking-toggle {
+  width: 40px;
+  height: 20px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background: #ededed url("../img/icons.png") no-repeat 18px -236px;
+}
+.infobar-editor > .editor-info > .locking-toggle.is-active {
+  background-color: #f5f5f5;
+}
+.infobar-editor > .editor-info > .locking-toggle.is-locked {
+  background-position: 18px -216px;
+}
+.infobar-editor > .editor-info > .selected-rule {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -ms-box-flex: 1;
+  box-flex: 1;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -o-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -ms-box-orient: horizontal;
+  box-orient: horizontal;
+}
+.infobar-editor > .editor-info > .selected-rule > .selector {
+  overflow: hidden;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -ms-box-flex: 1;
+  box-flex: 1;
+  padding: 4px 10px;
+  height: 12px;
+  font-weight: bold;
+  font-size: 13px;
+}
+.infobar-editor > .editor-info > .selected-rule > .selector-elements {
+  color: #666;
+  padding: 1px 3px 0;
+  height: 16px;
+  background: #fff;
+  margin: 2px 4px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.infobar-editor > .editor-info > .selected-rule > .selection-hint {
+  margin: 3px;
+  color: #555;
+}
+.statusbar > .selectable {
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 110px;
+  height: 14px;
+  padding: 1px 5px;
+  border-left: 1px solid #ddd;
+  font-size: 12px;
+  background: #fff;
+}
+.statusbar > .selectable:hover {
+  background: #eee;
+  cursor: default;
+}
+.statusbar > .selectable > .selection > span {
+  font-weight: bold;
+}
+.statusbar > .selectable > .options {
+  top: auto;
+  bottom: 100%;
+  right: auto;
+  left: 0;
+  background: #fff;
+  width: 140px;
+  line-height: 1.4;
+  padding: 3px 0;
+}
+.statusbar > .selectable > .options > .option:hover {
+  background-color: #eee;
+}
+.statusbar > .selectable.no-formatting .option-format,
+.statusbar > .selectable.no-formatting .option-format + .separator {
+  display: none;
+}

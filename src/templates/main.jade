@@ -1,0 +1,53 @@
+.instructions-opener
+  | Need instructions for connecting your page to Styler?
+  span Click here
+
+.instructions-container
+
+  h1.head Hi, lets get started...
+
+  .intro Using Styler starts with a bit different step than usual editors. While you usually start by creating a project from the collection of files, in Styler you have to start by connecting the actual webpage. There are several methods for doing that, choose one that best suits for your needs.
+
+  .instructions
+
+    fieldset.snippet
+      legend Universal
+    
+      .desc Add a code snippet to your page so it connects to Styler when it loads.
+    
+      .indication
+        .positive Your page remains connected all the time.
+        .negative Requires code change.
+      
+      .task Add this code to your page:
+      textarea.injected_code(readonly,wrap="virtual")
+
+    fieldset.bookmark
+      legend Temporary
+      .desc Use a bookmark to launch Styler from any web page.
+    
+      .indication
+        .positive Quickest way to get started
+        .negative You need to reinitialize Styler after every page load.
+      
+      .task Drag the link below to you bookmarks bar and click it from your webpage.
+      a.bookmarklet Styler
+
+    fieldset.extension
+      legend Lazy
+      .desc Install a browser extension that can be used to start Styler.
+    
+      .indication
+        .positive Most powerful way to use Styler.
+        .negative Currently only for Chrome and Firefox
+    
+      .task
+        a.extlink.chrome(href="/lib/ext/styler_chrome.crx") Install Chrome extension  
+        a.extlink.firefox(href="/lib/ext/styler_firefox.xpi") Install Firefox extension
+    
+    .clear
+    
+    .footnote
+      | If you are unsure what method you should pick then go with the Lazy method.
+
+.projects-list

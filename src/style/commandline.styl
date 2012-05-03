@@ -1,0 +1,52 @@
+.cli-container
+  position relative
+  display none
+  background #eee
+  border-right 4px solid #333
+  border-radius 3px
+  
+  &.is-open
+    display block
+    
+  input
+    width 100%
+    border none
+    outline none
+    background none
+    padding 2px 7px
+    font-weight bold
+    font-size 12px
+    
+  .options
+    position absolute
+    margin 0 5px
+    bottom 23px
+    width 95%
+    box-shadow 0 -1px 6px #666
+    background rgba(50,50,50,.9)
+    z-index 10
+    transition height .4s
+    
+    .item
+      height 18px
+      border-top 1px solid #666
+      padding 2px 5px
+      position relative
+      
+      .hint
+        position absolute
+        right 8px
+        top 3px
+        color #999
+      .value
+        padding 2px
+        color #ddd
+        span 
+          font-weight bold
+          
+      &.selected
+        background rgba(200,200,200,.2)
+        .value
+          color #fff
+  
+  

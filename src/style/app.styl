@@ -1,0 +1,353 @@
+@import 'nib'
+
+top_height = 26px
+
+@font-face
+  font-family 'IstokWeb'
+  src url('/css/istokweb/IstokWeb-Regular-webfont.woff') format('woff'), url('/css/istokweb/IstokWeb-Regular-webfont.ttf') format('truetype'), url('/css/istokweb/IstokWeb-Regular-webfont.svg#IstokWebRegular') format('svg')
+  font-weight normal
+  font-style normal
+
+@font-face
+  font-family 'IstokWeb'
+  src url('/css/istokweb/IstokWeb-Bold-webfont.woff') format('woff'), url('/css/istokweb/IstokWeb-Bold-webfont.ttf') format('truetype'), url('/css/istokweb/IstokWeb-Bold-webfont.svg#IstokWebBold') format('svg');
+  font-weight bold
+  font-style normal
+
+
+html, body
+  padding 0
+  margin 0
+  width 100%
+  height 100%
+  
+body
+  font-family IstokWeb, Helvetica, sans-serif
+  font-size 12px
+  line-height 130%
+
+  &.no-scrolling
+    overflow hidden
+
+a 
+  color cornflowerblue
+
+div.clear
+  clear both
+  
+
+.app
+  box horizontal
+  box-flex 1
+  width 100%
+  height 100%
+
+.main-toolbar
+  box vertical
+  width 29px
+  background #333
+  
+  > .tools-group
+    margin 20px 0
+    
+    > .tool
+      box-sizing border-box
+      position relative
+      width 24px
+      height 24px
+      margin 8px 5px 5px 2px
+      border-radius 3px
+      font-size 11px
+      text-align center
+      color aliceblue
+      font-weight bold
+      background url(../img/icons.png) no-repeat
+      cursor pointer
+      
+      &.is-selected
+        background-color #666
+      
+      &:hover
+        background-color #444
+        > label
+          display block
+          
+      > label
+        display none
+        float none
+        position absolute
+        top 4px
+        left 24px
+        z-index 50
+        width auto
+        padding 1px 4px
+        font-size 10px
+        white-space nowrap
+        text-align left
+        border-radius 3px
+        background #444
+      
+      &.tool-back
+        background-position 3px -175px
+      
+      &.tool-settings
+        background-position 2px -58px
+        
+      &.tool-edit
+        background-position 2px -88px
+        
+      &.tool-inspect
+        background-position 4px -117px
+        
+      &.tool-refresh
+        background-position 3px -307px
+      
+      &.tool-identify
+        background-position 4px 2px
+      
+      &.tool-embed
+        background-position 2px -687px
+        
+      &.tool-sidebyside
+        background-position 2px -657px
+        display none
+
+  > .sidebar-toggle
+    absolute left 6px bottom 6px
+    width 17px
+    height 23px
+    background url(../img/icons.png) no-repeat 5px -265px
+    cursor pointer
+    transition -webkit-transform .4s
+      
+    &:hover
+      opacity .8
+      
+    .no-sidebar &
+      transform rotate(180deg)
+
+.block-heading
+  height 3px
+  background #fff
+  border-radius 3px 3px 0 0
+
+.main-container
+  box vertical
+  box-flex 1
+  
+  > .main
+    box horizontal
+    box-flex 1
+    background #333
+
+    > .sidebar
+      box vertical
+      min-width 170px
+      width 300px
+      box-sizing border-box
+      visibility visible
+      transition width .3s, min-width .3s, visibility .1s .6s
+      overflow hidden
+      background #333
+      
+      &.no-clients
+        > .infobar
+        > .styleinfo
+        > .resizer
+        > .elements-outline
+          display none
+        > .no-clients-fallback
+          box vertical
+          
+      .no-client-loaded &
+        > .styleinfo > div
+        > .infobar > div
+          visibility hidden
+          
+      .no-sidebar &
+        min-width 0
+        width 0px !important
+      
+      &.is-resizing
+        transition none
+        
+    > .main-content
+      box-flex 1
+      min-width 330px
+      box vertical
+      width: 0
+      position relative
+      margin 0 4px 4px 0
+      position relative
+      user-select none
+      
+      .infobar
+        display none
+        
+        .is-editormode &
+          display block
+          position relative
+
+
+.no-clients-fallback
+  display none
+  background #fff
+  box-flex 1
+  margin-bottom 4px
+  border-radius 0 0 3px 3px
+  position relative
+  
+  > .hide-hint
+    position absolute
+    bottom 0px
+    margin 4px
+    color #555
+    border-radius 5px
+    padding 2px 5px
+    background #e5e5e5    
+    
+    .no-sidebar &
+      visibility hidden
+    
+  > .connect-helper
+    color #888
+    font-size 13px
+    padding 15px
+    overflow hidden
+    box-sizing border-box
+    text-align center
+    margin 30% 15px
+    line-height 150%
+    
+    .no-sidebar &
+      visibility hidden
+    
+    > .url
+      text-decoration underline
+      color #555
+      cursor pointer
+      max-width 90%
+      overflow hidden
+      text-overflow ellipsis
+      display inline-block
+      
+      &:hover
+        text-decoration none
+
+
+    
+.higlighted-selector
+  .sel-id
+    color #6f28c7
+    &:before
+      content "#"
+      font-size 11px
+  .sel-class
+    color #1212b2
+    &:before
+      content "."
+      font-size 11px
+  .sel-tag
+    color #66669f
+  .sel-symbol
+    color #d00
+    margin 0 4px 0 2px
+  .sel-pseudo
+    color #771505
+  .sel-parens
+    \0
+  .sel-unknown
+    margin 0 1px
+    
+.fscreen-error
+  color #555
+  font-size 26px
+  margin 50px auto auto
+  padding 20px
+  width 70%
+  text-align center 
+  line-height 150%
+  
+.fpsstats
+  position fixed
+  bottom 10px
+  right 10px
+
+  
+.agenttype  
+  width 20px
+  height 16px
+  float left
+  background url(../img/browser_icons.png) no-repeat 0px 100px
+  background-size 16px
+  margin-top 2px
+  
+  
+  bgsize = -16px
+  bgsize2 = -28px
+  bgsize3 = -20px
+  bgpos(name,index)
+    &.{name}
+      background-position 0px (bgsize2*index)
+      
+      .selected-item &
+        background-position 0px (bgsize*index)
+        
+      .project-item &
+        background-position 0px (bgsize3*index)
+
+  bgpos("chrome", 0)
+  bgpos("firefox", 1)
+  bgpos("opera", 2)
+  bgpos("safari", 3)
+  bgpos("ie", 4)
+  bgpos("unknown", 5)
+  bgpos("android", 6)
+  //bgpos("mobile-safari", 7)
+  bgpos("blackberry", 8)
+  bgpos("iphone", 9)
+  bgpos("ipad", 10)
+
+
+/**
+ * Overflow-row object
+ * Object that has a flex and fixed part.
+ * How much of the flex object is clipped depends on objects own dimensions.
+ */
+.overflow-row
+  width 100%
+  position relative
+
+  .overflow-flex
+    white-space nowrap
+    width inherit
+
+  .overflow-fixed
+    display inline-table
+    absolute top 0 right 0
+    height inherit
+    background-color inherit
+
+    > div
+      vertical-align top
+      white-space nowrap
+
+.overlay
+  background rgba(0,0,0,.8)
+  absolute top 0 left 0
+  width 100%
+  height 100%
+  z-index 101
+  opacity 0
+  transition opacity .3s
+
+  &.is-loaded 
+    opacity 1
+    > div
+      top 90px
+  
+  > div
+    top -300px
+    position relative
+    margin auto
+  

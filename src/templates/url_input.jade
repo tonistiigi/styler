@@ -1,0 +1,76 @@
+.fields
+
+  .input-row.url
+    .label URL
+    .field
+      .btn.edit Edit
+      .note-indicator
+      input.text.url
+    .note
+
+  .input-row.path
+    .label Source directory
+    .field
+      .btn.browse.browse-source Browse
+      .note-indicator
+      .input-container
+        input.text.path
+        .completion-pfx
+        .completion-sfx
+    .note No such directory was found on your hard drive.
+
+  .input-row.type
+    .label Source file format
+    .field
+      input.type(type="radio", name="type", value="css", id="type_css_" + id)
+      label(for="type_css_" + id) CSS
+      input.type(type="radio", name="type", value="stylus", id="type_stylus_" + id)
+      label(for="type_stylus_" + id) Stylus
+    .conversion-hint
+    
+  .input-row.missing-files
+    .label When files are missing
+    .field
+      input.missing-files(type="radio", name="missing", value="ignore", id="missing_ignore_" + id)
+      label(for="missing_ignore_" + id) Ignore
+      input.missing-files(type="radio", name="missing", value="create", id="missing_create_" + id)
+      label(for="missing_create_" + id) Create new files
+  
+  .input-row.stylus-out
+    .label Stylus output directory
+    .field
+      .btn.browse.browse-stylus-out Browse
+      .note-indicator
+      .input-container
+        input.text.stylus-out
+        .completion-pfx
+        .completion-sfx
+    .note No such directory was found on your hard drive.
+    
+  .stylus-switch-hint
+    | Although Styler fully supports editing CSS stylesheets we encourage you to have a look at Stylus.
+    | Stylus improves CSS format with many great features that help you become more productive.
+    | You can learn more about Stylus from
+    a(href="http://learnboost.github.com/stylus/", target="_blank") here
+    | . You may also choose CSS for now and return later to this view to switch between formats.
+    .btn.convert Convert all files in this location to Stylus format
+    .clear
+    
+.locations-info
+  .head-note
+    .msg.no-url Please select the URL for the CSS files location.
+    .msg.no-files No CSS files were found from your page that match this URL.
+    .msg.has-files This location contains following files:
+  .file-list
+  .foot-note
+    .msg.no-matches No matching source files were found from the source directory.
+    .msg.some-matches
+      span.num-matches
+      | of
+      span.num-files
+      | files were matched with the source files.
+    .msg.all-matches All files matched the source files.
+      
+.btn.remove
+  | Remove this location
+.clear

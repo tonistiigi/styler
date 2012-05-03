@@ -1,0 +1,68 @@
+@import nib
+
+.filebrowser
+  box-flex 1
+  overflow-y auto
+  min-height 200px
+  position relative
+  background-color #fff
+  
+  &:focus
+    outline none
+
+  .is-editormode &
+    display none
+
+.file-item
+  height 68px
+  float left
+  text-align: center
+  cursor: pointer
+  box-sizing border-box
+  overflow hidden
+  position relative
+
+  > .inner
+    border: 1px solid #ccc
+    border-radius 4px
+    margin 2px 4px
+    box-sizing border-box
+    padding 10px
+    height 60px
+    box-shadow 1px 1px 2px #ccc
+    
+    &.is-helper
+      opacity .6
+  
+    > .name
+      font-weight bold
+      white-space nowrap
+      text-overflow ellipsis
+      color #333
+      overflow hidden
+      
+      > .ext
+        color #888
+      
+    > .active-indicator
+      background #fdd
+      position absolute
+      bottom 12px
+      padding 1px 5px
+      color #666
+      border-radius 3px
+      left 12px
+  
+    > .open-indicator
+      @extends .file-item > .inner > .active-indicator
+      right 15px
+      left auto
+      background #dfd
+
+    &:hover
+      background-color #f3f6fc
+    
+  &.is-selected > .inner
+    background #f3f6fc
+    border 1px solid #999
+  

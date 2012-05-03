@@ -1,0 +1,54 @@
+.cli-container {
+  position: relative;
+  display: none;
+  background: #eee;
+  border-right: 4px solid #333;
+  border-radius: 3px;
+}
+.cli-container.is-open {
+  display: block;
+}
+.cli-container input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: none;
+  padding: 2px 7px;
+  font-weight: bold;
+  font-size: 12px;
+}
+.cli-container .options {
+  position: absolute;
+  margin: 0 5px;
+  bottom: 23px;
+  width: 95%;
+  box-shadow: 0 -1px 6px #666;
+  background: rgba(50,50,50,0.9);
+  z-index: 10;
+  transition: height 0.4s;
+}
+.cli-container .options .item {
+  height: 18px;
+  border-top: 1px solid #666;
+  padding: 2px 5px;
+  position: relative;
+}
+.cli-container .options .item .hint {
+  position: absolute;
+  right: 8px;
+  top: 3px;
+  color: #999;
+}
+.cli-container .options .item .value {
+  padding: 2px;
+  color: #ddd;
+}
+.cli-container .options .item .value span {
+  font-weight: bold;
+}
+.cli-container .options .item.selected {
+  background: rgba(200,200,200,0.2);
+}
+.cli-container .options .item.selected .value {
+  color: #fff;
+}

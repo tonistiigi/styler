@@ -1,0 +1,199 @@
+@import "nib"
+
+$monospace_family = 'Monaco', 'Menlo', 'Ubuntu Mono', 'Droid Sans Mono', 'Consolas', monospace
+
+.styleinfo
+  position relative
+  overflow-y auto
+  overflow-x hidden
+  height 230px
+  min-height 200px
+  padding 0px 3px
+  outline none
+  background #fff
+  user-select none
+
+  > .style-items
+    display none
+    
+  > .no-items-fallback
+    padding 50px 20px
+    font-size 18px
+    text-align center
+    color #ccc
+
+  &.has-items
+    > .no-items-fallback
+      display none
+    > .style-items
+      display table
+      table-layout fixed
+      width 100%
+      
+.nearby-rules
+  border 1px solid #e8e8e8
+  border-radius 4px
+  > .head
+    padding 2px 4px
+    color #888
+    background #e8e8e8
+  > .item
+    padding 2px 4px
+    cursor pointer
+    &:hover
+      text-decoration underline
+
+.style-item
+  margin-bottom 2px
+  border 1px solid #eee
+  border-radius 3px
+  white-space nowrap
+  cursor default
+  
+  > .inherit
+    clear both
+    margin-bottom 1px
+    padding 1px 4px
+    color #888
+    background #f2f2f2
+        
+    > .element-name
+      padding 0 2px
+      color #000  
+      
+      > .highlighted-selector > span
+       color #999
+       font-weight bold
+          
+      &.is-selectable
+        text-decoration none
+        cursor pointer
+        
+        > .hlselector > span
+        color #0b0bff
+        
+        &:hover
+          text-decoration underline
+  
+  &.is-focused
+    border-color #ccc
+  
+  > .name
+    clear left
+    margin 1px
+    padding 2px 3px
+    font-weight bold
+    white-space normal
+    
+    &.is-highlighted
+      border-radius 2px
+      background #cdf
+  
+  > .file
+    float right
+    overflow hidden
+    max-width 100px
+    margin 2px 3px 0 5px
+    color #0b0bff
+    text-overflow ellipsis
+    text-decoration none
+    cursor pointer
+    
+    &:hover
+      text-decoration underline
+    &:after
+      content "»"
+      padding-left 3px
+  
+  > .media
+    overflow hidden
+    margin 0 4px
+    color #b22929
+    white-space nowrap
+    text-overflow ellipsis
+    > .label
+      font-style italic
+      font-weight bold
+    > .value
+      padding 0 4px
+      overflow hidden
+
+.style-prop-container
+  user-select text
+  
+  &.is-disabled
+    color #999
+    text-decoration line-through
+
+  > .style-prop
+    overflow hidden
+    margin 1px
+    padding 2px 1px
+    white-space nowrap
+    font-size 11px
+    font-family $monospace_family
+    color #999
+    text-overflow ellipsis
+
+    &.style-prop-sub
+      padding-left: 20px
+    
+    &.is-highlighted
+      border-radius 2px
+      background #cdf
+  
+    > .prop-name
+      font-size 11px
+      color #0e6c0e
+
+    > .priority
+      color #070
+
+    > .expand-bullet
+      float left
+      width 13px
+      height 13px
+      margin 1px
+
+      &.is-visible
+        background url(../img/icons.png) no-repeat 3px -539px
+        transform translateZ(0)
+        transition -webkit-transform .2s
+
+  > .style-prop-sub
+    display none
+
+  &.is-expanded
+    > .style-prop-sub
+      display block
+    > .style-prop > .expand-bullet
+      transform rotate(90deg)
+
+.style-prop-value
+  padding-left 4px
+  color #901313
+  
+  > .color-sample
+    margin 0px 2px
+    padding 0 7px
+    border-radius 3px
+    
+  > .color-name
+    color #975
+    
+  > .url
+    padding 0 3px
+    border-radius 3px
+    margin: 0 2px
+    color: #008
+    text-decoration: underline
+    cursor: pointer
+    
+  > .quoted
+    color #800
+    
+  > .numeric
+    color #975
+    margin-right 2px
+      
+    

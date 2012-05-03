@@ -1,0 +1,58 @@
+.popup {
+  width: 350px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -o-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -ms-box-orient: vertical;
+  box-orient: vertical;
+  padding: 20px;
+  background: #fff;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.popup .msg {
+  line-height: 150%;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+.popup .buttons {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -o-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -ms-box-orient: horizontal;
+  box-orient: horizontal;
+  -webkit-box-align: end;
+  -moz-box-align: end;
+  -ms-box-align: end;
+  box-align: end;
+  -webkit-box-pack: end;
+  -moz-box-pack: end;
+  -ms-box-pack: end;
+  box-pack: end;
+}
+.popup .buttons .button {
+  margin: 3px 8px;
+  padding: 6px 12px;
+  background: #f2f2f2;
+  cursor: pointer;
+  font-size: 14px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border-bottom: 1px solid #ccc;
+}
+.popup .buttons .button:hover {
+  background: #eee;
+}
+.popup .buttons .button:focus {
+  background: #eff;
+}

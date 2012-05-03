@@ -1,0 +1,259 @@
+@import utils
+@import 'nib'
+
+#page_cont
+    border-top 10px solid #333
+
+#page
+    width 980px
+    margin 0 auto
+
+#header
+    margin-top: -10px
+    height: 485px
+    background: url(../img/front_banner.jpg) no-repeat 98% 35px
+    position: relative
+
+    .left_bar
+        position absolute
+        top 0px
+        left 0px
+        width 140px
+        background: url(../img/left_menu_mid.png)
+        
+        .contents
+            min-height 382px
+            height auto !important
+            height 382px
+            background: url(../img/left_menu_top.png) no-repeat;
+            padding-top: 25px
+            -webkit-transition: background-color 0.8s
+            
+            .small_logo
+                width 100px
+                height 60px
+                display: block
+                margin 10px auto
+            
+            .menu1_cont
+                clear both
+                
+        .bottom
+            height: 19px
+            background: #FFF url(../img/left_menu_bot.png)
+    
+    .logo
+        background: url(../img/tarplan_logo.png)
+        width: 210px
+        height 60px
+        left 145px
+        top: 35px
+        position: absolute
+
+#main
+    height: auto !important
+    height: 200px
+    min-height: 200px
+    margin-top: -20px
+    padding-bottom: 35px
+    position relative
+    
+    #article
+        font-family: Arial
+        font-size 14px
+        line-height: 135%
+        color #555
+        padding-right 20px
+        padding-left: 5px
+        
+        img
+            border-radius 8px
+
+.fp_gr_list
+    padding-top 15px
+    
+    .gr_item
+        float left
+        width 230px
+        background-repeat no-repeat
+        margin-right 8px
+        height 130px
+        position: relative
+        border-radius 5px
+        cursor pointer
+        .name
+            width: 150px
+            height 90px
+            padding 25px 15px
+            box-sizing border-box
+            color #b61912
+            text-transform uppercase
+            font-weight bold
+            font-size 14px
+            font-family Arial
+            overflow hidden
+            
+        .more
+            position absolute
+            bottom 8px
+            left 15px
+            color #fff
+            text-decoration underline
+            font-size 13px
+            font-weight bold
+            
+        &:HOVER
+            .more
+                text-decoration none
+
+#footer_cont
+    background: #000
+    padding: 30px 0 30px
+
+#footer
+    width 960px
+    margin: 0 auto
+    color #fff
+    
+    .contacts
+        float: left
+        width: 400px
+        font-family Tahoma
+        
+        .name
+            font-size: 16px
+            padding-bottom: 10px
+        .address
+            font-size: 12px
+            line-height 145%
+            color #aaa
+
+#sponsor_info
+    padding-top: 5px
+    
+    .txt
+        float: left
+        width: 460px
+        
+    .img_cont
+      float left
+      width 480px
+      
+    .img
+        width: 225px
+        height: 130px
+        float: left
+        margin-left: 15px
+        border-radius 8px
+        margin-bottom 13px
+        .inner
+            width: 100%
+            height: 100%
+            background: #ccc
+            opacity: 0.7
+            border-radius 8px
+            transition: opacity 0.5s
+        
+        &:HOVER .inner
+            opacity: 0
+
+#lang
+    margin: 0
+    padding-left 15px
+    height 30px
+    
+    li.lm
+        float left
+        list-style none
+        
+        a.lm
+            font-family: Tahoma, Arial
+            color #f87781
+            font-size 14px
+            text-decoration none
+            padding: 5px
+        
+        &.active
+        &:HOVER
+            a.lm
+                color: #fff
+
+
+
+#menu1
+    margin: 0
+
+    //#menu1first-1
+    //    border-top none
+
+    #menu1last-1
+        border-bottom none
+    
+    li.m1
+        list-style none
+        display block
+        border-bottom: 1px solid #b41a13
+        border-top: 1px solid #c62018
+
+        a.m1
+            font-family Tahoma, Arial
+            color #f87781
+            font-size 12px
+            text-decoration none
+            white-space nowrap
+            display block
+            text-transform uppercase
+            overflow hidden
+            padding 6px 7px 6px 20px
+
+        &.l1-active
+        &.l1:HOVER
+            a.m1.l1
+                color #fff
+                
+        &.l1:HOVER
+            ul.l2
+                display: block
+    
+        &.l1
+            position: relative
+    
+        ul.l2
+            margin: 0
+            position: absolute
+            border: 1px solid #c00
+            top: -1px
+            left 140px
+            background #b01810 url(../img/menu1_l2_bg.png) repeat-y
+            display: none
+            
+            li.m1
+                a.m1
+                    padding: 8px 15px
+                    text-transform: none
+                &.l2:HOVER
+                    a.m1
+                        color: #fff
+        
+    
+#menu2
+
+    li.m2
+        list-style none
+        display block
+        float right
+        padding: 0 11px
+        
+        a.m2
+            color #fff
+            font-family: Tahoma
+            font-size 13px
+            text-decoration: none
+            border-bottom 1px solid #999
+            
+            &:HOVER
+                color: #999
+
+        &.active
+            a.m2
+                color: #ccc

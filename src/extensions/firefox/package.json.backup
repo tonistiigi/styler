@@ -1,0 +1,8 @@
+{
+  "name": "styler",
+  "fullName": "styler",
+  "description": "a basic styler add-on",
+  "author": "Tõnis Tiigi",
+  "license": "MPL 1.1/GPL 2.0/LGPL 2.1",
+  "version": "0.1"
+}

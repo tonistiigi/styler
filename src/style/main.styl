@@ -1,0 +1,288 @@
+@import nib
+
+.instructions-opener
+  display none
+  background #FFF7BD
+  padding  10px
+  font-size 14px
+  color #444
+  margin-bottom 30px
+  border-radius 3px
+  span
+    background #fc0
+    color #444
+    border-radius 3px
+    padding 2px 5px
+    font-size 13px
+    font-weight bold
+    cursor pointer
+    &:hover
+      background #fd0
+  
+  &.visible
+    display block
+
+.instructions-container
+  height 0px
+  overflow hidden
+  opacity 0
+  transition opacity .5s
+  
+  &.visible
+    opacity 1
+    height auto
+
+
+.fpage
+  width 865px
+  margin 0 auto
+  padding-top 25px
+  
+  .head
+    font-size 50px
+    color #633A05
+
+  .intro
+  .footnote
+    font-size 14px
+    line-height 140%
+    color #555
+    padding-right 100px
+
+  .footnote
+    padding 10px 0
+    font-size 13px
+    
+
+.projects-list
+  padding-bottom 30px
+
+.project-item
+  margin-bottom 15px
+  background #f7f7e0
+  cursor default
+  clearfix()
+  
+  .project-line
+    box horizontal
+    width 100%
+    box-sizing border-box
+    padding 5px 0 3px
+  
+  .expand
+    width 12px
+    padding 5px 0  0px 10px
+    
+    .inner
+      display none
+      cursor pointer
+      width 10px
+      height 10px
+      background url(../img/icons.png) no-repeat 0px -538px
+      
+      &:hover
+        opacity .7
+  
+  &.has-clients
+    .expand .inner
+      display block
+    
+    &:hover
+      background-color #f9eebb
+  
+  &.expanded
+    background-color #f9eebb
+    .expand .inner
+      background-position 2px -538px
+      transform rotate(90deg)
+    
+  .project-name
+    box-flex 1
+    font-size 14px
+    font-weight bold
+    padding 4px
+    color #351100
+    
+    .name
+      text-overflow ellipsis
+      white-space nowrap
+      overflow hidden
+      width 500px
+      display block
+  
+  .num-clients
+    width 150px
+    padding 5px 10px
+    text-decoration underline
+    cursor pointer
+    text-align center
+    color #333
+    
+    &:hover
+      text-decoration none
+    
+    &:before
+      content "▼"
+      font-size 8px
+      padding 1px
+    
+  .no-clients
+    text-align center
+    width 150px
+    color #bbb
+    padding 5px 10px
+    
+  .btn
+    float right
+    cursor pointer
+    
+    &.edit
+    &.delete
+      opacity .6
+      width 20px
+      height 20px
+      margin 2px 1px
+      background url(../img/icons.png) no-repeat 0px -598px
+    
+      &:hover
+        opacity .9
+    
+    &.delete
+      background-position 0px -618px
+
+    &.open
+      color #666
+      font-size 11px
+      font-weight bold
+      padding-top 5px
+      &:hover
+        color #444
+  
+    &.launch
+      background linear-gradient(top, 0% #fd0, 100% #fb0)
+      margin 2px 10px 2px 20px
+      border-radius 3px
+      padding 2px 10px
+      font-weight bold
+      color #333
+      font-size 13px
+      &:hover
+        background linear-gradient(top, 0% #fe0, 100% #fc0)
+      
+      &.disabled
+        visibility hidden
+        
+    &.delete
+      border none
+      color #666
+      
+  .clients
+    clear both
+    padding 0px 0 4px
+    
+  .client-item
+    margin-left 25px
+    padding 2px 0
+    clear both
+    height 23px
+    
+    .agenttype
+      background-size 20px
+      height 20px
+    .name
+      float left
+      width 225px
+      margin-right 15px
+      font-size 13px
+      padding 5px
+      overflow hidden
+      
+    .useragent
+      float left
+      padding 5px
+      font-size 13px
+      width 420px
+      
+    a.btn
+      margin-right 54px
+  
+
+
+.instructions
+  margin 20px 0 30px
+  
+  fieldset
+    border 2px solid #ddc
+    width 275px
+    float left
+    height 230px
+    overflow  hidden
+    border-bottom-width 0
+    padding 5px 30px 5px 18px 
+    box-sizing border-box
+    font-size 13px
+    margin-right 10px
+    
+    
+    legend
+      text-transform uppercase
+      font-size 17px
+      font-weight bolder
+      color #633A05
+      padding 3px 6px
+      
+    .desc
+      color #333
+      margin-bottom 10px
+      
+    .indication
+      
+      .positive
+        color #070
+        font-size 13px
+        font-weight bold
+        &:before
+          content "+"
+          margin 0 3px 1px 0
+          display block
+          float left
+          vertical-align top
+      .negative
+        clear left
+        color rgba(150,0,0,.7)
+        &:before
+          content "-"
+          padding 0 2px 0 1px
+          margin 0 3px 1px 0
+          display block
+          float left
+          vertical-align top
+    .task
+      clear left
+      color #666
+      font-size 12px
+      padding 10px 20px 10px 0
+    
+    .injected_code
+      background #f6f6f6
+      width 230px
+      height 40px
+      
+    a.bookmarklet
+      display block
+      font-size 14px
+      font-weight bold
+      
+    .extlink
+      display block
+      padding 2px 0 3px 26px
+      height 15px
+      background url(../img/browser_icons.png) no-repeat;
+      background-size 20px
+      font-size 13px
+      margin 5px 2px
+      font-weight bold
+      
+      &.firefox
+        background-position 0px -20px
+  

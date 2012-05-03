@@ -1,0 +1,181 @@
+<style>
+  body {
+    width: 200px;
+    font-family: sans-serif;
+    font-size: 13px;
+  }
+  a {
+    color: #00acfc;
+    text-decoration: underline;
+    outline: none;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+  .head {
+    display: none;
+    color: #666;
+  }
+  .head .hint {
+    background: #fbffcb;
+    padding: 2px;
+    font-style: italic;
+    color: #888;
+    margin: 4px 0;
+  }
+  .head .status span {
+    font-weight: bold;
+  }
+  .head#is_connected .status span {
+    color: #090;
+  }
+  .head#not_connected .status span {
+    color: #c00;
+  }
+  .info {
+    height: 45px;
+    margin: 5px 0;
+    border-bottom: 1px solid #ddd;
+  }
+  .info .url {
+    float: left;
+    max-width: 150px;
+    margin-right: 5px;
+    color: #666;
+    font-size: 13px;
+    padding: 1px;
+  }
+  .info input {
+    border: 1px solid #ddd;
+    width: 170px;
+  }
+  .info .buttons {
+    margin-top: 2px;
+  }
+  .btn {
+    cursor: pointer;
+    border: 1px solid #444;
+    padding:0px 2px;
+    font-size: 12px;
+    font-weight: bold;
+    float: left;
+    color: #333;
+    margin-right: 4px;
+  }
+  .btn.save {
+  }
+  .btn.cancel {
+    border: none;
+    color: #666;
+  }
+  .item {
+    display: none;
+  }
+</style>
+<div class="head" id="is_connected">
+  <div class="status">
+    Status: <span>Connected</span>
+  </div>
+</div>
+<div class="head" id="not_connected">
+  <div class="status">
+    Status: <span>No connection</span>
+  </div>
+  <div class="hint">
+    Please check that Styler daemon is running and the URL to Styler is correct or <a href="javascript:reconnect()">try to reconnect</a>
+  </div>
+</div>
+<div class="info view">
+  <div class="url"></div><div class="btn edit" onclick="startEditMode()">Edit</div>
+</div>
+<div class="info edit">
+  <input type="text" id="url"><br>
+  <div class="buttons">
+    <div class="btn save" onclick="javascript:saveInfo()">Save</div>
+    <div class="btn cancel" onclick="javascript:dismissEditMode()">Cancel</div>
+  </div>
+</div>
+<div id="items">
+<a href="javascript:launchConsole()" class="item start">Start using Styler on this page</a>
+<a href="javascript:launchConsole()" class="item launch">Launch Styler console</a>
+<a href="javascript:launchHome()" class="item home">Styler homepage</a>
+</div>
+<script>
+  var bgview = null;
+  
+  var $ = function (id) { return document.getElementById(id) };
+  var $$ = function (el, selector) { return el.querySelector(selector) };
+
+  var views = chrome.extension.getViews();
+  for(var i = 0 ; i < views.length ; i++){
+    if(views[i].id == "styler_background")
+      bgview = views[i];
+  }
+  
+  if(bgview.connected){
+    $("is_connected").style.display = "block";
+    $("not_connected").style.display = "none";
+    $("items").style.display = "block";
+    
+    chrome.windows.getCurrent(function (win) {
+      chrome.tabs.query({active: true, windowId: win.id}, function (tabs) {
+        var tab = tabs[0];
+        bgview.checkProjectPath(tab.url, function (hasProject) {
+          if (hasProject) {
+            $$(document, ".item.launch").style.display = "block";
+          }
+          else {
+            $$(document, ".item.start").style.display = "block";  
+          }
+        });
+      });
+    });
+    $$(document, ".item.home").style.display = "block";
+  }
+  else {
+    $("not_connected").style.display = "block";
+    $("is_connected").style.display = "none";
+    $("items").style.display = "none";
+  }
+  
+  function startEditMode(){
+    $$(document,".info.view").style.display = "none";
+    $$(document,".info.edit").style.display = "block";
+    $("url").value = bgview.url;
+    $("url").focus();
+    $("url").addEventListener('keyup', onKeyUp);
+  };
+  
+  function onKeyUp(e){
+    if (e.keyCode == 13) { //Return
+      saveInfo();
+    }
+    else if (e.keyCode == 27) {
+      dismissEditMode();
+    }
+  }
+  
+  function dismissEditMode(){
+    $$(document,".info.view").style.display = "block";
+    $$(document,".info.edit").style.display = "none";
+    $$(document,".info.view .url").innerHTML = bgview.url;
+  };
+  function saveInfo(){
+    bgview.saveURL($("url").value);
+    dismissEditMode();
+    close();
+  };
+  function reconnect(){
+    bgview.location.reload();
+    close();
+  };
+  function launchHome(){
+    chrome.tabs.create({url:bgview.url});
+    close();
+  };
+  function launchConsole(){
+    bgview.launchConsole();
+  };
+  
+  dismissEditMode();
+</script>

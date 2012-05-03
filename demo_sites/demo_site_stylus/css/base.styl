@@ -1,0 +1,559 @@
+@import utils
+
+html
+    font-size 100%
+    overflow-y scroll
+    -webkit-overflow-scrolling touch
+    -webkit-tap-highlight-color rgba(0,0,0,0)
+    -webkit-text-size-adjust 100%
+    -ms-text-size-adjust 100%
+
+body
+    margin 0
+    line-height: 1.231
+    color #666
+    background-color #fff
+
+    &, button, input, select, textarea 
+        font-family: $base_font
+        fs()
+    
+    &#site
+        text-align left
+
+/* 
+ * These selection declarations have to be separate
+ * No text-shadow: twitter.com/miketaylr/status/12228805301
+ * Also: hot pink!
+ */
+
+::-moz-selection { background: #eee; color: #666; text-shadow: none; }
+::selection { background: #eee; color: #666; text-shadow: none; }
+
+
+/* =============================================================================
+   Links
+   ========================================================================== */
+
+a 
+    color $link_color
+    text-decoration underline
+    
+    &:hover
+    &:active
+        outline 0
+        color $link_color
+        text-decoration none
+
+
+/* =============================================================================
+   Typography
+   ========================================================================== */
+
+abbr[title] { border-bottom: 1px dotted; }
+
+b, strong { font-weight: bold; }
+
+blockquote { margin: 1em 40px; }
+
+dfn { font-style: italic; }
+
+hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
+
+ins { background: #ff9; color: #000; text-decoration: none; }
+
+mark { background: #ff0; color: #000; font-style: italic; font-weight: bold; }
+
+/* Redeclare monospace font family: en.wikipedia.org/wiki/User:Davidgothberg/Test59 */
+pre, code, kbd, samp { font-family: monospace, monospace; _font-family: 'courier new', monospace; font-size: 1em; }
+
+/* Improve readability of pre-formatted text in all browsers */
+pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; }
+
+p { margin: 0; padding: 5px 0; }
+
+q { quotes: none; }
+q:before, q:after { content: ""; content: none; }
+
+small { font-size: 85%; }
+
+/* Position subscript and superscript content without affecting line-height: gist.github.com/413930 */
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+div
+form
+    margin 0
+    padding 0
+
+fieldset
+    margin 0
+    padding 4px
+
+
+
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section
+    display block
+
+audio[controls], canvas, video
+    display inline-block
+    *display inline
+    *zoom 1
+
+
+/* =============================================================================
+   Lists
+   ========================================================================== */
+li { margin: 0; padding: 0; }
+ul, ol { margin: 1em 0; padding: 0 0 0 40px; }
+dd { margin: 0 0 0 40px; }
+nav ul, nav ol { list-style: none; margin: 0; padding: 0; }
+
+
+/* =============================================================================
+   Embedded content
+   ========================================================================== */
+
+/*
+ * Improve image quality when scaled in IE7
+ * code.flickr.com/blog/2008/11/12/on-ui-quality-the-little-things-client-side-image-resizing/
+ */
+
+img { border: 0; -ms-interpolation-mode: bicubic; }
+
+/*
+ * Correct overflow displayed oddly in IE9 
+ */
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+
+/* =============================================================================
+   Figures
+   ========================================================================== */
+
+figure { margin: 0; }
+
+
+
+/* 
+ * 1. Correct color not inheriting in IE6/7/8/9 
+ * 2. Correct alignment displayed oddly in IE6/7 
+ */
+
+legend { border: 0; *margin-left: -7px; padding: 0; }
+
+/* Indicate that 'label' will shift focus to the associated form element */
+label { cursor: pointer; }
+
+/*
+ * 1. Correct font-size not inheriting in all browsers
+ * 2. Remove margins in FF3/4 S5 Chrome
+ * 3. Define consistent vertical alignment display in all browsers
+ */
+
+button, input, select, textarea { font-size: 100%; margin: 0; vertical-align: baseline; *vertical-align: middle; }
+
+/*
+ * 1. Define line-height as normal to match FF3/4 (set using !important in the UA stylesheet)
+ * 2. Correct inner spacing displayed oddly in IE6/7
+ */
+
+button, input { line-height: normal; *overflow: visible; }
+
+/*
+ * 1. Display hand cursor for clickable form elements
+ * 2. Allow styling of clickable form elements in iOS
+ */
+
+button, input[type="button"], input[type="reset"], input[type="submit"] { cursor: pointer; -webkit-appearance: button; }
+
+/*
+ * Consistent box sizing and appearance
+ */
+
+input[type="checkbox"]
+input[type="radio"]
+input.checkbox
+input.radio
+    box-sizing border-box
+    width 12px
+    height 12px
+
+input[type="search"] { -moz-box-sizing: content-box; -webkit-box-sizing: content-box; box-sizing: content-box; }
+
+/* 
+ * Remove inner padding and border in FF3/4
+ * www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/ 
+ */
+
+button::-moz-focus-inner, input::-moz-focus-inner { border: 0; padding: 0; }
+
+
+h1, h2, h3, h4, h5, h6
+  color: #000
+  font-family: 'Josefin Sans','Open Sans Condensed', sans-serif
+  margin: 0
+  padding: 0
+  text-align: left
+
+h2, h3, h4, h5, h6
+  margin: 0 0 5px 0
+
+h1
+  font-size: 55px
+  font-weight: normal
+  margin: 0 0 10px 0
+  text-transform: uppercase
+
+h2
+  font-size: 40px
+  font-weight: normal
+  margin-top 15px
+  text-transform uppercase
+
+h3
+  font-size: 28px
+  font-weight: normal
+  padding-bottom: 10px
+
+h4
+  font-family: Arial
+  font-size: 14px
+  font-weight: bold
+  padding-top: 3px
+
+h5
+  font-size: 16px
+  font-weight: normal
+
+h6
+  font-size: 14px
+  font-weight: normal
+
+img
+  border: 0
+
+input[type=checkbox], input.checkbox, input[type=radio], input.radio
+  border: 0
+  margin: 4px 0
+
+input.text
+  background-color: #fff
+  border: 1px solid #999
+  display: block
+  padding: 6px
+  width: 98%
+
+li
+  margin: 0
+  padding: 0
+
+ol
+  margin: 0 0 0 20px
+  padding: 0
+
+option
+  background-color: #fff
+
+p
+  margin: 0
+  padding: 5px 0
+
+pre
+  font-family: Courier, "Courier new"
+
+select
+  background-color: #fff
+  border: 1px solid #999
+  margin: 0
+  padding: 5px
+  width: 100%
+
+sub, sup
+  font-size: 9px
+
+textarea
+  background-color: #fff
+  border: 1px solid #999
+  margin: 0
+  padding: 6px
+  width: 98%
+  
+  &:focus
+      background-color #FFFFC4
+
+ul
+  margin: 0 0 0 20px
+  padding: 0
+
+br.clear
+div.clear
+  clear: both
+  display: block
+  font-size: 0
+
+#icon-print
+  background: url("../tmpl/img/icon_print.png") no-repeat 0 100%
+  float: right
+  height: 100%
+  margin-right: 13px
+  width: 17px
+
+#icon-rss
+  background: url("../tmpl/img/icon_rss.gif") no-repeat left center
+  color: #77695E
+  float: right
+  line-height: 16px
+  margin: 20px 40px 0 0
+  padding: 0 0 0 20px
+  text-decoration: none
+
+#icon-rss:hover
+  color: #77695E
+  text-decoration: underline
+
+#search-form
+  clear: right
+  float: right
+  margin: 26px 0 0 0
+  vertical-align: bottom
+
+#search-form label
+  color: #0B96D2
+  margin: 0
+  padding: 0
+  vertical-align: bottom
+
+#search-btn
+  border: 1px #0DA0E0 solid
+  border-left: 0
+  display: block
+  float: left
+  margin: 4px 0 0 0
+  vertical-align: bottom
+
+#search-word
+  background-color: #EBF8FE
+  border: 1px #0DA0E0 solid
+  border-right: 0
+  color: #0DA0E0
+  display: block
+  float: left
+  height: 20px
+  line-height: 20px
+  padding: 0 2px 0 2px
+  margin: 4px 0 0 0
+  vertical-align: bottom
+  width: 127px
+
+.layout_body
+  margin-bottom: 4px
+  margin-top: 4px
+  width: 100%
+
+.layout_body td
+  line-height: 120%
+  padding: 4px 6px
+
+.layout_footer1, .layout_footer2, .layout_header1, .layout_header2
+  width: 100%
+
+.layout_footer1 .sep, .layout_footer2 .sep, .layout_header1 .sep, .layout_header2 .sep
+  width: 6px
+
+.clabel
+  font-weight: bold
+
+.edata
+  background-color: #fff
+  vertical-align: top
+
+.odata
+  background-color: #f2f2f2
+  vertical-align: top
+
+.layout_body tr:hover .edata, .layout_body tr:hover .odata
+  background-color: #999
+
+td.groups
+  color: #7f7f7f
+  font-weight: normal
+
+div.groups
+  border-top: 1px solid #ccc
+  float: left
+  margin-top: 20px
+  padding-top: 5px
+  text-align: left
+  width: 80%
+
+div.groups a
+  color: #7f7f7f
+  font-weight: normal
+  text-decoration: none
+
+div.groups a:active, div.groups a:hover
+  color: #999
+  font-weight: normal
+  text-decoration: none
+
+div.groups a.sel
+  font-weight: bold
+
+div.groups .npage
+  padding-left: 10px
+
+div.groups .ppage
+  padding-right: 10px
+
+div.total-rows
+  border-top: 1px solid #ccc
+  float: right
+  margin-top: 20px
+  padding-top: 5px
+  text-align: right
+  width: 20%
+  white-space: nowrap
+
+div.total-rows span
+  font-weight: bold
+
+.fieldset-wrap fieldset
+  border: 1px solid #dfdfdf
+  margin-bottom: 20px
+
+.fieldset-wrap fieldset fieldset
+  border: 0
+  margin: 0
+  padding: 0
+
+.fieldset-wrap legend
+  color: #000
+  font-size: 14px
+  font-weight: bold
+
+.form
+  line-height: 100%
+  width: 100%
+
+.form_field
+  padding: 3px 1px
+  text-align: left
+  vertical-align: top
+
+.form_label
+  padding: 8px 1px
+  text-align: right
+  vertical-align: top
+
+.form_field_children .form_field, .form_field_children .form_field_right, .form_field_children .form_label
+  border: 0
+  padding: 0
+
+.form .field-value
+  padding-top: 5px
+
+.form input.text, .form textarea, .form select
+  border: 1px solid #d6d6d6
+  -moz-border-radius: 3px
+  border-radius: 3px
+  display: block
+
+.form input.text:focus, .form textarea:focus
+  background-color: #ff9
+
+.form_split input.text
+  width: 94%
+
+.form_split select
+  width: 99.6%
+
+.form_split textarea
+  width: 97.6%
+
+.checkboxgroup, .radiogroup
+  border: 0
+
+.form div.livesearch ul
+  border: 1px solid #d6d6d6
+
+.form input.text[readonly], .form textarea[readonly]
+  color: #999
+
+.err, #err
+  color: #C00
+
+.form input.err
+  border: 1px #C00 solid
+
+.form select.err, .form select.err option, .form textarea.err
+  border: 1px #C00 solid
+
+div.err
+  border: 1px solid #c00
+  -moz-border-radius: 3px
+  border-radius: 3px
+  clear: both
+  color: #c00
+  margin: 20px 0
+  padding: 10px
+  text-align: center
+
+.hint
+  color: #999
+  padding: 0 5px
+
+.hint-bottom
+  color: #999
+  padding: 2px 0 0 2px
+
+#req, span.req
+  color: #C00
+
+.form .title
+  font-weight: bold
+  padding: 10px 0 5px 0
+
+.layout_footer2 .button
+  margin: 10px 0 0 150px
+
+.layout_footer2_split .button
+  margin-left: 115px
+
+.siteEditDotOver
+  background-color: #f2f2f2
+  border: 1px solid #fff
+  display: none
+  margin: 0
+  position: absolute
+  text-align: left
+  visibility: visible
+  width: 160px
+  z-index: 2500
+
+.siteEditDotOver table
+  border: 1px solid #105aa4
+  width: 100%
+
+.siteEditDotOver table td
+  background-color: #fff
+  padding: 2px 4px 2px 6px
+
+.siteEditDotOver table td.icon
+  background-color: #f4f4f4
+  padding: 2px 4px
+  text-align: center
+  width: 1%
+
+.siteEditDotOver a
+  display: block
+  color: #009
+  text-decoration: none
+
+.siteEditDotOver a:hover
+  text-decoration: underline
+

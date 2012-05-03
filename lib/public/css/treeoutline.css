@@ -1,0 +1,184 @@
+.elements-outline {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -o-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -ms-box-orient: vertical;
+  box-orient: vertical;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -ms-box-flex: 1;
+  box-flex: 1;
+  min-height: 220px;
+  margin: 0 0 4px 0;
+  padding: 2px 2px 2px 4px;
+  outline: none;
+  -webkit-border-radius: 0px 0px 3px 3px;
+  -moz-border-radius: 0px 0px 3px 3px;
+  border-radius: 0px 0px 3px 3px;
+  background: #fff;
+}
+.elements-outline > .subtree-heading {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -o-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -ms-box-orient: horizontal;
+  box-orient: horizontal;
+  overflow: hidden;
+  visibility: hidden;
+  height: 0px;
+  margin-bottom: 2px;
+  margin-right: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  cursor: default;
+  -webkit-transition: height 0.3s;
+  -moz-transition: height 0.3s;
+  -o-transition: height 0.3s;
+  -ms-transition: height 0.3s;
+  transition: height 0.3s;
+  background: #eee;
+}
+.elements-outline > .subtree-heading.is-visible {
+  height: 18px;
+  visibility: visible;
+}
+.elements-outline > .subtree-heading > .clear-subtree-btn {
+  content: "";
+  padding: 0px 5px;
+  cursor: pointer;
+  background: url("../img/icons.png") no-repeat 0px -553px;
+  margin-right: 3px;
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+.elements-outline > .subtree-heading > .clear-subtree-btn:hover {
+  opacity: 0.7;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+}
+.elements-outline > .subtree-heading > .element-name {
+  padding: 2px 4px;
+  font-size: 13px;
+  font-weight: bold;
+}
+.elements-outline > .scroller-container {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -o-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -ms-box-orient: vertical;
+  box-orient: vertical;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -ms-box-flex: 1;
+  box-flex: 1;
+  overflow: hidden;
+}
+.elements-outline .scroller {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -ms-box-flex: 1;
+  box-flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.elements-outline .scroller > .items-container {
+  overflow: hidden;
+  position: relative;
+}
+.elements-outline .scroller > .items-container > .items {
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  background: #fff;
+}
+.outline-item {
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 20px;
+  margin: 0 2px 0 inherit;
+  padding: 2px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Droid Sans Mono', 'Consolas', monospace;
+  font-size: 11px;
+  white-space: nowrap;
+}
+.outline-item > .text {
+  margin-left: 3px;
+  color: #999;
+}
+.outline-item > .text:first-child {
+  margin-left: 10px;
+}
+.outline-item.is-highlighted {
+  border-right: 4px solid #abd;
+}
+.outline-item:hover {
+  position: relative;
+  background: #f4f4f4;
+  cursor: default;
+}
+.outline-item.is-selected {
+  background: #cdf;
+}
+.outline-item > .fold-btn-blank,
+.outline-item > .fold-btn {
+  float: left;
+  width: 12px;
+  height: 12px;
+  margin: 1px;
+}
+.outline-item > .fold-btn {
+  background: url("../img/icons.png") 3px -539px;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+.outline-item.is-folded > .fold-btn {
+  -webkit-transform: rotate(0);
+  -moz-transform: rotate(0);
+  -o-transform: rotate(0);
+  -ms-transform: rotate(0);
+  transform: rotate(0);
+}
+.outline-item > .pseudos {
+  margin-right: 2px;
+}
+.outline-item > .pseudos > .pseudo-indicator {
+  display: inline-block;
+  margin-top: -4px;
+}
+.outline-item > .select-subtree-btn {
+  position: absolute;
+  top: 4px;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  margin-right: 5px;
+  cursor: pointer;
+  visibility: hidden;
+  background: url("../img/icons.png") no-repeat 0px -560px;
+}
+.outline-item:hover > .select-subtree-btn {
+  visibility: visible;
+}

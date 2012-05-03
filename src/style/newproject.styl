@@ -1,0 +1,383 @@
+@import nib
+
+.new-project-view
+  padding 20px 20px
+  width 770px
+  margin 10px auto
+  
+  .title
+    font-size 26px
+    margin 0
+    
+  .descr
+    color #333
+    font-size 13px
+    padding 7px 0 15px
+    
+  .errors-summary
+    height 0px
+    opacity 0
+    overflow hidden
+    box-sizing border-box
+    background-color crimson
+    color #fff
+    border-radius 3px
+    transition opacity .3s, height .5s
+    margin-top 16px
+    
+    .heading
+      padding 7px 10px 3px
+      font-size 14px
+      font-weight bold
+      
+    .errors
+      padding 0px 10px 7px
+      .error
+        \0
+    &.visible
+      height auto
+      opacity 1
+        
+  .input-row
+    clear both
+    margin-top 10px
+    
+    .label
+      float left
+      width 130px
+      padding 8px 10px 8px 0
+      label
+        font-size 14px
+    .hint
+      color #777
+      font-size 12px
+      clear both
+      width 560px
+    .field
+      float left
+      
+      input.text
+        border 1px solid #ddd
+        font-size 15px
+        padding 3px
+        color #333
+        width 400px
+        box-sizing border-box
+        
+      .note-indicator
+        width 18px
+        height 18px
+        float left
+        margin 7px 4px 0 0
+        background url(../img/icons.png) no-repeat -100px
+        
+    .note
+      clear both
+      background crimson
+      color #fff
+      border-radius 3px
+      margin-bottom 3px
+      transition opacity .3s, height .5s
+      height 0
+      opacity 0
+      width 397px
+      margin-left 162px
+      
+    &.has-error
+      .note
+        padding 3px 6px
+        height auto
+        opacity 1
+      .note-indicator
+        background-position 0px -450px
+    &.has-warning
+      .note
+        display block
+        background-color #FCE060
+        color #333
+        height auto
+        opacity 1
+        padding 3px 6px
+      .note-indicator
+        background-position 0px -430px
+
+  .sources
+    margin-top 25px
+    
+    .heading
+      font-size 16px
+      font-weight bold
+      padding 4px 0
+    .hint
+      font-size 13px
+      padding-right 50px
+
+    .fields
+      float left
+      width 520px
+    .item
+      background #f9f9f9
+      border-left 1px solid #eee
+      margin 22px 0 25px
+      padding 0px 10px
+      position relative
+      
+      .label
+        font-size 13px
+        width 115px
+      .field
+        float none
+        padding-right 10px
+      input.text
+        width 275px
+        font-size 12px
+        font-family Menlo, Monaco, monospace
+        padding 4px 2px
+        margin 0
+      
+      .input-container
+        float left
+        position relative
+        font-family Menlo, Monaco, monospace
+        padding 0
+        margin 2px 0
+        
+        .completion-sfx
+        .completion-pfx
+          position absolute
+          font-size 12px
+          font-weight normal
+          white-space nowrap
+          left 4px
+          top 5px
+          color #939
+          opacity 0
+          overflow hidden
+        .completion-pfx
+          height 0
+        .completion-sfx
+          margin-left 4px
+          color #999
+          opacity 1
+      
+      .btn
+        float right
+        cursor pointer
+        &:hover
+          opacity .7
+      
+      .btn.edit
+        background #333
+        color #fff
+        font-weight bold
+        padding 3px 6px
+        border-radius 2px
+        margin 5px 4px 4px 10px
+          
+      .btn.browse
+        font-size 12px
+        font-weight bold
+        text-transform uppercase
+        color #fff
+        padding 5px 9px 
+        margin 2px 5px
+        background-color dodgerblue
+        border-radius 3px
+      
+      .editing
+        input.url
+          width 350px
+        .btn.edit
+          display none
+      input.url
+        border none
+        background none
+        font-weight bold
+        padding 3px
+        margin-top 5px
+        &:focus
+          border 1px solid #ccc
+          background #fff
+          font-weight normal
+          padding 2px
+      
+      .input-row.type .field
+      .input-row.missing-files .field
+        margin-left 20px
+        float left
+        padding-top 10px
+      
+      .input-row.missing-files .field
+        padding-top 14px
+
+      .input-row.stylus-out .field
+        padding-top 5px
+      
+      input[type="radio"]
+        display none
+        
+        & + label
+          border 1px solid #888
+          padding 5px 8px 2px 24px
+          border-radius 3px
+          margin-right 10px
+          font-weight bold
+          cursor pointer
+          font-size 11px
+          color #555
+          text-transform uppercase
+          background url(../img/icons.png) no-repeat 6px -346px
+          opacity 0.7
+          
+          &:hover
+            opacity 1
+        
+        &:disabled + label
+        &:disabled + label:hover
+          opacity .3
+          cursor default
+        
+        &:checked + label
+          opacity 1
+          border-color #080
+          color #060
+          background-position 5px -376px
+
+  .btn.remove
+    position absolute
+    top -17px
+    right 5px
+    padding 2px 5px
+    color #999
+    
+    &:hover
+      color #000
+    
+    &:before
+      content "x"
+      padding 2px 3px
+      vertical-align top
+      font-size 10px
+
+  .btn.add-source
+    float right
+    font-weight bold
+    padding 0 10px
+    margin-top -15px
+    cursor pointer
+    
+    &:hover
+      opacity .8
+    
+    &:before
+      content "+"
+      padding 2px
+      font-weight bold
+      font-size 14px
+  
+  input[type="submit"]
+    border none
+    background dodgerblue
+    color #fff
+    font-weight bold
+    font-size 15px
+    padding 3px 10px 4px
+    border-radius 3px
+    cursor pointer
+    margin-top 18px
+    &:hover
+      opacity .8
+
+.sources-list
+  .input-row
+    margin-top 5pxpx
+  
+  .input-row .note
+    margin-left 148px
+    width 345px
+      
+  .input-row.has-warning .note
+    display none
+    
+  .input-row.stylus-out .note
+    margin-bottom 7px
+    position relative
+    top -7px
+      
+  .input-row.type
+  .input-row.missing-files
+  .input-row.stylus-out
+    height 0px
+    overflow hidden
+    opacity 0
+    transition height .3s, opacity .3s
+    
+    &.visible
+      opacity 1
+      height auto
+     
+  .stylus-switch-hint
+    border 1px solid #ddd
+    background-color lightgoldenrodyellow
+    color #444
+    padding 6px
+    margin 0 14px 10px 0
+    line-height 145%
+    display none
+    
+    &.visible
+      display block
+    
+    .btn.convert
+      @extends .new-project-view .sources .item .btn.edit
+
+.locations-info
+  float left
+  border-left 1px solid #ddd
+  width 200px
+  padding-left 17px
+  margin 10px 0
+  overflow hidden
+
+  .file-list
+    padding 2px 0
+
+  .searched-file-item
+    padding 1px 0 1px 18px
+    color #444
+    &.found
+      background url(../img/icons.png) no-repeat 2px -396px
+    &.missing
+      background url(../img/icons.png) no-repeat 2px -411px
+
+  .head-note
+  .foot-note
+    .msg
+      height 0px
+      color #333
+      overflow hidden
+      opacity 0
+      font-size 13px
+      font-weight bold
+      padding-right 10px
+      padding-bottom 3px
+    &.no-url .no-url
+    &.no-files .no-files
+    &.has-files .has-files
+    &.no-matches .no-matches
+    &.some-matches .some-matches
+    &.all-matches .all-matches
+      height auto
+      opacity 1
+    span
+      padding-right 5px
+      font-size 14px
+  
+  .foot-note
+    padding-top 7px
+    .msg.no-matches
+      color #e00
+    .msg.all-matches
+      color #080
+
+

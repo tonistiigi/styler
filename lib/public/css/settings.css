@@ -1,0 +1,145 @@
+.settings {
+  max-width: 70%;
+  min-width: 600px;
+  height: 400px;
+  -webkit-transition: top 0.6s;
+  -moz-transition: top 0.6s;
+  -o-transition: top 0.6s;
+  -ms-transition: top 0.6s;
+  transition: top 0.6s;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background: #fff;
+}
+.settings .forms {
+  position: relative;
+  padding-top: 10px;
+}
+.settings .forms .sheet .title {
+  padding: 10px;
+  background: #afc1f6;
+  width: 100px;
+  margin-bottom: 10px;
+  height: 30px;
+  cursor: default;
+}
+.settings .forms .sheet .contents {
+  position: absolute;
+  top: 10px;
+  left: 130px;
+  width: auto;
+  right: 0px;
+  height: 390px;
+  visibility: hidden;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0 10px;
+  overflow-y: auto;
+  opacity: 0;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  -webkit-transition: opacity 0.2s;
+  -moz-transition: opacity 0.2s;
+  -o-transition: opacity 0.2s;
+  -ms-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+}
+.settings .forms .sheet .contents .item {
+  width: 100%;
+}
+.settings .forms .sheet .footer {
+  margin-top: 10px;
+}
+.settings .forms .sheet.is-selected .title {
+  background: #9793ed;
+}
+.settings .forms .sheet.is-selected .contents {
+  visibility: visible;
+  opacity: 1;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+}
+.settings .forms .sheet.keyboard .group-name {
+  margin-top: 15px;
+  font-size: 14px;
+  margin-right: 20px;
+  font-weight: bold;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #eee;
+}
+.settings .forms .sheet.keyboard .lbl {
+  width: 350px;
+}
+.settings .forms .sheet.keyboard .keycommand {
+  border: 1px solid #999;
+  cursor: pointer;
+  background: #f2f2f2;
+  padding: 0px 6px 3px;
+  font-size: 12px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.settings .forms .sheet.keyboard .keycommand:hover {
+  background: #ddd;
+}
+.settings .forms .sheet.keyboard .keycommand.edit {
+  background: #f90;
+  color: #fff;
+  font-weight: bold;
+  border: 1px solid #b83;
+}
+.settings .forms .warning {
+  background-color: #f5f5dc;
+}
+.settings .button {
+  background: #f90;
+  padding: 5px 10px;
+  font-size: 13px;
+  font-weight: bold;
+  position: absolute;
+  top: 410px;
+  right: 0px;
+  text-transform: upercase;
+}
+.settings .item {
+  padding: 4px 4px;
+  font-size: 13px;
+  clear: both;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -o-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -ms-box-orient: horizontal;
+  box-orient: horizontal;
+}
+.settings .item .lbl {
+  width: 120px;
+  min-height: 20px;
+}
+.settings .item .value {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -ms-box-flex: 1;
+  box-flex: 1;
+}
+.keyenterhint {
+  font-size: 15px;
+  border-top: 3px solid #fff;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+  background: #b83;
+}
+.keyenterhint .warningnote {
+  font-size: 12px;
+  padding: 3px 15px;
+  color: #eee;
+}

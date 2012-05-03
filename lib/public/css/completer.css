@@ -1,0 +1,78 @@
+.completer {
+  position: absolute;
+  z-index: 100;
+  padding: 2px;
+}
+.completer > .items {
+  max-height: 96px;
+  white-space: nowrap;
+  background-color: #cbd9f6;
+  overflow-y: auto;
+  overflow-x: hidden;
+  color: #333;
+  min-width: 200px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.completer > .items > .item {
+  padding: 0 2px;
+}
+.completer > .items > .item > .general {
+  color: #7a7a7a;
+}
+.completer > .items > .item:hover {
+  background: #faebfa;
+  cursor: pointer;
+}
+.completer > .items > .item.selected {
+  background: #96b2fb;
+}
+.completer > .items > .item.color {
+  padding-left: 2px;
+  border-left-width: 15px;
+  border-left-style: solid;
+}
+.completer > .preview {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 100%;
+  width: 130px;
+  height: 98px;
+  background: #fff0ff;
+}
+.completer > .preview .imagepreview {
+  height: 80px;
+}
+.completer > .preview .image {
+  position: relative;
+  top: 50%;
+  margin: auto;
+}
+.completer > .preview .inner {
+  position: relative;
+  top: -50%;
+  width: 100%;
+  height: 100%;
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 100%;
+}
+.completer > .preview .imginfo {
+  position: absolute;
+  top: 80px;
+  width: 100%;
+}
+.completer > .preview .imginfo .name {
+  display: none;
+}
+.completer > .preview .imginfo .size {
+  text-align: center;
+  color: #999;
+}
+.completer.is-reverse > .preview {
+  top: auto;
+  bottom: 0px;
+}

@@ -1,0 +1,289 @@
+@import "nib"
+
+.editor-container
+  box vertical
+  box-flex 1
+  position relative
+    
+  > .toolbar
+    box horizontal
+    height 32px
+    background-color #333
+    transition margin-bottom 0.2s
+    
+    > .tools-group
+      height 30px
+      width 53px
+      margin-left 5px
+      margin-top 4px
+      
+      > .tool
+        float left
+        width 23px
+        height 23px
+        box-sizing border-box
+        margin 3px 3px 0 0
+        text-align center
+        font-weight bold
+        font-size 11px
+        color #888
+        background url(../img/icons.png) no-repeat 0px -30px
+        cursor default
+          
+        &.is-selected
+          opacity .8
+            
+        &:hover
+          opacity .9
+            
+        &.tool-save
+          background-position 0px -150px
+          cursor pointer
+            
+        &.is-disabled
+          opacity .3
+          cursor default
+
+  > .editor
+    display none
+    box-flex 1
+    position relative
+    background-color #fff
+    
+    .is-editormode &
+      //box horizontal
+      display block
+  
+  > .statusbar
+    box horizontal
+    height 14px
+    padding-left 15px
+    border-top 1px solid #ddd
+    border-radius 0 0 3px 3px
+    line-height 100%
+    background #fff
+
+  .ace-tm .ace_gutter
+    background #eee
+
+.search
+  display none
+  absolute top 26px right 30px
+  z-index 12
+  width 140px
+  padding 5px 6px
+  border 1px solid #bbb
+  border-radius 0 0 3px 3px
+  background #f4f4f4
+  
+  > input
+    width 133px
+    border 1px solid #ccc
+  
+  > .results
+    display none
+    padding 1px
+    
+    > .msg
+      padding 2px 0
+      > span
+        font-weight bold
+        
+    > .hint
+      font-size 11px
+      font-style italic
+      color #666
+
+.ace_editor
+  line-height normal
+  .highlight-marker
+    border-right 10px solid #cde
+    position absolute
+    margin-left -15px
+  .selection-marker
+    background rgba(255,200,0, 0.1)
+    position absolute
+    margin-left -4px
+    
+  .editor-command-highlight
+    position absolute
+    display none
+    z-index 10000
+    background rgba(255, 0, 0, .2)
+    cursor ns-resize
+    
+    &.is-selectable
+      cursor pointer
+    
+.tabs
+  box-flex 1
+  height 30px
+  position: relative
+  user-select none
+  margin-top 3px
+  
+  .editor-error
+    overflow hidden
+    z-index 100
+    position absolute
+    right 23px
+    top 33px
+    max-height 12px
+    padding 2px 6px 3px
+    font-size 11px
+    font-weight: bold
+    color #fff
+    background #c00
+    
+  > .tab
+    position absolute
+    top 0px
+    z-index 1
+    float left
+    box-sizing border-box
+    height 27px
+    padding 6px 25px 1px 7px
+    margin 2px 6px 0 0
+    border-radius 3px 3px 0 0
+    font-family Helvetica, sans-serif
+    color #fff
+    font-size 12px
+    background url(../img/icons.png) repeat-x 0px -770px 
+    cursor default
+    
+    &.is-loaded
+      transition left .3s
+    
+    &.is-dragging
+      transition none
+      z-index 2
+
+    &.is-selected
+      border-bottom-color #fff
+      background #fff
+      color #000
+      
+    &.is-highlight
+      border-left 2px solid #def
+
+    > .close-btn
+      absolute top 6px right 5px
+      width 14px
+      height 14px
+      background url(../img/icons.png) no-repeat 0px -750px
+      &:hover
+        opacity .8
+
+
+.infobar
+  height 0px
+  transition height 0.2s
+
+  .has-infobar &
+    height 21px
+    border-bottom 2px solid #fff
+
+
+.infobar-editor
+  box horizontal
+  width 100%
+  background #eee
+  
+  > .infobar-toggle
+    absolute top -25px right 0px
+    width 25px
+    height 20px
+    z-index 3
+    background url(../img/icons.png) no-repeat -10px -267px
+    cursor pointer
+    transition top .2s, -webkit-transform .4s
+    
+    &:hover
+      opacity .8
+    
+    .has-infobar &
+      top -1px
+      background-position -10px -285px
+      transform rotate(180deg)
+  
+  > .editor-info
+    box horizontal
+    box-flex 1
+    visibility hidden
+    padding-right 25px
+    width 95%
+    
+    .has-infobar &
+      visibility visible
+    
+    > .locking-toggle
+      width 40px
+      height 20px
+      box-sizing border-box
+      background #ededed url(../img/icons.png) no-repeat 18px -236px
+      
+      &.is-active
+        background-color #f5f5f5
+        
+      &.is-locked
+        background-position 18px -216px
+        
+    > .selected-rule
+      box-flex 1
+      box horizontal
+      
+      > .selector
+        overflow hidden
+        box-flex 1
+        padding 4px 10px
+        height 12px
+        font-weight bold
+        font-size 13px
+        
+      > .selector-elements
+        color #666
+        padding 1px 3px 0
+        height 16px
+        background #fff
+        margin 2px 4px
+        border-radius 3px
+      
+      > .selection-hint
+        margin 3px
+        color #555
+
+
+.statusbar
+  > .selectable
+    position relative
+    box-sizing border-box
+    width 110px
+    height 14px
+    padding 1px 5px
+    border-left 1px solid #ddd
+    font-size 12px
+    background #fff
+    
+    &:hover
+      background #eee
+      cursor default
+    
+    > .selection > span
+      font-weight bold
+    
+    > .options
+      top auto
+      bottom 100%
+      right auto
+      left 0
+      background #fff
+      width 140px
+      line-height 1.4
+      padding 3px 0
+      
+      > .option:hover
+        background-color #eee
+  
+    &.no-formatting .option-format
+    &.no-formatting .option-format + .separator  
+      display none

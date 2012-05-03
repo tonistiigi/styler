@@ -1,0 +1,89 @@
+<html>
+<head>
+  <script type="text/javascript">
+
+  var url = null,
+      retryTimeout = 0,
+      socket = null;
+
+  function emit (type, data) {
+    var customEvent = document.createEvent('CustomEvent');
+    customEvent.initCustomEvent('emit', true, true, {type: type, data: data});
+    document.dispatchEvent(customEvent);
+  }
+
+  document.addEventListener("message", function (e) {
+    emit('got-it', e.detail);
+     var message = e.detail;
+
+     if (!message.type) return;
+
+     if (message.type == "loadSocketIO") {
+       loadSocketIO(message.url);
+     }
+     else if (message.type == "checkproject") {
+       checkProjectPath(message.url, function (hasProject) {
+         emit('response', {hasproject: hasProject, callback: message.callback});
+       });
+     }
+  });
+
+  var log = function (msg) {
+      emit("log", msg);
+  };
+
+  function showDisconnectedIcon() {
+    emit("show_disconnected");
+  }
+
+  function showConnectedIcon() {
+    emit("show_connected");
+  }
+
+  function loadSocketIO(url_) {
+    url = url_;
+    clearTimeout(retryTimeout);
+    var script = document.createElement("script");
+    script.onload = function () {
+      tryConnect();
+    }
+    script.onerror = function () {
+      retryTimeout = setTimeout(loadSocketIO, 30000);
+      document.body.removeChild(script);
+      showDisconnectedIcon();
+    }
+    script.src = url + "socket.io/socket.io.js";
+    document.body.appendChild(script);
+  }
+
+  function tryConnect() {
+    socket = io.connect(url + "info");
+    socket.on("connect", function () {
+      log("connect");
+      showConnectedIcon(); 
+    });
+    socket.on('focus', function (sessionId) {
+      emit('focus', sessionId);
+    });
+    socket.on("disconnect", function () {
+      log("disconnect");
+      showDisconnectedIcon(); 
+    });
+  }
+
+  function checkProjectPath(path, cb) {
+    socket.emit("checkproject", path, cb);
+  }
+
+  function onPageLoaded() {
+    setTimeout( function () {
+      emit('ready');
+    }, 100);
+  }
+  showDisconnectedIcon();
+  
+  </script>
+</head>
+<body onload="onPageLoaded()">
+</body>
+</html>

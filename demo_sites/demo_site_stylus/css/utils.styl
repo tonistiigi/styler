@@ -1,0 +1,21 @@
+$base_font = Arial, Helvetica, sans-serif
+$base_size = 12
+$link_color = #b61912
+
+
+fs(inc=0)
+    font-size ($base_size + inc)px
+
+border-radius(args...)
+    -webkit-border-radius args
+    -moz-border-radius args
+    border-radius args
+
+radial-gradient(a,b,c,d)
+    prop = current-property[0]
+    val = current-property[1]
+    add-property(prop, -moz-radial-gradient(a,b,c,d));
+    add-property(prop, -webkit-radial-gradient(a,b,c,d));
+    add-property(prop, -o-radial-gradient(a,b,c,d));
+    add-property(prop, -ms-radial-gradient(a,b,c,d));
+    'radial-gradient(%s, %s)' % (a b c d)

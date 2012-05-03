@@ -1,0 +1,36 @@
+if mode == 'edit'
+  h2.title Edit project
+else
+  h2.title Create new project
+  .descr Fill in the details below to start using Styler in your page.
+
+form.new-project
+  
+  .errors-summary
+    .heading Please review the following issues before submitting:
+    .errors
+  
+  .input-row.name
+    .label
+      label Project name
+    .field
+      .note-indicator
+      input.text#name
+    .note
+  .input-row.baseurl
+    .label 
+      label Base URL
+    .field  
+      .note-indicator
+      input.text#baseurl
+    .note
+    .hint Base URL defines the enrtypoint for your projects pages. All pages that start with this URL are counted as being part of the project.
+  
+  .sources
+    .heading Source locations
+    .hint
+    .sources-list
+    .btn.add-source Add new location
+  
+  div
+      input(type="submit", value="Save project")

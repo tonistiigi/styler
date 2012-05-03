@@ -1,0 +1,24 @@
+.selector.overflow-flex
+.element-tools.overflow-fixed
+  .pseudo-indicator.hover(data-class='hover')
+  .pseudo-indicator.focus(data-class='focus')
+  .pseudo-indicator.active(data-class='active')
+  .pseudo-indicator.visited(data-class='visited')
+  .pseudo-selector-cont
+    .pseudo-selector.selectable(tabIndex=10)
+      .options
+        .option.hover(data-class='hover') Hover
+        .option.focus(data-class='focus') Focus
+        .option.active(data-class='active') Active
+        .option.visited(data-class='visited') Visited
+  .parent-selector-cont
+    .parent-selector.selectable(tabIndex=11)
+      .options
+  .media-selector-cont
+    .media-selector.selectable(tabIndex=12)
+      .options
+        .option.screen(data-class='screen') Screen
+        .option.print(data-class='print') Print
+        .option.tv(data-class='tv') TV
+  .element-rules
+    .inner

@@ -1,0 +1,534 @@
+@font-face {
+  font-family: 'IstokWeb';
+  src: url("/css/istokweb/IstokWeb-Regular-webfont.woff") format('woff'), url("/css/istokweb/IstokWeb-Regular-webfont.ttf") format('truetype'), url("/css/istokweb/IstokWeb-Regular-webfont.svg#IstokWebRegular") format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'IstokWeb';
+  src: url("/css/istokweb/IstokWeb-Bold-webfont.woff") format('woff'), url("/css/istokweb/IstokWeb-Bold-webfont.ttf") format('truetype'), url("/css/istokweb/IstokWeb-Bold-webfont.svg#IstokWebBold") format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+body {
+  font-family: IstokWeb, Helvetica, sans-serif;
+  font-size: 12px;
+  line-height: 130%;
+}
+body.no-scrolling {
+  overflow: hidden;
+}
+a {
+  color: #6495ed;
+}
+div.clear {
+  clear: both;
+}
+.app {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -o-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -ms-box-orient: horizontal;
+  box-orient: horizontal;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -ms-box-flex: 1;
+  box-flex: 1;
+  width: 100%;
+  height: 100%;
+}
+.main-toolbar {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -o-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -ms-box-orient: vertical;
+  box-orient: vertical;
+  width: 29px;
+  background: #333;
+}
+.main-toolbar > .tools-group {
+  margin: 20px 0;
+}
+.main-toolbar > .tools-group > .tool {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  margin: 8px 5px 5px 2px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  font-size: 11px;
+  text-align: center;
+  color: #f0f8ff;
+  font-weight: bold;
+  background: url("../img/icons.png") no-repeat;
+  cursor: pointer;
+}
+.main-toolbar > .tools-group > .tool.is-selected {
+  background-color: #666;
+}
+.main-toolbar > .tools-group > .tool:hover {
+  background-color: #444;
+}
+.main-toolbar > .tools-group > .tool:hover > label {
+  display: block;
+}
+.main-toolbar > .tools-group > .tool > label {
+  display: none;
+  float: none;
+  position: absolute;
+  top: 4px;
+  left: 24px;
+  z-index: 50;
+  width: auto;
+  padding: 1px 4px;
+  font-size: 10px;
+  white-space: nowrap;
+  text-align: left;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background: #444;
+}
+.main-toolbar > .tools-group > .tool.tool-back {
+  background-position: 3px -175px;
+}
+.main-toolbar > .tools-group > .tool.tool-settings {
+  background-position: 2px -58px;
+}
+.main-toolbar > .tools-group > .tool.tool-edit {
+  background-position: 2px -88px;
+}
+.main-toolbar > .tools-group > .tool.tool-inspect {
+  background-position: 4px -117px;
+}
+.main-toolbar > .tools-group > .tool.tool-refresh {
+  background-position: 3px -307px;
+}
+.main-toolbar > .tools-group > .tool.tool-identify {
+  background-position: 4px 2px;
+}
+.main-toolbar > .tools-group > .tool.tool-embed {
+  background-position: 2px -687px;
+}
+.main-toolbar > .tools-group > .tool.tool-sidebyside {
+  background-position: 2px -657px;
+  display: none;
+}
+.main-toolbar > .sidebar-toggle {
+  position: absolute;
+  left: 6px;
+  bottom: 6px;
+  width: 17px;
+  height: 23px;
+  background: url("../img/icons.png") no-repeat 5px -265px;
+  cursor: pointer;
+  -webkit-transition: -webkit-transform 0.4s;
+  -moz-transition: -webkit-transform 0.4s;
+  -o-transition: -webkit-transform 0.4s;
+  -ms-transition: -webkit-transform 0.4s;
+  transition: -webkit-transform 0.4s;
+}
+.main-toolbar > .sidebar-toggle:hover {
+  opacity: 0.8;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+}
+.no-sidebar .main-toolbar > .sidebar-toggle {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.block-heading {
+  height: 3px;
+  background: #fff;
+  -webkit-border-radius: 3px 3px 0 0;
+  -moz-border-radius: 3px 3px 0 0;
+  border-radius: 3px 3px 0 0;
+}
+.main-container {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -o-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -ms-box-orient: vertical;
+  box-orient: vertical;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -ms-box-flex: 1;
+  box-flex: 1;
+}
+.main-container > .main {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -o-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -ms-box-orient: horizontal;
+  box-orient: horizontal;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -ms-box-flex: 1;
+  box-flex: 1;
+  background: #333;
+}
+.main-container > .main > .sidebar {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -o-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -ms-box-orient: vertical;
+  box-orient: vertical;
+  min-width: 170px;
+  width: 300px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  visibility: visible;
+  -webkit-transition: width 0.3s, min-width 0.3s, visibility 0.1s 0.6s;
+  -moz-transition: width 0.3s, min-width 0.3s, visibility 0.1s 0.6s;
+  -o-transition: width 0.3s, min-width 0.3s, visibility 0.1s 0.6s;
+  -ms-transition: width 0.3s, min-width 0.3s, visibility 0.1s 0.6s;
+  transition: width 0.3s, min-width 0.3s, visibility 0.1s 0.6s;
+  overflow: hidden;
+  background: #333;
+}
+.main-container > .main > .sidebar.no-clients > .infobar,
+.main-container > .main > .sidebar.no-clients > .styleinfo,
+.main-container > .main > .sidebar.no-clients > .resizer,
+.main-container > .main > .sidebar.no-clients > .elements-outline {
+  display: none;
+}
+.main-container > .main > .sidebar.no-clients > .no-clients-fallback {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -o-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -ms-box-orient: vertical;
+  box-orient: vertical;
+}
+.no-client-loaded .main-container > .main > .sidebar > .styleinfo > div,
+.no-client-loaded .main-container > .main > .sidebar > .infobar > div {
+  visibility: hidden;
+}
+.no-sidebar .main-container > .main > .sidebar {
+  min-width: 0;
+  width: 0px !important;
+}
+.main-container > .main > .sidebar.is-resizing {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  -ms-transition: none;
+  transition: none;
+}
+.main-container > .main > .main-content {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -ms-box-flex: 1;
+  box-flex: 1;
+  min-width: 330px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -o-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -ms-box-orient: vertical;
+  box-orient: vertical;
+  width: 0;
+  position: relative;
+  margin: 0 4px 4px 0;
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.main-container > .main > .main-content .infobar {
+  display: none;
+}
+.is-editormode .main-container > .main > .main-content .infobar {
+  display: block;
+  position: relative;
+}
+.no-clients-fallback {
+  display: none;
+  background: #fff;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -ms-box-flex: 1;
+  box-flex: 1;
+  margin-bottom: 4px;
+  -webkit-border-radius: 0 0 3px 3px;
+  -moz-border-radius: 0 0 3px 3px;
+  border-radius: 0 0 3px 3px;
+  position: relative;
+}
+.no-clients-fallback > .hide-hint {
+  position: absolute;
+  bottom: 0px;
+  margin: 4px;
+  color: #555;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding: 2px 5px;
+  background: #e5e5e5;
+}
+.no-sidebar .no-clients-fallback > .hide-hint {
+  visibility: hidden;
+}
+.no-clients-fallback > .connect-helper {
+  color: #888;
+  font-size: 13px;
+  padding: 15px;
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  text-align: center;
+  margin: 30% 15px;
+  line-height: 150%;
+}
+.no-sidebar .no-clients-fallback > .connect-helper {
+  visibility: hidden;
+}
+.no-clients-fallback > .connect-helper > .url {
+  text-decoration: underline;
+  color: #555;
+  cursor: pointer;
+  max-width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+.no-clients-fallback > .connect-helper > .url:hover {
+  text-decoration: none;
+}
+.higlighted-selector .sel-id {
+  color: #6f28c7;
+}
+.higlighted-selector .sel-id:before {
+  content: "#";
+  font-size: 11px;
+}
+.higlighted-selector .sel-class {
+  color: #1212b2;
+}
+.higlighted-selector .sel-class:before {
+  content: ".";
+  font-size: 11px;
+}
+.higlighted-selector .sel-tag {
+  color: #66669f;
+}
+.higlighted-selector .sel-symbol {
+  color: #d00;
+  margin: 0 4px 0 2px;
+}
+.higlighted-selector .sel-pseudo {
+  color: #771505;
+}
+.higlighted-selector .sel-unknown {
+  margin: 0 1px;
+}
+.fscreen-error {
+  color: #555;
+  font-size: 26px;
+  margin: 50px auto auto;
+  padding: 20px;
+  width: 70%;
+  text-align: center;
+  line-height: 150%;
+}
+.fpsstats {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+.agenttype {
+  width: 20px;
+  height: 16px;
+  float: left;
+  background: url("../img/browser_icons.png") no-repeat 0px 100px;
+  -webkit-background-size: 16px;
+  -moz-background-size: 16px;
+  -o-background-size: 16px;
+  background-size: 16px;
+  margin-top: 2px;
+}
+.agenttype.chrome {
+  background-position: 0px 0px;
+}
+.selected-item .agenttype.chrome {
+  background-position: 0px 0px;
+}
+.project-item .agenttype.chrome {
+  background-position: 0px 0px;
+}
+.agenttype.firefox {
+  background-position: 0px -28px;
+}
+.selected-item .agenttype.firefox {
+  background-position: 0px -16px;
+}
+.project-item .agenttype.firefox {
+  background-position: 0px -20px;
+}
+.agenttype.opera {
+  background-position: 0px -56px;
+}
+.selected-item .agenttype.opera {
+  background-position: 0px -32px;
+}
+.project-item .agenttype.opera {
+  background-position: 0px -40px;
+}
+.agenttype.safari {
+  background-position: 0px -84px;
+}
+.selected-item .agenttype.safari {
+  background-position: 0px -48px;
+}
+.project-item .agenttype.safari {
+  background-position: 0px -60px;
+}
+.agenttype.ie {
+  background-position: 0px -112px;
+}
+.selected-item .agenttype.ie {
+  background-position: 0px -64px;
+}
+.project-item .agenttype.ie {
+  background-position: 0px -80px;
+}
+.agenttype.unknown {
+  background-position: 0px -140px;
+}
+.selected-item .agenttype.unknown {
+  background-position: 0px -80px;
+}
+.project-item .agenttype.unknown {
+  background-position: 0px -100px;
+}
+.agenttype.android {
+  background-position: 0px -168px;
+}
+.selected-item .agenttype.android {
+  background-position: 0px -96px;
+}
+.project-item .agenttype.android {
+  background-position: 0px -120px;
+}
+.agenttype.blackberry {
+  background-position: 0px -224px;
+}
+.selected-item .agenttype.blackberry {
+  background-position: 0px -128px;
+}
+.project-item .agenttype.blackberry {
+  background-position: 0px -160px;
+}
+.agenttype.iphone {
+  background-position: 0px -252px;
+}
+.selected-item .agenttype.iphone {
+  background-position: 0px -144px;
+}
+.project-item .agenttype.iphone {
+  background-position: 0px -180px;
+}
+.agenttype.ipad {
+  background-position: 0px -280px;
+}
+.selected-item .agenttype.ipad {
+  background-position: 0px -160px;
+}
+.project-item .agenttype.ipad {
+  background-position: 0px -200px;
+}
+/**
+ * Overflow-row object
+ * Object that has a flex and fixed part.
+ * How much of the flex object is clipped depends on objects own dimensions.
+ */
+.overflow-row {
+  width: 100%;
+  position: relative;
+}
+.overflow-row .overflow-flex {
+  white-space: nowrap;
+  width: inherit;
+}
+.overflow-row .overflow-fixed {
+  display: inline-table;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: inherit;
+  background-color: inherit;
+}
+.overflow-row .overflow-fixed > div {
+  vertical-align: top;
+  white-space: nowrap;
+}
+.overlay {
+  background: rgba(0,0,0,0.8);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 101;
+  opacity: 0;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  -webkit-transition: opacity 0.3s;
+  -moz-transition: opacity 0.3s;
+  -o-transition: opacity 0.3s;
+  -ms-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+.overlay.is-loaded {
+  opacity: 1;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+}
+.overlay.is-loaded > div {
+  top: 90px;
+}
+.overlay > div {
+  top: -300px;
+  position: relative;
+  margin: auto;
+}

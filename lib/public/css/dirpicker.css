@@ -1,0 +1,101 @@
+.stack-scroller-cont {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -ms-box-flex: 1;
+  box-flex: 1;
+}
+.stack-scroller {
+  overflow-x: scroll;
+  width: 680px;
+  height: 340px;
+  overflow-y: hidden;
+}
+.stack-cont {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -o-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -ms-box-orient: horizontal;
+  box-orient: horizontal;
+}
+.stack-cont .stack {
+  width: 180px;
+  height: 325px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 5px 2px;
+  border-right: 1px solid #ccc;
+}
+.stack-cont .stack .item {
+  padding: 2px 5px 2px 25px;
+  white-space: nowrap;
+  font-size: 12px;
+  cursor: default;
+  background: url("../img/icons.png") no-repeat 5px -490px;
+}
+.stack-cont .stack .item.diritem {
+  background-position: 5px -473px;
+}
+.stack-cont .stack .item.diritem.selected {
+  background-color: #3875d7;
+  color: #fff;
+}
+.stack-cont .stack .item.driveitem {
+  background-position: 5px -639px;
+}
+.stack-cont .stack .item.cssitem {
+  background-position: 5px -499px;
+}
+.stack-cont .stack .item.stylitem {
+  background-position: 5px -519px;
+}
+.dirpicker {
+  background: #fafafa;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 680px;
+  height: 380px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -o-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -ms-box-orient: vertical;
+  box-orient: vertical;
+}
+.dirpicker .buttons {
+  background: #eee;
+  border-top: 1px solid #888;
+  height: 10%;
+}
+.dirpicker .buttons .btn {
+  float: right;
+  padding: 6px 10px;
+  margin: 6px 3px;
+  cursor: pointer;
+}
+.dirpicker .buttons .btn.select {
+  background: #1e90ff;
+  color: #fff;
+  font-weight: bold;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+.dirpicker .buttons .btn.cancel {
+  color: #444;
+  text-decoration: underline;
+}
+.dirpicker .buttons .btn:hover {
+  opacity: 0.8;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+}

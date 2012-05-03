@@ -1,0 +1,84 @@
+.settings
+  .forms
+    .sheet.editor
+      .title Editor
+      .contents
+        .item
+          .lbl Theme
+          .value 
+            select(class="theme")
+              option(value="clouds") Clouds
+              option(value="clouds_midnight") Clouds Midnight
+              option(value="cobalt") Cobalt
+              option(value="crimson_editor") Crimson
+              option(value="dawn") Dawn
+              option(value="eclipse") Eclipse
+              option(value="idle_fingers") Idle Fingers
+              option(value="kr_theme") KR Theme
+              option(value="merbivore") Merbivore
+              option(value="merbivore_soft") Merbivore Soft
+              option(value="mono_industrial") Mono Industrial
+              option(value="monokai") Monokai
+              option(value="pastel_on_dark") Pastel on Dark
+              option(value="solarized_dark") Solarized Dark
+              option(value="solarized_light") Solarized Light
+              option(value="textmate") Textmate
+              option(value="tomorrow") Tomorrow
+              option(value="twilight") Twilight
+              option(value="vibrant_ink") Vibrant Ink
+        .item
+          .lbl
+          .value
+            input(type="checkbox", class="cbxcontrol", id="save_icon")
+            | Save icon
+            br
+            input(type="checkbox", class="cbxcontrol", id="line_numbers")
+            | Line numbers
+            br
+            input(type="checkbox", class="cbxcontrol", id="invisibles")
+            | Show invisibles
+            br
+            input(type="checkbox", class="cbxcontrol", id="statusbar")
+            | Show statusbar
+            br
+            input(type="checkbox", class="cbxcontrol", id="confirm_keyboard_close")
+            | Confirm accidental window close
+            br
+            input(type="checkbox", class="cbxcontrol", id="confirm_unsaved_close")
+            | Confirm closing unsaved files
+            br
+            input(type="checkbox", class="cbxcontrol", id="autocomplete")
+            | Automatically show completions
+            br
+            input(type="checkbox", class="cbxcontrol", id="sidebar_right")
+            | Sidebar on right
+            br
+    
+    .sheet.csslint
+      .title CSSLint
+      .contents
+        .items
+        .footer
+          a(href="https://github.com/stubbornella/csslint/wiki/Rules", target="_blank") More info about the rules
+          
+    .sheet.keyboard
+      .title Keyboard Shortcuts
+      .contents
+        .items
+        .footer
+          a(href="javascript:not_implemented()") Print cheat sheet
+        
+    .sheet.development
+      .title Developement
+      .contents
+        .item
+          .lbl Development Mode
+          .value
+            input(type="checkbox", class="cbxcontrol", id="devmode")
+        .item
+          .lbl Show FPS stats
+          .value
+            input(type="checkbox", class="cbxcontrol", id="fpsstats")
+        
+  .buttons
+    .button.close Close

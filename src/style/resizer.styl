@@ -1,0 +1,40 @@
+@import nib
+
+.resizer 
+  position relative
+  z-index 2
+
+  &.resizer-horizontal
+    width 6px
+    cursor ew-resize
+    pobox horizontal
+    > .inner
+      position relative
+      top 20%
+      > .thumb
+        background url(../img/resizer_h.png) no-repeat 50% 50%
+        position absolute
+        width 10px
+        height 50px
+        top 250px
+        left 2px  
+    .no-sidebar &
+      display none
+    
+  &.resizer-vertical
+    position relative
+    cursor ns-resize
+    background #fff
+    padding-top 3px
+    > .inner
+      background #ddd
+      height 1px
+      margin 0 4px
+      border-top 1px solid #ccc
+      > .thumb
+        position relative
+        width 42px
+        height 12px
+        top -10px
+        margin 0 auto
+        background url(../img/resizer.png) no-repeat 50% 50%

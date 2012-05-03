@@ -1,0 +1,26 @@
+!!! 5
+html
+  head
+    title Styler
+    if !devmode
+      link(href='/build/styles.css', rel="stylesheet", type="text/css")
+  body
+    div#page_loader(style='position:fixed; top: 50%; left: 50%; margin: -50px 0 0 -15px; display: none')
+      img(src='/img/ajax-loader.gif')
+      
+    script(type="text/javascript")
+      setTimeout(function(){
+        var loader = document.getElementById('page_loader');
+        if (loader)
+          loader.style.display = "block";
+      }, 250)
+    script(src='/socket.io/socket.io.js')
+    script(type='text/javascript')
+      window.app = {};
+      app.socket = io.connect('/console', {'sync disconnect on unload': false});
+    if devmode 
+      script(src='/vendor/require.js', data-main='/lib/main')
+    else
+      script(src='/build/main.js')
+      script(src='/build/editor.js', defer='defer')
+    script(src='/data/' + clientId)

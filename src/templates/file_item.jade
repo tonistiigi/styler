@@ -1,0 +1,8 @@
+.inner(class=isHelper?'is-helper':'')
+  .name
+    =name
+    span.ext= extension
+  if isActive
+    .active-indicator Active
+  if isOpen
+    .open-indicator Open
