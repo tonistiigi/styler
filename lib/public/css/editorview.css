@@ -248,10 +248,23 @@
   -o-transition: height 0.2s;
   -ms-transition: height 0.2s;
   transition: height 0.2s;
+  overflow: hidden;
 }
 .has-infobar .infobar {
   height: 21px;
   border-bottom: 2px solid #fff;
+  overflow: visible;
+}
+.has-infobar .infobar .editor-info {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -o-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -ms-box-orient: horizontal;
+  box-orient: horizontal;
 }
 .infobar-editor {
   display: -webkit-box;
@@ -295,15 +308,7 @@
   transform: rotate(180deg);
 }
 .infobar-editor > .editor-info {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -o-box;
-  display: -ms-box;
-  display: box;
-  -webkit-box-orient: horizontal;
-  -moz-box-orient: horizontal;
-  -ms-box-orient: horizontal;
-  box-orient: horizontal;
+  display: none;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -ms-box-flex: 1;

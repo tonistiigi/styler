@@ -178,10 +178,15 @@
 .infobar
   height 0px
   transition height 0.2s
+  overflow hidden
 
   .has-infobar &
     height 21px
     border-bottom 2px solid #fff
+    overflow visible
+    
+    .editor-info
+      box horizontal
 
 
 .infobar-editor
@@ -207,7 +212,7 @@
       transform rotate(180deg)
   
   > .editor-info
-    box horizontal
+    display none
     box-flex 1
     visibility hidden
     padding-right 25px

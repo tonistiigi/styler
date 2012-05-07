@@ -282,6 +282,7 @@ div.clear {
 .is-editormode .main-container > .main > .main-content .infobar {
   display: block;
   position: relative;
+  overflow: visible;
 }
 .no-clients-fallback {
   display: none;
