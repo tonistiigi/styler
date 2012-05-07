@@ -1,7 +1,7 @@
 { "name": "styler"
 , "description": "CSS/Stylus live editor"
 , "author": "Tõnis Tiigi"
-, "version": "0.0.4-7"
+, "version": "0.0.5"
 , "licenses": [
   { "type": "MIT"
   , "url": "https://"
