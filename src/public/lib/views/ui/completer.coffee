@@ -82,7 +82,7 @@ define (require, exports, module) ->
 
       $(@itemsElement).append fragment
       {editor} = @tab.get 'editor'
-      @$el.css height: editor.renderer.lineHeight * Math.min items.length, 5
+      @$el.css height: editor.renderer.lineHeight * Math.min items.length, 6
       item = _.find items, (i) -> i.value == @selectedValue
       @select if item then item.i else if @reverse then items.length - 1 else 0
       @disable() unless @items.length

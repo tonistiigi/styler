@@ -525,10 +525,10 @@ div.clear {
   opacity: 1;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
 }
-.overlay.is-loaded > div {
+.overlay.is-loaded > div:first-child {
   top: 90px;
 }
-.overlay > div {
+.overlay > div:first-child {
   top: -300px;
   position: relative;
   margin: auto;

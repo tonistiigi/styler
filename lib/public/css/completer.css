@@ -40,19 +40,18 @@
   right: 100%;
   width: 130px;
   height: 98px;
-  background: #fff0ff;
+  background: #e9f1f8;
 }
 .completer > .preview .imagepreview {
   height: 80px;
 }
 .completer > .preview .image {
   position: relative;
-  top: 50%;
   margin: auto;
+  top: 5%;
 }
 .completer > .preview .inner {
   position: relative;
-  top: -50%;
   width: 100%;
   height: 100%;
   -webkit-background-size: 100%;

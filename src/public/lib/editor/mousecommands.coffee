@@ -108,7 +108,7 @@ define (require, exports, module) ->
       @startCommand @editor.renderer.screenToTextCoordinates e.pageX, e.pageY
 
     onMouseDown: (e) ->
-      return unless @activated
+      return unless @activated && !e.button
       switch @action.type
         when 'color'
           @startColorPicker @action.match, @action.coord
