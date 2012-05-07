@@ -1,0 +1,100 @@
+
+/* Left main menu */
+
+#menu1 {
+  padding: 0;
+  margin: 0;
+}
+#menu1 #menu1last-1 {
+  border-bottom: none;
+}
+#menu1 li.m1 {
+  list-style: none;
+  display: block;
+  border-bottom: 1px solid #b41a13;
+  border-top: 1px solid #c62018;
+  position: relative;
+}
+#menu1 li.m1 a.m1 {
+  display: block;
+  font-family: Tahoma, Arial;
+  color: #f87781;
+  overflow: hidden;
+  font-size: 12px;
+  text-decoration: none;
+  white-space: nowrap;
+  text-transform: uppercase;
+  padding: 6px 7px 6px 20px;
+}
+#menu1 li.m1.l1-active > a.m1,
+#menu1 li.m1.l1:hover > a.m1 {
+  color: #fff;
+}
+
+/* Second level */
+
+#menu1 li.m1 ul.l2 {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  border: 1px solid #c00;
+  top: -1px;
+  left: 140px;
+  background: #b01810 url("../img/menu1_l2_bg.png") repeat-y;
+  display: none;
+}
+#menu1 li.m1.l1:hover ul.l2 {
+  display: block;
+}
+#menu1 li.m1 ul.l2 li.m1 a.m1 {
+  padding: 8px 15px;
+  text-transform: none;
+}
+#menu1 li.m1 ul.l2 li.m1 a.m1:hover {
+  color: #fff;
+}
+
+/* Bottom menu */
+
+#menu2 li.m2 {
+  list-style: none;
+  display: block;
+  float: right;
+  padding: 0 11px;
+}
+#menu2 li.m2 a.m2 {
+  color: #fff;
+  font-family: Tahoma;
+  font-size: 13px;
+  text-decoration: none;
+  border-bottom: 1px solid #999;
+}
+#menu2 li.m2 a.m2:hover {
+  color: #999;
+}
+#menu2 li.m2 a.m2.active {
+  color: #ccc;
+}
+
+/* Language selection */
+
+#lang {
+  margin: 0;
+  padding-left: 15px;
+  height: 30px;
+}
+#lang li.lm {
+  float: left;
+  list-style: none;
+}
+#lang li.lm a.lm {
+  font-family: Tahoma, Arial;
+  color: #f87781;
+  font-size: 14px;
+  text-decoration: none;
+  padding: 5px;
+}
+#lang li.lm.active a.lm,
+#lang li.lm:hover a.lm {
+  color: #fff;
+}
