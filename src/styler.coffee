@@ -706,7 +706,6 @@ getStyles = (element) ->
         if rule.parentRule instanceof CSSMediaRule
           media = media.concat Array::slice.call rule.parentRule.media
         media = rule._orig_media || rule.parentStyleSheet?._orig_media || if media.length then media.join(' and ') else null
-        console.log('media', media, rule._orig_media);
         for property, value of _getStyleData rule.style, usedProperties, index
           if !index || property in inheritProperties || (index == 1 && property in explicitInherit)
             filteredStyles[property] = value
