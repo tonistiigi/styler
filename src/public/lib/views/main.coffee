@@ -27,6 +27,7 @@ define (require, exports, module) ->
       bookmark = @$(".bookmarklet")[0]
       if bookmark
         bookmark_source = require "vendor/text!lib/bookmarklet.js"
+        bookmark_source = bookmark_source.replace /\/\/.*$/mi, ''
         bookmark_source = bookmark_source.replace "#origin", window.location.protocol + '//' + window.location.host
         bookmark.setAttribute "href", "javascript:" + bookmark_source
       inject = @$(".injected_code")[0]
