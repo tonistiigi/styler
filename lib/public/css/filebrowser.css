@@ -15,9 +15,7 @@
   display: none;
 }
 .file-item {
-  height: 68px;
-  float: left;
-  text-align: center;
+  border: 1px solid #c00;
   cursor: pointer;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;

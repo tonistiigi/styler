@@ -6,10 +6,20 @@ define (require, exports, module) ->
   {addKeyboardListener} = require 'lib/keyboard'
   
   ITEM_HEIGHT = 70
+  
+  FileItem = Backbone.Model.extend
+    defaults: ->
+      type: 'file'
+      file: null
+      items: null
 
-  FileView = Backbone.View.extend
-    template: require 'lib/templates/file_item'
+  FileItemList = Backbone.Collection.extend
+    model: FileItem
+    
+    comparator: (p) ->
+      p.get('type')
 
+  FileItemView = Backbone.View.extend
     className: 'file-item'
 
     events:
@@ -20,7 +30,38 @@ define (require, exports, module) ->
     initialize: ->
       @model.on 'destroy', @remove, @
       @model.on 'change', @render, @
+      
+      if @model.get('type') == 'file'
+        @$el.addClass 'is-file'
+        @$el.append [
+          node 'div', class: 'name', (@model.get('file').get('url'))
+        ]
+      else
+        @$el.addClass 'is-dir'
+        @$el.append [
+          node 'div', class: 'name', (@model.get('path'))
+          @itemsEl = node 'div'
+        ]
+        
+        items = @model.get('items')
+        items.on 'add', @onItemAdd, @
+        items.on 'reset', @onItemAddAll, @
+      
       app.console.on 'change:client', @render, @
+
+    onItemAdd: (item) ->
+      view = (new FileItemView model: item).render()
+      index = @model.get('items').indexOf(view.model);
+      previous = @model.get('items').at(index - 1);
+      previousView  = previous && previous.view;
+      if index == 0 || !previous || !previousView
+        $(@itemsEl).prepend(view.el);
+      else
+        $(previousView.el).after(view.el);
+      
+    onItemAddAll: (items) ->
+      $(@itemsEl).empty()
+      @model.get('items').each @onItemAdd, @
 
     openFile: ->
       app.console.openFile @model.get 'url'
@@ -40,6 +81,7 @@ define (require, exports, module) ->
       @selected = bool
 
     render: ->
+      ###
       json = @model.toJSON()
       clientId = app.console?.client?.id
       parsedName = json.name.match /^(.+)(\.[^\.]+)$/
@@ -50,6 +92,7 @@ define (require, exports, module) ->
         extension: parsedName[2]
         isHelper: 0 == json.url.indexOf '#local'
       @$el.html @template json
+      ###
       @
 
   FileBrowser = Backbone.View.extend
@@ -73,7 +116,11 @@ define (require, exports, module) ->
       @el.listenKey 'file-first', mac: 'home', exec: => @collection.first().view.select()
       @el.listenKey 'file-last', mac: 'end', exec: => @collection.last().view.select()
       @el.listenKey 'select-file', mac: 'return', exec: => @selectedFile()?.view?.openFile()
-
+      
+      @root = new FileItem type: 'dir', path: '', items: new FileItemList
+      rootView = new FileItemView model: @root
+      @$el.append rootView.render().el
+      
       @$el.on 'keydown', @onKeyDown
       @search = ''
 
@@ -108,16 +155,41 @@ define (require, exports, module) ->
 
     onResize: ->
       # TODO: Bad, bad solution. Check out some CSS grid layout.
-      width = @el.offsetWidth
-      @cols = ~~ (width / @MIN_WIDTH)
-      @$('.file-item').css width: "#{(100/@cols).toFixed(3)}%"
+      #width = @el.offsetWidth
+      #@cols = ~~ (width / @MIN_WIDTH)
+      #@$('.file-item').css width: "#{(100/@cols).toFixed(3)}%"
+
+    getParent: (item, path) ->
+      return item if !path.length || path.length == 1 && path[0] == item.get('path')
+      items = item.get('items')
+      
+      found = false
+      items.each (subitem) =>
+        console.log('compare', subitem.get('type'), subitem.get('path'), path[0]);
+        if subitem.get('type') == 'dir' && subitem.get('path') == path[0]
+          found = @getParent subitem, path[1..]
+      return found if found
+      
+      newitem = new FileItem path: path[0], type: 'dir', items: new FileItemList
+      items.add newitem
+      
+      return @getParent newitem, path[1..]
 
     onAddFile: (file) ->
+      path = file.get('url').replace /[^\/]*$/, ''
+      parent = @getParent @root, path.split('/')
+      
+      fileitem = new FileItem type: 'file', file: file
+      parent.get('items').add fileitem
+      tm('addfile')
+      
+      ###
       view = new FileView model: file
       view.on 'select', @onSelect
       file.view = view
       $(view.render().el).css width: @colWidth if @colWidth
       @$el.append view.render().el
+      ###
 
     onAddAllFiles: ->
       @collection.each @onAddFile, @
