@@ -1,12 +1,22 @@
 @import nib
 
+empty_file()
+  > .expand-bullet
+  > .name
+    display none
+  &.is-dir
+    padding 0
+    > .items
+      border none
+      margin 0
+
 .filebrowser
   box-flex 1
   overflow-y auto
   min-height 200px
   position relative
   background-color #fff
-  padding 0 10px
+  padding 0 7px
   
   &:focus
     outline none
@@ -15,17 +25,9 @@
     display none
     
   > .file-item
-    > .name
-    > .expand-bullet
-      display none
-    &.is-dir
-      > .items
-        border none
-
+    empty_file()
+    
 .file-item
-  //height 68px
-  //float left
-  //text-align: center
   cursor: pointer
   box-sizing border-box
   overflow hidden
@@ -33,31 +35,27 @@
   clear both
   
   &.is-empty
-    > .expand-bullet
-    > .name
-      display none
-    &.is-dir
-      > .items
-        border none
-        margin 0
+    empty_file()
       
   .expand-bullet
     float left
-    width 16px
-    height 16px
-    background url(../img/icons.png) 0px -286px no-repeat
+    width 15px
+    height 26px
+    margin-left 5px
+    background url(../img/icons.png) 0px -285px no-repeat
     opacity .7
 
   &.is-dir
+    padding-top 2px
     > .items
       clear both
       border-top 1px solid #eee
       margin-bottom 7px
     
     > .name
-      padding-left 20px
+      padding-left 24px
       font-size 14px
-      background url(../img/icons.png) 0px -472px no-repeat
+      background url(../img/icons.png) 0px -471px no-repeat
       
   &.is-file
     border-bottom 1px solid #eee
@@ -87,40 +85,24 @@
     
     > .ext
       color #888
-
-  > .inner
-    border: 1px solid #ccc
-    border-radius 4px
-    margin 2px 4px
-    box-sizing border-box
-    padding 10px
-    height 60px
-    box-shadow 1px 1px 2px #ccc
-    
-    &.is-helper
-      opacity .6
-  
-
       
-    > .active-indicator
-      background #fdd
-      position absolute
-      bottom 12px
-      padding 1px 5px
-      color #666
-      border-radius 3px
-      left 12px
-  
-    > .open-indicator
-      @extends .file-item > .inner > .active-indicator
-      right 15px
-      left auto
-      background #dfd
+  > .active-indicator
+    background #fdd
+    position absolute
+    bottom 12px
+    padding 1px 5px
+    color #666
+    border-radius 3px
+    left 12px
 
-    &:hover
-      background-color #f3f6fc
+  > .open-indicator
+    @extends .file-item > .active-indicator
+    right 15px
+    left auto
+    background #dfd
     
-  &.is-selected > .inner
-    background #f3f6fc
-    border 1px solid #999
+  &.is-selected
+    background #f2f2f2
+    > .items
+      background #fff
   

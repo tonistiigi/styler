@@ -7,7 +7,7 @@
   min-height: 200px;
   position: relative;
   background-color: #fff;
-  padding: 0 10px;
+  padding: 0 7px;
 }
 .filebrowser:focus {
   outline: none;
@@ -15,12 +15,16 @@
 .is-editormode .filebrowser {
   display: none;
 }
-.filebrowser > .file-item > .name,
-.filebrowser > .file-item > .expand-bullet {
+.filebrowser > .file-item > .expand-bullet,
+.filebrowser > .file-item > .name {
   display: none;
+}
+.filebrowser > .file-item.is-dir {
+  padding: 0;
 }
 .filebrowser > .file-item.is-dir > .items {
   border: none;
+  margin: 0;
 }
 .file-item {
   cursor: pointer;
@@ -35,17 +39,24 @@
 .file-item.is-empty > .name {
   display: none;
 }
+.file-item.is-empty.is-dir {
+  padding: 0;
+}
 .file-item.is-empty.is-dir > .items {
   border: none;
   margin: 0;
 }
 .file-item .expand-bullet {
   float: left;
-  width: 16px;
-  height: 16px;
-  background: url("../img/icons.png") 0px -286px no-repeat;
+  width: 15px;
+  height: 26px;
+  margin-left: 5px;
+  background: url("../img/icons.png") 0px -285px no-repeat;
   opacity: 0.7;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+}
+.file-item.is-dir {
+  padding-top: 2px;
 }
 .file-item.is-dir > .items {
   clear: both;
@@ -53,9 +64,9 @@
   margin-bottom: 7px;
 }
 .file-item.is-dir > .name {
-  padding-left: 20px;
+  padding-left: 24px;
   font-size: 14px;
-  background: url("../img/icons.png") 0px -472px no-repeat;
+  background: url("../img/icons.png") 0px -471px no-repeat;
 }
 .file-item.is-file {
   border-bottom: 1px solid #eee;
@@ -85,27 +96,8 @@
 .file-item > .name > .ext {
   color: #888;
 }
-.file-item > .inner {
-  border: 1px solid #ccc;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  margin: 2px 4px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  padding: 10px;
-  height: 60px;
-  -webkit-box-shadow: 1px 1px 2px #ccc;
-  -moz-box-shadow: 1px 1px 2px #ccc;
-  box-shadow: 1px 1px 2px #ccc;
-}
-.file-item > .inner.is-helper {
-  opacity: 0.6;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
-}
-.file-item > .inner > .active-indicator,
-.file-item > .inner > .open-indicator {
+.file-item > .active-indicator,
+.file-item > .open-indicator {
   background: #fdd;
   position: absolute;
   bottom: 12px;
@@ -116,15 +108,14 @@
   border-radius: 3px;
   left: 12px;
 }
-.file-item > .inner > .open-indicator {
+.file-item > .open-indicator {
   right: 15px;
   left: auto;
   background: #dfd;
 }
-.file-item > .inner:hover {
-  background-color: #f3f6fc;
+.file-item.is-selected {
+  background: #f2f2f2;
 }
-.file-item.is-selected > .inner {
-  background: #f3f6fc;
-  border: 1px solid #999;
+.file-item.is-selected > .items {
+  background: #fff;
 }

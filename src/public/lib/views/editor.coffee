@@ -149,7 +149,6 @@ define (require, exports, module) ->
         app.console.state.save selectedUrl: ''
         app.console.$el.removeClass 'is-editormode'
       if @filebrowser
-        @filebrowser.onResize()
         @filebrowser.el.focus()
       
       @trigger 'change:focusedselector', null
@@ -185,8 +184,7 @@ define (require, exports, module) ->
 
     onResize: ->
       @editor.renderer.onResize true
-      @filebrowser?.onResize()
-
+      
     save: (tab = null, callback = null) ->
       tab ?= @tabs.selectedTab()
       return unless tab?.session

@@ -37,7 +37,7 @@ define (require, exports, module) ->
       'click' : 'onClick'
 
     initialize: ->
-      @model.view = @
+      @model.view = @el.view = @
       @model.on 'destroy', @remove, @
       @model.on 'change', @render, @
       
@@ -64,9 +64,12 @@ define (require, exports, module) ->
       
       app.console.on 'change:client', @render, @
       
+      
 
     onItemAdd: (item) ->
       view = (new FileItemView model: item, parent: @model).render()
+      view.on 'select', (item) =>
+        @trigger 'select', item
       index = @model.get('items').indexOf(view.model)
       previous = @model.get('items').at(index - 1)
       previousView  = previous && previous.view;
@@ -81,10 +84,12 @@ define (require, exports, module) ->
       @model.get('items').each @onItemAdd, @
 
     openFile: ->
-      app.console.openFile @model.get 'url'
+      app.console.openFile @model.get('file')?.get 'url'
 
-    onClick: ->
+    onClick: (e) ->
       @select()
+      e.stopPropagation()
+      e.preventDefault();
 
     destroy: ->
       @model.off 'destroy', @remove, @
@@ -102,7 +107,7 @@ define (require, exports, module) ->
       
       depth = @model.getDepth()
       unless depth == @lastDepth
-        @$el.css paddingLeft: depth * 15
+        @$el.css paddingLeft: depth * 20
         @lastDepth = depth
       
       return @ unless items
@@ -136,28 +141,24 @@ define (require, exports, module) ->
 
   FileBrowser = Backbone.View.extend
 
-    MIN_WIDTH: 150
-
     initialize: ->
-      _.bindAll @, 'onResize', 'onSelect', 'onKeyDown'
+      _.bindAll @, 'onSelect', 'onKeyDown'
 
       @subviews = []
 
       @collection.on 'add', @onAddFile, @
       @collection.on 'reset', @onAddAllFiles, @
-      $(window).on 'resize', @onResize
 
       addKeyboardListener 'filebrowser', @el
-      @el.listenKey 'file-prev', mac: 'right', exec: => @moveSelection 1
-      @el.listenKey 'file-next', mac: 'left', exec: => @moveSelection -1
-      @el.listenKey 'file-prev-row', mac: 'up', exec: => @moveSelection -@cols
-      @el.listenKey 'file-next-row', mac: 'down', exec: => @moveSelection @cols
+      @el.listenKey 'file-prev', mac: 'down', exec: => @moveSelection 1
+      @el.listenKey 'file-next', mac: 'up', exec: => @moveSelection -1
       @el.listenKey 'file-first', mac: 'home', exec: => @collection.first().view.select()
       @el.listenKey 'file-last', mac: 'end', exec: => @collection.last().view.select()
-      @el.listenKey 'select-file', mac: 'return', exec: => @selectedFile()?.view?.openFile()
+      @el.listenKey 'select-file', mac: 'return', exec: => @selectedFile?.view?.openFile()
       
       @root = new FileItem type: 'dir', path: '', items: new FileItemList
       rootView = new FileItemView model: @root
+      rootView.on 'select', @onSelect
       @$el.append rootView.render().el
       
       @$el.on 'keydown', @onKeyDown
@@ -167,36 +168,37 @@ define (require, exports, module) ->
       @collection.each (file) -> file.view.destroy()
       @collection.off 'add', @addOne, @
       @collection.off 'reset', @addAll, @
-      $(window).off 'resize', @onResize
 
     # As-you-type file search(highlight).
     onKeyDown: (e) ->
       char = String.fromCharCode e.keyCode
-      return @search = '' unless char.length
+      return @search = '' unless char.length && /[\w-\.]/.test char
       curTime = new Date()
       @search = '' if curTime - @lastCharTime > 700
           
       @search += char.toLowerCase()
       @lastCharTime = curTime
       search = @search
-      file = @collection.find (file) ->
-        -1 != file.get('name').toLowerCase().indexOf search
+      file = null
+      filter = (item) ->
+        return if file
+        if item.get('type') == 'dir'
+          item.get('items').each (i) -> filter i
+        else if -1 != item.get('file').get('name').toLowerCase().indexOf search
+          file = item
+      filter @root
       file?.view?.select()
 
     moveSelection: (delta) ->
-      selectedFile = @selectedFile()
-      index = @collection.indexOf selectedFile
+      selectedFile = @selectedFile
+      items = @$('.file-item')
+      items = _.filter items, (item) -> !$(item).hasClass 'is-empty'
+      index = items.indexOf selectedFile?.view.el || items[0]
       index += delta
-      index = 0 if index < 0
-      index = @collection.size() - 1 if index >= @collection.size()
-      @collection.at(index).view.select()
+      index = 1 if index < 1
+      index = items.length - 1 if index >= items.length
+      items[index].view.select()
       event.preventDefault()
-
-    onResize: ->
-      # TODO: Bad, bad solution. Check out some CSS grid layout.
-      #width = @el.offsetWidth
-      #@cols = ~~ (width / @MIN_WIDTH)
-      #@$('.file-item').css width: "#{(100/@cols).toFixed(3)}%"
 
     getParent: (item, path) ->
       return item if !path.length || path.length == 1 && path[0] == item.get('path')
@@ -214,39 +216,22 @@ define (require, exports, module) ->
       return @getParent newitem, path[1..]
 
     onAddFile: (file) ->
-      
       path = file.get('url').replace /\/[^\/]*$/, ''
       path = 'locals' if /^#local/.test file.get('url')
       parent = @getParent @root, path.split('/')
       
       fileitem = new FileItem type: 'file', file: file, parent: parent
       parent.get('items').add fileitem
-      
-      ###
-      view = new FileView model: file
-      view.on 'select', @onSelect
-      file.view = view
-      $(view.render().el).css width: @colWidth if @colWidth
-      @$el.append view.render().el
-      ###
 
     onAddAllFiles: ->
       @collection.each @onAddFile, @
-      @onResize()
       
-    selectedFile: ->
-      @collection.find (file) -> file.view.selected
-
     onSelect: (file) ->
-      selectedFile = @selectedFile()
+      selectedFile = @selectedFile
+      @selectedFile = file
       return if !selectedFile || selectedFile == file
       selectedFile.view.select false
-      offset = file.view.el.offsetTop - 5
-      scroll = @el.scrollTop
-      if offset < scroll
-        @el.scrollTop = offset
-      if offset - @el.offsetHeight + ITEM_HEIGHT > @el.scrollTop
-        @el.scrollTop = offset - @el.offsetHeight + ITEM_HEIGHT
+      file.view.el.scrollIntoViewIfNeeded?();
 
 
   module.exports = FileBrowser
