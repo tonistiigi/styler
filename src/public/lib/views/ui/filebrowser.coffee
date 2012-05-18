@@ -1,6 +1,7 @@
 define (require, exports, module) ->
 
   require 'vendor/link!css/filebrowser.css'
+  require 'vendor/moment'
 
   {node} = require 'lib/utils'
   {addKeyboardListener} = require 'lib/keyboard'
@@ -45,7 +46,7 @@ define (require, exports, module) ->
         parsedName = @model.get('file').get('name').match /^(.+)(\.[^\.]+)$/
         @$el.addClass 'is-file'
         @$el.append [ 
-          node 'div', class: 'lastmod', '30min ago'
+          node 'div', class: 'lastmod', (moment(@model.get('file').get('mtime')).fromNow())
           node 'div', class: 'size', '10KB'
           node 'div', class: 'name', (parsedName[1]),
             node 'span', class: 'ext', (parsedName[2])

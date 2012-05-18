@@ -71,7 +71,8 @@ class Console
           if file
             file.save keepalive: true
           else
-            @files.create url: furl, name: fname, type: type, keepalive: true, (wait: true)
+            fs.stat fpath, (err, stat) =>
+              @files.create url: furl, name: fname, mtime: stat.mtime, type: type, keepalive: true, (wait: true)
 
   listenFile: (file) ->
     watcher.watch file.srcpath, => @files.trigger "updated", file
@@ -100,7 +101,7 @@ class Console
 
   _onFileChange: (f) ->
     winston.debug 'Updated file', path: f.srcpath
-    f.save lastModified: (new Date).getTime()
+    f.save mtime: (new Date).getTime()
     @publish f
     for parent, imports of @imports
       if f.srcpath in imports
@@ -192,7 +193,8 @@ class Console
           # First time seen.
           name = _.last srcpath.split /[\\\/]/
           type = if srcpath.match /\.styl$/i then 'stylus' else 'css'
-          flist.create url: cssfile, name: name, clients: [clientId], type: type, (wait: true)
+          fs.stat srcpath, (err, stat) =>
+            flist.create url: cssfile, name: name, mtime: stat.mtime, clients: [clientId], type: type, (wait: true)
 
       # Remove files that were part of this client but not any more.
       flist.each (file) ->
@@ -337,7 +339,8 @@ class Console
       file = @files.find (f) -> f.srcpath == path
       if not file
         name = _.last path.split /[\\\/]/
-        @files.create url: "#local" + (~~(Math.random()*1e6)), path: path, type: 'stylus', name: name, (wait: true)
+        fs.stat path, (err, stat) =>
+          @files.create mtime: stat.mtime, url: "#local" + (~~(Math.random()*1e6)), path: path, type: 'stylus', name: name, (wait: true)
       path
 
 
