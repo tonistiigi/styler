@@ -6,22 +6,87 @@
   min-height 200px
   position relative
   background-color #fff
+  padding 0 10px
   
   &:focus
     outline none
 
   .is-editormode &
     display none
+    
+  > .file-item
+    > .name
+    > .expand-bullet
+      display none
+    &.is-dir
+      > .items
+        border none
 
 .file-item
   //height 68px
-  border 1px solid #c00
   //float left
   //text-align: center
   cursor: pointer
   box-sizing border-box
   overflow hidden
   position relative
+  clear both
+  
+  &.is-empty
+    > .expand-bullet
+    > .name
+      display none
+    &.is-dir
+      > .items
+        border none
+        margin 0
+      
+  .expand-bullet
+    float left
+    width 16px
+    height 16px
+    background url(../img/icons.png) 0px -286px no-repeat
+    opacity .7
+
+  &.is-dir
+    > .items
+      clear both
+      border-top 1px solid #eee
+      margin-bottom 7px
+    
+    > .name
+      padding-left 20px
+      font-size 14px
+      background url(../img/icons.png) 0px -472px no-repeat
+      
+  &.is-file
+    border-bottom 1px solid #eee
+    
+    > .name
+      padding-left 20px
+      background url(../img/icons.png) 0px -495px no-repeat
+      
+    > .size
+    > .lastmod
+      float right
+      color #666
+      width 150px
+      padding 5px 0
+      text-align center
+      
+
+  > .name
+    font-weight bold
+    white-space nowrap
+    text-overflow ellipsis
+    color #333
+    overflow hidden
+    float left
+    padding-top 5px
+    padding-bottom 5px
+    
+    > .ext
+      color #888
 
   > .inner
     border: 1px solid #ccc
@@ -35,15 +100,7 @@
     &.is-helper
       opacity .6
   
-    > .name
-      font-weight bold
-      white-space nowrap
-      text-overflow ellipsis
-      color #333
-      overflow hidden
-      
-      > .ext
-        color #888
+
       
     > .active-indicator
       background #fdd

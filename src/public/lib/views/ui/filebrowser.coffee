@@ -12,6 +12,15 @@ define (require, exports, module) ->
       type: 'file'
       file: null
       items: null
+      parent: null
+    
+    getName: ->
+      (if @_pfx? then @_pfx + '/' else '') + @get('path')
+
+    getDepth: ->
+      parent = @get('parent')
+      if parent then parent.getDepth() + (if @empty then 0 else 1) else -1
+
 
   FileItemList = Backbone.Collection.extend
     model: FileItem
@@ -28,19 +37,25 @@ define (require, exports, module) ->
       'click' : 'onClick'
 
     initialize: ->
+      @model.view = @
       @model.on 'destroy', @remove, @
       @model.on 'change', @render, @
       
       if @model.get('type') == 'file'
+        parsedName = @model.get('file').get('name').match /^(.+)(\.[^\.]+)$/
         @$el.addClass 'is-file'
-        @$el.append [
-          node 'div', class: 'name', (@model.get('file').get('url'))
+        @$el.append [ 
+          node 'div', class: 'lastmod', '30min ago'
+          node 'div', class: 'size', '10KB'
+          node 'div', class: 'name', (parsedName[1]),
+            node 'span', class: 'ext', (parsedName[2])
         ]
       else
         @$el.addClass 'is-dir'
         @$el.append [
+          node 'div', class: 'expand-bullet'
           node 'div', class: 'name', (@model.get('path'))
-          @itemsEl = node 'div'
+          @itemsEl = node 'div', class: 'items'
         ]
         
         items = @model.get('items')
@@ -48,16 +63,18 @@ define (require, exports, module) ->
         items.on 'reset', @onItemAddAll, @
       
       app.console.on 'change:client', @render, @
+      
 
     onItemAdd: (item) ->
-      view = (new FileItemView model: item).render()
-      index = @model.get('items').indexOf(view.model);
-      previous = @model.get('items').at(index - 1);
+      view = (new FileItemView model: item, parent: @model).render()
+      index = @model.get('items').indexOf(view.model)
+      previous = @model.get('items').at(index - 1)
       previousView  = previous && previous.view;
       if index == 0 || !previous || !previousView
-        $(@itemsEl).prepend(view.el);
+        $(@itemsEl).prepend(view.el)
       else
-        $(previousView.el).after(view.el);
+        $(previousView.el).after(view.el)
+      @render()
       
     onItemAddAll: (items) ->
       $(@itemsEl).empty()
@@ -81,6 +98,28 @@ define (require, exports, module) ->
       @selected = bool
 
     render: ->
+      items = @model.get('items')
+      
+      depth = @model.getDepth()
+      unless depth == @lastDepth
+        @$el.css paddingLeft: depth * 15
+        @lastDepth = depth
+      
+      return @ unless items
+      
+      if @model.get('type') == 'dir' && items.size() == 1 && items.at(0).get('type') == 'dir'
+        @model.empty = items.at(0)
+        @model.empty._pfx = @model.getName()
+        @model.empty.view.render()
+        @$el.addClass 'is-empty'
+      else if @model.empty
+        @model.empty._pfx = null
+        @model.empty.view.render()
+        @model.empty = null
+        @$el.removeClass 'is-empty'
+      
+      $(@$('.name')[0]).text @model.getName()
+      
       ###
       json = @model.toJSON()
       clientId = app.console?.client?.id
@@ -165,23 +204,23 @@ define (require, exports, module) ->
       
       found = false
       items.each (subitem) =>
-        console.log('compare', subitem.get('type'), subitem.get('path'), path[0]);
         if subitem.get('type') == 'dir' && subitem.get('path') == path[0]
           found = @getParent subitem, path[1..]
       return found if found
       
-      newitem = new FileItem path: path[0], type: 'dir', items: new FileItemList
+      newitem = new FileItem parent: item, path: path[0], type: 'dir', items: new FileItemList
       items.add newitem
       
       return @getParent newitem, path[1..]
 
     onAddFile: (file) ->
-      path = file.get('url').replace /[^\/]*$/, ''
+      
+      path = file.get('url').replace /\/[^\/]*$/, ''
+      path = 'locals' if /^#local/.test file.get('url')
       parent = @getParent @root, path.split('/')
       
-      fileitem = new FileItem type: 'file', file: file
+      fileitem = new FileItem type: 'file', file: file, parent: parent
       parent.get('items').add fileitem
-      tm('addfile')
       
       ###
       view = new FileView model: file

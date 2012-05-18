@@ -7,6 +7,7 @@
   min-height: 200px;
   position: relative;
   background-color: #fff;
+  padding: 0 10px;
 }
 .filebrowser:focus {
   outline: none;
@@ -14,14 +15,75 @@
 .is-editormode .filebrowser {
   display: none;
 }
+.filebrowser > .file-item > .name,
+.filebrowser > .file-item > .expand-bullet {
+  display: none;
+}
+.filebrowser > .file-item.is-dir > .items {
+  border: none;
+}
 .file-item {
-  border: 1px solid #c00;
   cursor: pointer;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   overflow: hidden;
   position: relative;
+  clear: both;
+}
+.file-item.is-empty > .expand-bullet,
+.file-item.is-empty > .name {
+  display: none;
+}
+.file-item.is-empty.is-dir > .items {
+  border: none;
+  margin: 0;
+}
+.file-item .expand-bullet {
+  float: left;
+  width: 16px;
+  height: 16px;
+  background: url("../img/icons.png") 0px -286px no-repeat;
+  opacity: 0.7;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+}
+.file-item.is-dir > .items {
+  clear: both;
+  border-top: 1px solid #eee;
+  margin-bottom: 7px;
+}
+.file-item.is-dir > .name {
+  padding-left: 20px;
+  font-size: 14px;
+  background: url("../img/icons.png") 0px -472px no-repeat;
+}
+.file-item.is-file {
+  border-bottom: 1px solid #eee;
+}
+.file-item.is-file > .name {
+  padding-left: 20px;
+  background: url("../img/icons.png") 0px -495px no-repeat;
+}
+.file-item.is-file > .size,
+.file-item.is-file > .lastmod {
+  float: right;
+  color: #666;
+  width: 150px;
+  padding: 5px 0;
+  text-align: center;
+}
+.file-item > .name {
+  font-weight: bold;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #333;
+  overflow: hidden;
+  float: left;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.file-item > .name > .ext {
+  color: #888;
 }
 .file-item > .inner {
   border: 1px solid #ccc;
@@ -41,16 +103,6 @@
 .file-item > .inner.is-helper {
   opacity: 0.6;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
-}
-.file-item > .inner > .name {
-  font-weight: bold;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  color: #333;
-  overflow: hidden;
-}
-.file-item > .inner > .name > .ext {
-  color: #888;
 }
 .file-item > .inner > .active-indicator,
 .file-item > .inner > .open-indicator {
