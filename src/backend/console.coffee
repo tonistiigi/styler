@@ -60,8 +60,8 @@ class Console
       return winston.error 'Access denied to scan files from', path: path unless pathIsAllowed path
       fs.readdir path, (err, flist) =>
         return winston.error 'Failed to scan directory for files', path: path, err: err if err
-        for file in flist
-          continue unless file[0] != '.' && file.match (if type == "stylus" then /\.styl$/i else /\.css$/i)
+        flist.forEach (file) =>
+          return unless file[0] != '.' && file.match (if type == "stylus" then /\.styl$/i else /\.css$/i)
           #add watcher to all these files
           fpath = path + file
           url += "/" if url[-1..][0] != "/"
@@ -72,11 +72,11 @@ class Console
             file.save keepalive: true
           else
             fs.stat fpath, (err, stat) =>
-              @files.create url: furl, name: fname, mtime: stat.mtime, type: type, keepalive: true, (wait: true)
+              @files.create url: furl, name: fname, fsize: stat.size, mtime: stat.mtime, type: type, keepalive: true, (wait: true)
 
   listenFile: (file) ->
     watcher.watch file.srcpath, => @files.trigger "updated", file
-    @files.trigger "updated", file
+    @files.trigger "updated", file, true
     winston.debug 'Listen on file', project: @project.id, url: file.get("url"), path: file.srcpath
 
   _onFileAdd: (file) ->
@@ -99,14 +99,16 @@ class Console
     watcher.unwatch file.srcpath
     winston.debug 'Deactivate file', project: @project.id, path: file.srcpath    
 
-  _onFileChange: (f) ->
+  _onFileChange: (f, isInitial) ->
     winston.debug 'Updated file', path: f.srcpath
-    f.save mtime: (new Date).getTime()
     @publish f
-    for parent, imports of @imports
-      if f.srcpath in imports
-        file = @files.find (ff) -> ff.srcpath == parent 
-        @publish file if file
+    fs.stat f.srcpath, (err, stat) =>
+      f.save mtime: stat.mtime, fsize: stat.size unless isInitial
+    
+      for parent, imports of @imports
+        if f.srcpath in imports
+          file = @files.find (ff) -> ff.srcpath == parent && ff.get('mtime') < f.get('mtime')
+          @publish file if file
 
   destroy: ->
     winston.info 'Destory console', project: @project.id
@@ -194,7 +196,7 @@ class Console
           name = _.last srcpath.split /[\\\/]/
           type = if srcpath.match /\.styl$/i then 'stylus' else 'css'
           fs.stat srcpath, (err, stat) =>
-            flist.create url: cssfile, name: name, mtime: stat.mtime, clients: [clientId], type: type, (wait: true)
+            flist.create url: cssfile, name: name, fsize: stat.size, mtime: stat.mtime, clients: [clientId], type: type, (wait: true)
 
       # Remove files that were part of this client but not any more.
       flist.each (file) ->
@@ -340,7 +342,7 @@ class Console
       if not file
         name = _.last path.split /[\\\/]/
         fs.stat path, (err, stat) =>
-          @files.create mtime: stat.mtime, url: "#local" + (~~(Math.random()*1e6)), path: path, type: 'stylus', name: name, (wait: true)
+          @files.create fsize: stat.size, mtime: stat.mtime, url: "#local" + (~~(Math.random()*1e6)), path: path, type: 'stylus', name: name, (wait: true)
       path
 
 

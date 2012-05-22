@@ -3,7 +3,7 @@ define (require, exports, module) ->
   require 'vendor/link!css/filebrowser.css'
   require 'vendor/moment'
 
-  {node} = require 'lib/utils'
+  {node, formatFileSize} = require 'lib/utils'
   {addKeyboardListener} = require 'lib/keyboard'
   
   ITEM_HEIGHT = 70
@@ -39,15 +39,18 @@ define (require, exports, module) ->
 
     initialize: ->
       @model.view = @el.view = @
+      @renderDebounce = _.debounce @render, 61000
+      
       @model.on 'destroy', @remove, @
       @model.on 'change', @render, @
       
       if @model.get('type') == 'file'
+        @model.get('file').on 'change', @render, @
         parsedName = @model.get('file').get('name').match /^(.+)(\.[^\.]+)$/
         @$el.addClass 'is-file'
         @$el.append [ 
-          node 'div', class: 'lastmod', (moment(@model.get('file').get('mtime')).fromNow())
-          node 'div', class: 'size', '10KB'
+          node 'div', class: 'lastmod'
+          node 'div', class: 'size'
           node 'div', class: 'name', (parsedName[1]),
             node 'span', class: 'ext', (parsedName[2])
         ]
@@ -110,6 +113,17 @@ define (require, exports, module) ->
       unless depth == @lastDepth
         @$el.css paddingLeft: depth * 20
         @lastDepth = depth
+      
+      if file = @model.get('file')
+        mtime = moment(file.get('mtime'))
+        fromNow = new Date() - mtime
+        if fromNow >= 36e5 * 24 * 3
+          @$('.lastmod').text moment(mtime).format 'D/M/YYYY'
+        else
+          @$('.lastmod').text moment(mtime).fromNow()
+          @renderDebounce()
+          
+        @$('.size').text formatFileSize(file.get('fsize'))
       
       return @ unless items
       

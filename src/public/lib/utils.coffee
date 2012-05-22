@@ -238,6 +238,11 @@ define (require, exports, module) ->
          $(el).blur()
          el._focused = 0
   
+  exports.formatFileSize =  (size) ->
+    sizetext = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+    return '0B' unless size
+    (size/Math.pow(1024,(i=Math.floor(Math.log(size)/Math.log(1024))))).toFixed(if i==0 then 0 else 1) + sizetext[i]
+  
   
   # Convert string "rgb(255, 0, 0)" to "#F00"
   exports.rgbToHex = (rgbStr) ->
