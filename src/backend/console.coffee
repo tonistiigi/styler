@@ -163,7 +163,7 @@ class Console
       @publishData file, data, clients
 
   addClientToFile: (file, clientId) ->
-    winston.debug 'addClientTOFile', file: file.get('url'), client: clientId
+    winston.debug 'addClientToFile', file: file.get('url'), client: clientId
     clients = _.clone file.get "clients"
     if clientId not in clients
       clients.push clientId

@@ -46,12 +46,17 @@
 }
 .file-item .info > .expand-bullet {
   float: left;
-  width: 15px;
+  width: 20px;
   height: 26px;
-  margin-left: 5px;
-  background: url("../img/icons.png") 0px -285px no-repeat;
+  background: url("../img/icons.png") -13px -283px no-repeat;
   opacity: 0.7;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+}
+.file-item.is-collapsed > .info > .expand-bullet {
+  background-position: 4px -285px;
+}
+.file-item.is-collapsed > .items {
+  display: none;
 }
 .file-item.is-dir {
   padding-top: 2px;
@@ -59,7 +64,7 @@
 .file-item.is-dir > .items {
   clear: both;
   border-top: 1px solid #eee;
-  margin-bottom: 7px;
+  margin-bottom: 5px;
 }
 .file-item.is-dir > .info > .name {
   padding-left: 24px;
@@ -72,6 +77,9 @@
 .file-item.is-file > .info > .name {
   padding-left: 20px;
   background: url("../img/icons.png") 0px -495px no-repeat;
+}
+.file-item.is-file > .info > .name:hover {
+  text-decoration: underline;
 }
 .file-item.is-file > .info > .size,
 .file-item.is-file > .info > .lastmod {

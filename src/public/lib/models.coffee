@@ -103,6 +103,7 @@ define (require, exports, module) ->
       infobarVisible : true
       leftPaneVisible : true
       outlineLock : false
+      dirCollapsed: {}
 
   StateList = Backbone.Collection.extend
     model: State

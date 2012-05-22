@@ -18,6 +18,9 @@ define (require, exports, module) ->
     getName: ->
       name = (if @_pfx? then @_pfx + '/' else '') + @get('path')
 
+    getPath: ->
+      if parent = @get('parent') then parent.getPath() + @get('path') else ''
+
     getDepth: ->
       parent = @get('parent')
       if parent then parent.getDepth() + (if @empty then 0 else 1) else -1
@@ -33,9 +36,10 @@ define (require, exports, module) ->
     className: 'file-item'
 
     events:
-      'dblclick' : 'openFile'
+      'dblclick': 'openFile'
       'click .name': 'openFile'
-      'click' : 'onClick'
+      'click': 'onClick'
+      'click .expand-bullet': 'toggleExpand'
 
     initialize: ->
       @model.view = @el.view = @
@@ -67,8 +71,27 @@ define (require, exports, module) ->
         items = @model.get('items')
         items.on 'add', @onItemAdd, @
         items.on 'reset', @onItemAddAll, @
+        
+        collapsed = app.console.state.get('dirCollapsed')
+        path = @model.getPath()
+        @setExpanded !collapsed[path]
       
       app.console.on 'change:client', @render, @
+
+    toggleExpand: ->
+      @setExpanded @expanded = !@expanded
+
+    setExpanded: (bool) ->
+      @expanded = bool
+      @$el.toggleClass 'is-expanded', bool
+      @$el.toggleClass 'is-collapsed', !bool
+      collapsed = app.console.state.get('dirCollapsed')
+      path = @model.getPath()
+      if bool
+        delete collapsed[path]
+      else
+        collapsed[path] = true
+      app.console.state.save dirCollapsed: _.clone collapsed
 
     onItemAdd: (item) ->
       view = (new FileItemView model: item, parent: @model).render()
@@ -87,13 +110,18 @@ define (require, exports, module) ->
       $(@itemsEl).empty()
       @model.get('items').each @onItemAdd, @
 
-    openFile: ->
-      app.console.openFile @model.get('file')?.get 'url'
+    openFile: (e) ->
+      if @model.get('type') == 'dir' && @model.get('parent')
+        @toggleExpand()
+        e.stopPropagation()
+        e.preventDefault()
+      else
+        app.console.openFile @model.get('file')?.get 'url'
 
     onClick: (e) ->
       @select()
       e.stopPropagation()
-      e.preventDefault();
+      e.preventDefault()
 
     destroy: ->
       @model.off 'destroy', @remove, @
@@ -117,13 +145,13 @@ define (require, exports, module) ->
       if file = @model.get('file')
         mtime = moment(file.get('mtime'))
         fromNow = new Date() - mtime
-        if fromNow >= 36e5 * 24 * 3
-          @$('.lastmod').text moment(mtime).format 'D/M/YYYY'
-        else
-          @$('.lastmod').text moment(mtime).fromNow()
+        @$('.lastmod').text if fromNow >= 36e5 * 24 * 3
+          moment(mtime).format 'D/M/YYYY'
+        else  
           @renderDebounce()
+          moment(mtime).fromNow()
           
-        @$('.size').text formatFileSize(file.get('fsize'))
+        @$('.size').text formatFileSize file.get('fsize')
       
       return @ unless items
       
@@ -209,11 +237,11 @@ define (require, exports, module) ->
 
     moveSelection: (delta) ->
       selectedFile = @selectedFile
-      items = @$('.file-item')
+      items = @$('.is-expanded > .items > .file-item')
       items = _.filter items, (item) -> !$(item).hasClass 'is-empty'
       index = items.indexOf selectedFile?.view.el || items[0]
       index += delta
-      index = 1 if index < 1
+      index = 0 if index < 0
       index = items.length - 1 if index >= items.length
       items[index].view.select()
       event.preventDefault()

@@ -38,18 +38,23 @@ empty_file()
   
   .info > .expand-bullet
     float left
-    width 15px
+    width 20px
     height 26px
-    margin-left 5px
-    background url(../img/icons.png) 0px -285px no-repeat
+    background url(../img/icons.png) -13px -283px no-repeat
     opacity .7
-
+    
+  &.is-collapsed
+    > .info > .expand-bullet
+      background-position 4px -285px
+    > .items
+      display none
+  
   &.is-dir
     padding-top 2px
     > .items
       clear both
       border-top 1px solid #eee
-      margin-bottom 7px
+      margin-bottom 5px
     
     > .info > .name
       padding-left 24px
@@ -63,6 +68,8 @@ empty_file()
       > .name
         padding-left 20px
         background url(../img/icons.png) 0px -495px no-repeat
+        &:hover
+          text-decoration underline
         
       > .size
       > .lastmod
