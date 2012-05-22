@@ -16,7 +16,7 @@ define (require, exports, module) ->
       parent: null
     
     getName: ->
-      (if @_pfx? then @_pfx + '/' else '') + @get('path')
+      name = (if @_pfx? then @_pfx + '/' else '') + @get('path')
 
     getDepth: ->
       parent = @get('parent')
@@ -27,7 +27,7 @@ define (require, exports, module) ->
     model: FileItem
     
     comparator: (p) ->
-      p.get('type')
+      [p.get('type'), p.get('path')?[0] == '#', p.get('path'), p.get('file')?.get('name')]
 
   FileItemView = Backbone.View.extend
     className: 'file-item'
@@ -48,17 +48,19 @@ define (require, exports, module) ->
         @model.get('file').on 'change', @render, @
         parsedName = @model.get('file').get('name').match /^(.+)(\.[^\.]+)$/
         @$el.addClass 'is-file'
-        @$el.append [ 
-          node 'div', class: 'lastmod'
-          node 'div', class: 'size'
-          node 'div', class: 'name', (parsedName[1]),
-            node 'span', class: 'ext', (parsedName[2])
+        @$el.append [
+          node 'div', class: 'info',
+            node 'div', class: 'lastmod'
+            node 'div', class: 'size'
+            node 'div', class: 'name', (parsedName[1]),
+              node 'span', class: 'ext', (parsedName[2])
         ]
       else
         @$el.addClass 'is-dir'
         @$el.append [
-          node 'div', class: 'expand-bullet'
-          node 'div', class: 'name', (@model.get('path'))
+          node 'div', class: 'info', 
+            node 'div', class: 'expand-bullet'
+            node 'div', class: 'name', (@model.get('path'))
           @itemsEl = node 'div', class: 'items'
         ]
         
@@ -67,8 +69,6 @@ define (require, exports, module) ->
         items.on 'reset', @onItemAddAll, @
       
       app.console.on 'change:client', @render, @
-      
-      
 
     onItemAdd: (item) ->
       view = (new FileItemView model: item, parent: @model).render()
@@ -111,7 +111,7 @@ define (require, exports, module) ->
       
       depth = @model.getDepth()
       unless depth == @lastDepth
-        @$el.css paddingLeft: depth * 20
+        @$('.info').css paddingLeft: depth * 20
         @lastDepth = depth
       
       if file = @model.get('file')
@@ -138,7 +138,10 @@ define (require, exports, module) ->
         @model.empty = null
         @$el.removeClass 'is-empty'
       
-      $(@$('.name')[0]).text @model.getName()
+      name = @model.getName()
+      name = 'Nib extensions library' if name == '#local/nib'
+      name = 'Local imports' if name == '#local'
+      $(@$('.name')[0]).text name
       
       ###
       json = @model.toJSON()
@@ -232,7 +235,7 @@ define (require, exports, module) ->
 
     onAddFile: (file) ->
       path = file.get('url').replace /\/[^\/]*$/, ''
-      path = 'locals' if /^#local/.test file.get('url')
+      #path = 'locals' if /^#local/.test file.get('url')
       parent = @getParent @root, path.split('/')
       
       fileitem = new FileItem type: 'file', file: file, parent: parent

@@ -334,15 +334,20 @@ class Console
 
   stylusSetFileImports: (file, imports) ->
     return delete @imports[file] unless imports
+    nibpath = require("nib").path
     @imports[file] = _.compact _.map imports, (item) =>
       return if item.path == STYLUS_FUNC_FILE
       path = item.path
       url = @pathToUrl path
       file = @files.find (f) -> f.srcpath == path
       if not file
+        furl = if 0 == path.indexOf nibpath
+          path[nibpath.length+1..]
+        else
+          Math.random() * 1e6 | 0
         name = _.last path.split /[\\\/]/
         fs.stat path, (err, stat) =>
-          @files.create fsize: stat.size, mtime: stat.mtime, url: "#local" + (~~(Math.random()*1e6)), path: path, type: 'stylus', name: name, (wait: true)
+          @files.create fsize: stat.size, mtime: stat.mtime, url: "#local/" + furl, path: path, type: 'stylus', name: name, (wait: true)
       path
 
 

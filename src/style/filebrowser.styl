@@ -1,8 +1,7 @@
 @import nib
 
 empty_file()
-  > .expand-bullet
-  > .name
+  > .info
     display none
   &.is-dir
     padding 0
@@ -36,8 +35,8 @@ empty_file()
   
   &.is-empty
     empty_file()
-      
-  .expand-bullet
+  
+  .info > .expand-bullet
     float left
     width 15px
     height 26px
@@ -52,7 +51,7 @@ empty_file()
       border-top 1px solid #eee
       margin-bottom 7px
     
-    > .name
+    > .info > .name
       padding-left 24px
       font-size 14px
       background url(../img/icons.png) 0px -471px no-repeat
@@ -60,20 +59,21 @@ empty_file()
   &.is-file
     border-bottom 1px solid #eee
     
-    > .name
-      padding-left 20px
-      background url(../img/icons.png) 0px -495px no-repeat
-      
-    > .size
-    > .lastmod
-      float right
-      color #666
-      width 150px
-      padding 5px 0
-      text-align center
+    > .info
+      > .name
+        padding-left 20px
+        background url(../img/icons.png) 0px -495px no-repeat
+        
+      > .size
+      > .lastmod
+        float right
+        color #666
+        width 150px
+        padding 5px 0
+        text-align center
       
 
-  > .name
+  > .info > .name
     font-weight bold
     white-space nowrap
     text-overflow ellipsis

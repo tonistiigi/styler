@@ -15,8 +15,7 @@
 .is-editormode .filebrowser {
   display: none;
 }
-.filebrowser > .file-item > .expand-bullet,
-.filebrowser > .file-item > .name {
+.filebrowser > .file-item > .info {
   display: none;
 }
 .filebrowser > .file-item.is-dir {
@@ -35,8 +34,7 @@
   position: relative;
   clear: both;
 }
-.file-item.is-empty > .expand-bullet,
-.file-item.is-empty > .name {
+.file-item.is-empty > .info {
   display: none;
 }
 .file-item.is-empty.is-dir {
@@ -46,7 +44,7 @@
   border: none;
   margin: 0;
 }
-.file-item .expand-bullet {
+.file-item .info > .expand-bullet {
   float: left;
   width: 15px;
   height: 26px;
@@ -63,7 +61,7 @@
   border-top: 1px solid #eee;
   margin-bottom: 7px;
 }
-.file-item.is-dir > .name {
+.file-item.is-dir > .info > .name {
   padding-left: 24px;
   font-size: 14px;
   background: url("../img/icons.png") 0px -471px no-repeat;
@@ -71,19 +69,19 @@
 .file-item.is-file {
   border-bottom: 1px solid #eee;
 }
-.file-item.is-file > .name {
+.file-item.is-file > .info > .name {
   padding-left: 20px;
   background: url("../img/icons.png") 0px -495px no-repeat;
 }
-.file-item.is-file > .size,
-.file-item.is-file > .lastmod {
+.file-item.is-file > .info > .size,
+.file-item.is-file > .info > .lastmod {
   float: right;
   color: #666;
   width: 150px;
   padding: 5px 0;
   text-align: center;
 }
-.file-item > .name {
+.file-item > .info > .name {
   font-weight: bold;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -93,7 +91,7 @@
   padding-top: 5px;
   padding-bottom: 5px;
 }
-.file-item > .name > .ext {
+.file-item > .info > .name > .ext {
   color: #888;
 }
 .file-item > .active-indicator,
