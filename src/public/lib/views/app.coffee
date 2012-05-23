@@ -15,7 +15,6 @@ define (require, exports, module) ->
       @_cbQueue.push cb
       
     launch: ->
-
       unless (window.sessionStorage.getItem('_ignore_agent') == '1') or @isSupportedAgent()
         require ['lib/views/warning-screen'], (WarningScreen) =>
           new WarningScreen name: 'warning_browser'
@@ -47,9 +46,14 @@ define (require, exports, module) ->
       
       #app.socket = io.connect '/console', 'sync disconnect on unload': false
       
-      app.socket.on 'connect', =>
+      onConnect = =>
         tm('connected')
         _.defer cb for cb in @_cbQueue if @_cbQueue
+        @_ioLoaded = true
+      if app.socket?.socket?.connected
+        onConnect()
+      else
+        app.socket.on 'connect', onConnect
         
       app.socket.on 'BackboneSync', Backbone.syncCallback
 
@@ -71,6 +75,7 @@ define (require, exports, module) ->
       _.delay ->
         require ['lib/views/warning-screen'], ->
       , 2500
+      
 
     openMain: ->
       @mainView = new MainView unless @mainView
