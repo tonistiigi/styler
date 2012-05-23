@@ -56,6 +56,8 @@ define (require, exports, module) ->
           node 'div', class: 'info',
             node 'div', class: 'lastmod'
             node 'div', class: 'size'
+            node 'div', class: 'active-indicator'
+            node 'div', class: 'open-indicator'
             node 'div', class: 'name', (parsedName[1]),
               node 'span', class: 'ext', (parsedName[2])
         ]
@@ -153,6 +155,9 @@ define (require, exports, module) ->
           moment(mtime).fromNow()
           
         @$('.size').text formatFileSize file.get('fsize')
+        clientId = app.console?.client?.id
+        @$('.active-indicator').toggle clientId && (file.get('clients').indexOf clientId) != -1
+        @$('.open-indicator').toggle !!file.get('edit')
       
       return @ unless items
       
@@ -172,18 +177,6 @@ define (require, exports, module) ->
       name = 'Local imports' if name == '#local'
       $(@$('.name')[0]).text name
       
-      ###
-      json = @model.toJSON()
-      clientId = app.console?.client?.id
-      parsedName = json.name.match /^(.+)(\.[^\.]+)$/
-      _.extend json,
-        isActive: clientId && (json.clients.indexOf clientId) != -1
-        isOpen: !!json.edit
-        name: parsedName[1]
-        extension: parsedName[2]
-        isHelper: 0 == json.url.indexOf '#local'
-      @$el.html @template json
-      ###
       @
 
   FileBrowser = Backbone.View.extend

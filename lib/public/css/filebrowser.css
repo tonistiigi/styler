@@ -7,7 +7,7 @@
   min-height: 200px;
   position: relative;
   background-color: #fff;
-  padding: 10px 7px;
+  padding: 3px 7px;
 }
 .filebrowser:focus {
   outline: none;
@@ -85,7 +85,7 @@
 .file-item.is-file > .info > .lastmod {
   float: right;
   color: #666;
-  width: 150px;
+  width: 120px;
   padding: 5px 0;
   text-align: center;
 }
@@ -102,10 +102,14 @@
 .file-item > .info > .name > .ext {
   color: #888;
 }
-.file-item > .active-indicator,
-.file-item > .open-indicator {
+.file-item > .info > .active-indicator {
+  float: right;
+  margin: 5px;
+}
+.file-item > .info > .active-indicator:before,
+.file-item > .info > .open-indicator:before {
   background: #fdd;
-  position: absolute;
+  content: "active";
   bottom: 12px;
   padding: 1px 5px;
   color: #666;
@@ -114,8 +118,13 @@
   border-radius: 3px;
   left: 12px;
 }
-.file-item > .open-indicator {
+.file-item > .info > .open-indicator {
+  float: right;
+  margin: 5px;
+}
+.file-item > .info > .open-indicator:before {
   right: 15px;
+  content: "open";
   left: auto;
   background: #dfd;
 }
@@ -124,4 +133,15 @@
 }
 .file-item.is-selected > .items {
   background: #fff;
+}
+@media (max-width: 820px) {
+  .file-item .active-indicator,
+  .file-item .open-indicator {
+    display: none;
+  }
+}
+@media (max-width: 700px) {
+  .file-item .size {
+    display: none;
+  }
 }

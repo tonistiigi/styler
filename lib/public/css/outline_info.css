@@ -92,9 +92,9 @@
   background: url("../img/icons.png") no-repeat 0px -711px;
   margin: 1px 0 0 3px;
 }
-.element-tools .media-selector:after {
-  font-size: 21px;
-  content: "◳";
+.element-tools .media-selector {
+  background: url("../img/icons.png") no-repeat 0px -711px;
+  margin: 1px 0 0 3px;
 }
 .element-tools .parent-selector {
   width: 18px;

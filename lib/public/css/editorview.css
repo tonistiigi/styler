@@ -321,6 +321,14 @@
 .has-infobar .infobar-editor > .editor-info {
   visibility: visible;
 }
+.infobar-editor > .editor-info > .file-filter {
+  position: absolute;
+  right: 40px;
+  color: #666;
+}
+.is-editormode .infobar-editor > .editor-info > .file-filter {
+  display: none;
+}
 .infobar-editor > .editor-info > .locking-toggle {
   display: none;
   width: 40px;

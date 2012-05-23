@@ -15,7 +15,7 @@ empty_file()
   min-height 200px
   position relative
   background-color #fff
-  padding 10px 7px
+  padding 3px 7px
   
   &:focus
     outline none
@@ -75,10 +75,10 @@ empty_file()
       > .lastmod
         float right
         color #666
-        width 150px
+        width 120px
         padding 5px 0
         text-align center
-      
+
 
   > .info > .name
     font-weight bold
@@ -93,23 +93,44 @@ empty_file()
     > .ext
       color #888
       
-  > .active-indicator
-    background #fdd
-    position absolute
-    bottom 12px
-    padding 1px 5px
-    color #666
-    border-radius 3px
-    left 12px
+  > .info > .active-indicator
+    float right
+    margin 5px
+    
+    &:before
+      background #fdd
+      content "active"
+      bottom 12px
+      padding 1px 5px
+      color #666
+      border-radius 3px
+      left 12px
 
-  > .open-indicator
-    @extends .file-item > .active-indicator
-    right 15px
-    left auto
-    background #dfd
+  > .info > .open-indicator
+    float right
+    margin 5px
+    &:before
+      @extends .file-item > .info > .active-indicator:before
+      right 15px
+      content "open"
+      left auto
+      background #dfd
     
   &.is-selected
     background #f2f2f2
     > .items
       background #fff
   
+
+@media (max-width: 820px)
+  .file-item .active-indicator
+  .file-item .open-indicator
+    display none
+  
+@media (max-width: 700px)
+  .file-item .size
+    display none
+  
+
+
+
