@@ -277,10 +277,6 @@ div.clear {
   user-select: none;
 }
 .main-container > .main > .main-content .infobar {
-  display: none;
-}
-.is-editormode .main-container > .main > .main-content .infobar {
-  display: block;
   position: relative;
   overflow: visible;
 }

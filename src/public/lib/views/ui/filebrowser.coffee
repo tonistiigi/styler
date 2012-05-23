@@ -113,10 +113,11 @@ define (require, exports, module) ->
     openFile: (e) ->
       if @model.get('type') == 'dir' && @model.get('parent')
         @toggleExpand()
-        e.stopPropagation()
-        e.preventDefault()
       else
         app.console.openFile @model.get('file')?.get 'url'
+        
+      e.stopPropagation()
+      e.preventDefault()
 
     onClick: (e) ->
       @select()

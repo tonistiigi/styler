@@ -110,6 +110,7 @@ define (require, exports, module) ->
       # Page unload control.
       $(window).on 'beforeunload', @onBeforeUnload
 
+
       if !ua.isGecko
         @captureCommandStart = _.bind @captureCommandKey, @, false
         @captureCommandEnd = _.bind @captureCommandKey, @, true
@@ -145,7 +146,7 @@ define (require, exports, module) ->
           new CommandLine el: @$('.cli-container')[0]
       , 1000
 
-
+      
     activateConsole: ->
       tm('activateConsole')
       app.socket.emit 'activate', @project.id, @client?.id
@@ -187,8 +188,7 @@ define (require, exports, module) ->
           unless @editor
             @editor = new EditorView el: @$('.editor-container')[0]
             @editor.on 'change:focusedselector', @onFocusedSelectorChange, @
-
-
+            
           @$('.infobar-toggle').on 'click', @toggleInfobar
           @$('.locking-toggle').on 'click', =>
             @state.save outlineLock: !@state.get 'outlineLock'
@@ -447,7 +447,9 @@ define (require, exports, module) ->
 
     onFocusedSelectorChange: (selector, selectFirst = false) ->
       @focusedSelector = selector
+      console.log 'selectorchange', selector
       @elementsForSelector selector, (ids) =>
+        console.log 'done'
         @outline.highlight ids
         @focusedSelectorElements = ids
         @outline.select ids[0] if (selectFirst or @state.get('outlineLock')) and ids.length
@@ -465,9 +467,9 @@ define (require, exports, module) ->
       dhintinner = dhint.find('.inner')
       dselector.empty()
       dselector.append if @focusedSelector then highlightSelector @focusedSelector else ''
-
       haselements = !!@focusedSelectorElements?.length
       if haselements
+        dinfo.show()
         dhint.show()
         index = @focusedSelectorElements.indexOf selectedId
         key = if ua.isMac then '⌘I' else 'Ctrl-I'
@@ -486,6 +488,7 @@ define (require, exports, module) ->
       else
         dinfo.text 'No elements match'
         dhint.hide()
+        dinfo.hide()
         dfocus.closest('.infobar').removeClass 'is-binded'
 
       unless @focusedSelector
@@ -554,7 +557,10 @@ define (require, exports, module) ->
       @outline.selectParent index if index
 
     elementsForSelector: (selector, cb) ->
-      @callClient 'elementsForSelector', selector:selector, (data) -> cb data.ids
+      if @client
+        @callClient 'elementsForSelector', selector:selector, (data) -> cb data.ids
+      else
+        _.defer -> cb null
 
     getStyles: (id) ->
       @callClient 'getStyles', id: id, (resp) =>

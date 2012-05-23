@@ -182,8 +182,9 @@
 
   .has-infobar &
     height 21px
-    border-bottom 2px solid #fff
     overflow visible
+    border-top 1px solid #fff
+    border-bottom 4px solid #fff
     
     .editor-info
       box horizontal
@@ -222,10 +223,14 @@
       visibility visible
     
     > .locking-toggle
+      display none
       width 40px
       height 20px
       box-sizing border-box
       background #ededed url(../img/icons.png) no-repeat 18px -236px
+      
+      .is-editormode &
+        display block
       
       &.is-active
         background-color #f5f5f5
@@ -234,8 +239,11 @@
         background-position 18px -216px
         
     > .selected-rule
+      display none
       box-flex 1
-      box horizontal
+      
+      .is-editormode &
+        box horizontal
       
       > .selector
         overflow hidden
