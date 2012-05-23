@@ -277,10 +277,6 @@ div.clear {
   user-select: none;
 }
 .main-container > .main > .main-content .infobar {
-  display: none;
-}
-.is-editormode .main-container > .main > .main-content .infobar {
-  display: block;
   position: relative;
   overflow: visible;
 }
@@ -1048,8 +1044,9 @@ div.clear {
 }
 .has-infobar .infobar {
   height: 21px;
-  border-bottom: 2px solid #fff;
   overflow: visible;
+  border-top: 1px solid #fff;
+  border-bottom: 4px solid #fff;
 }
 .has-infobar .infobar .editor-info {
   display: -webkit-box;
@@ -1116,13 +1113,25 @@ div.clear {
 .has-infobar .infobar-editor > .editor-info {
   visibility: visible;
 }
+.infobar-editor > .editor-info > .file-filter {
+  position: absolute;
+  right: 40px;
+  color: #666;
+}
+.is-editormode .infobar-editor > .editor-info > .file-filter {
+  display: none;
+}
 .infobar-editor > .editor-info > .locking-toggle {
+  display: none;
   width: 40px;
   height: 20px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   background: #ededed url("../img/icons.png") no-repeat 18px -236px;
+}
+.is-editormode .infobar-editor > .editor-info > .locking-toggle {
+  display: block;
 }
 .infobar-editor > .editor-info > .locking-toggle.is-active {
   background-color: #f5f5f5;
@@ -1131,10 +1140,13 @@ div.clear {
   background-position: 18px -216px;
 }
 .infobar-editor > .editor-info > .selected-rule {
+  display: none;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
+}
+.is-editormode .infobar-editor > .editor-info > .selected-rule {
   display: -webkit-box;
   display: -moz-box;
   display: -o-box;
@@ -1215,6 +1227,7 @@ div.clear {
   min-height: 200px;
   position: relative;
   background-color: #fff;
+  padding: 3px 7px;
 }
 .filebrowser:focus {
   outline: none;
@@ -1222,50 +1235,101 @@ div.clear {
 .is-editormode .filebrowser {
   display: none;
 }
+.filebrowser > .file-item > .info {
+  display: none;
+}
+.filebrowser > .file-item.is-dir {
+  padding: 0;
+}
+.filebrowser > .file-item.is-dir > .items {
+  border: none;
+  margin: 0;
+}
 .file-item {
-  height: 68px;
-  float: left;
-  text-align: center;
   cursor: pointer;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   overflow: hidden;
   position: relative;
+  clear: both;
 }
-.file-item > .inner {
-  border: 1px solid #ccc;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  margin: 2px 4px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  padding: 10px;
-  height: 60px;
-  -webkit-box-shadow: 1px 1px 2px #ccc;
-  -moz-box-shadow: 1px 1px 2px #ccc;
-  box-shadow: 1px 1px 2px #ccc;
+.file-item.is-empty > .info {
+  display: none;
 }
-.file-item > .inner.is-helper {
-  opacity: 0.6;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+.file-item.is-empty.is-dir {
+  padding: 0;
 }
-.file-item > .inner > .name {
+.file-item.is-empty.is-dir > .items {
+  border: none;
+  margin: 0;
+}
+.file-item .info > .expand-bullet {
+  float: left;
+  width: 20px;
+  height: 26px;
+  background: url("../img/icons.png") -13px -283px no-repeat;
+  opacity: 0.7;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+}
+.file-item.is-collapsed > .info > .expand-bullet {
+  background-position: 4px -285px;
+}
+.file-item.is-collapsed > .items {
+  display: none;
+}
+.file-item.is-dir {
+  padding-top: 2px;
+}
+.file-item.is-dir > .items {
+  clear: both;
+  border-top: 1px solid #eee;
+  margin-bottom: 5px;
+}
+.file-item.is-dir > .info > .name {
+  padding-left: 24px;
+  font-size: 14px;
+  background: url("../img/icons.png") 0px -471px no-repeat;
+}
+.file-item.is-file {
+  border-bottom: 1px solid #eee;
+}
+.file-item.is-file > .info > .name {
+  padding-left: 20px;
+  background: url("../img/icons.png") 0px -495px no-repeat;
+}
+.file-item.is-file > .info > .name:hover {
+  text-decoration: underline;
+}
+.file-item.is-file > .info > .size,
+.file-item.is-file > .info > .lastmod {
+  float: right;
+  color: #666;
+  width: 120px;
+  padding: 5px 0;
+  text-align: center;
+}
+.file-item > .info > .name {
   font-weight: bold;
   white-space: nowrap;
   text-overflow: ellipsis;
   color: #333;
   overflow: hidden;
+  float: left;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
-.file-item > .inner > .name > .ext {
+.file-item > .info > .name > .ext {
   color: #888;
 }
-.file-item > .inner > .active-indicator,
-.file-item > .inner > .open-indicator {
+.file-item > .info > .active-indicator {
+  float: right;
+  margin: 5px;
+}
+.file-item > .info > .active-indicator:before,
+.file-item > .info > .open-indicator:before {
   background: #fdd;
-  position: absolute;
+  content: "active";
   bottom: 12px;
   padding: 1px 5px;
   color: #666;
@@ -1274,17 +1338,32 @@ div.clear {
   border-radius: 3px;
   left: 12px;
 }
-.file-item > .inner > .open-indicator {
+.file-item > .info > .open-indicator {
+  float: right;
+  margin: 5px;
+}
+.file-item > .info > .open-indicator:before {
   right: 15px;
+  content: "open";
   left: auto;
   background: #dfd;
 }
-.file-item > .inner:hover {
-  background-color: #f3f6fc;
+.file-item.is-selected {
+  background: #f2f2f2;
 }
-.file-item.is-selected > .inner {
-  background: #f3f6fc;
-  border: 1px solid #999;
+.file-item.is-selected > .items {
+  background: #fff;
+}
+@media (max-width: 820px) {
+  .file-item .active-indicator,
+  .file-item .open-indicator {
+    display: none;
+  }
+}
+@media (max-width: 700px) {
+  .file-item .size {
+    display: none;
+  }
 }
 .imagepreview {
   top: -3000px;
@@ -2263,9 +2342,9 @@ div.clear {
   background: url("../img/icons.png") no-repeat 0px -711px;
   margin: 1px 0 0 3px;
 }
-.element-tools .media-selector:after {
-  font-size: 21px;
-  content: "◳";
+.element-tools .media-selector {
+  background: url("../img/icons.png") no-repeat 0px -711px;
+  margin: 1px 0 0 3px;
 }
 .element-tools .parent-selector {
   width: 18px;
