@@ -23,7 +23,7 @@
   bottom: 23px;
   width: 95%;
   box-shadow: 0 -1px 6px #666;
-  background: rgba(50,50,50,0.9);
+  background: rgba(50,50,50,0.90);
   z-index: 10;
   transition: height 0.4s;
 }
@@ -47,7 +47,7 @@
   font-weight: bold;
 }
 .cli-container .options .item.selected {
-  background: rgba(200,200,200,0.2);
+  background: rgba(200,200,200,0.20);
 }
 .cli-container .options .item.selected .value {
   color: #fff;
