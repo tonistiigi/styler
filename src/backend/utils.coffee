@@ -17,7 +17,7 @@ exports.getFileLocation = (project, fileurl, cb) ->
           srcfile = srcfile.replace /\.css$/i, '.styl'
           cssfile = (stylusout + '/' + fileurl.substr url.length).replace /\/+/g, '/'
           newfiles = false
-        return path.exists srcfile, (found) ->
+        return fs.exists srcfile, (found) ->
           if found
             cb null, srcfile, cssfile
           else if newfiles && fileurl.match /^http/
@@ -38,7 +38,7 @@ exports.getFileLocation = (project, fileurl, cb) ->
                   else
                     winston.info 'Created new file', file: srcfile
                     cb null, srcfile, cssfile
-              path.exists srcdir, (found) ->
+              fs.exists srcdir, (found) ->
                 if found
                   writefile()
                 else

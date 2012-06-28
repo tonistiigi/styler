@@ -6,14 +6,12 @@
   color: #444;
   margin-bottom: 30px;
   -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
   border-radius: 3px;
 }
 .instructions-opener span {
   background: #fc0;
   color: #444;
   -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
   border-radius: 3px;
   padding: 2px 5px;
   font-size: 13px;
@@ -30,7 +28,8 @@
   height: 0px;
   overflow: hidden;
   opacity: 0;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  filter: alpha(opacity=0);
   -webkit-transition: opacity 0.5s;
   -moz-transition: opacity 0.5s;
   -o-transition: opacity 0.5s;
@@ -39,7 +38,8 @@
 }
 .instructions-container.visible {
   opacity: 1;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  -ms-filter: none;
+  filter: none;
   height: auto;
 }
 .fpage {
@@ -108,7 +108,8 @@
 }
 .project-item .expand .inner:hover {
   opacity: 0.7;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+  filter: alpha(opacity=70);
 }
 .project-item.has-clients .expand .inner {
   display: block;
@@ -173,7 +174,8 @@
 .project-item .btn.edit,
 .project-item .btn.delete {
   opacity: 0.6;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+  filter: alpha(opacity=60);
   width: 20px;
   height: 20px;
   margin: 2px 1px;
@@ -182,7 +184,8 @@
 .project-item .btn.edit:hover,
 .project-item .btn.delete:hover {
   opacity: 0.9;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
+  filter: alpha(opacity=90);
 }
 .project-item .btn.delete {
   background-position: 0px -618px;
@@ -205,7 +208,6 @@
   background: linear-gradient(top, #fd0 0%, #fb0 100%);
   margin: 2px 10px 2px 20px;
   -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
   border-radius: 3px;
   padding: 2px 10px;
   font-weight: bold;
@@ -239,8 +241,6 @@
 }
 .project-item .client-item .agenttype {
   -webkit-background-size: 20px;
-  -moz-background-size: 20px;
-  -o-background-size: 20px;
   background-size: 20px;
   height: 20px;
 }
@@ -335,8 +335,6 @@
   height: 15px;
   background: url("../img/browser_icons.png") no-repeat;
   -webkit-background-size: 20px;
-  -moz-background-size: 20px;
-  -o-background-size: 20px;
   background-size: 20px;
   font-size: 13px;
   margin: 5px 2px;

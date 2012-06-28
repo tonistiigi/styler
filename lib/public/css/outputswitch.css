@@ -21,13 +21,13 @@
   margin: 5px 0;
   border: 1px solid #666;
   -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
   border-radius: 3px;
 }
 .client-select.client-select-toolbar {
   height: 0px;
   opacity: 0;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  filter: alpha(opacity=0);
   margin-top: 15px;
   width: 30px;
   border: 0;
@@ -53,7 +53,8 @@
 }
 .no-sidebar .client-select.client-select-toolbar {
   opacity: 1;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  -ms-filter: none;
+  filter: none;
   height: 30px;
 }
 .client-select > .selected-item {
@@ -77,7 +78,6 @@
   position: absolute;
   width: 99%;
   -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
   border-radius: 3px;
   top: 22px;
   left: 0px;
@@ -112,7 +112,6 @@
 .client-select > .items > .item.is-highlight {
   background: #eee;
   -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
   border-radius: 5px;
 }
 .client-select > .items > .item.is-active {
@@ -123,8 +122,6 @@
   width: 28px;
   height: 28px;
   -webkit-background-size: 28px;
-  -moz-background-size: 28px;
-  -o-background-size: 28px;
   background-size: 28px;
   margin: 3px 0;
   overflow: hidden;

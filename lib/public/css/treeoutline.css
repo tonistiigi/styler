@@ -17,7 +17,6 @@
   padding: 2px 2px 2px 4px;
   outline: none;
   -webkit-border-radius: 0px 0px 3px 3px;
-  -moz-border-radius: 0px 0px 3px 3px;
   border-radius: 0px 0px 3px 3px;
   background: #fff;
 }
@@ -37,7 +36,6 @@
   margin-bottom: 2px;
   margin-right: 3px;
   -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
   border-radius: 3px;
   cursor: default;
   -webkit-transition: height 0.3s;
@@ -65,7 +63,8 @@
 }
 .elements-outline > .subtree-heading > .clear-subtree-btn:hover {
   opacity: 0.7;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+  filter: alpha(opacity=70);
 }
 .elements-outline > .subtree-heading > .element-name {
   padding: 2px 4px;
@@ -115,7 +114,6 @@
   margin: 0 2px 0 inherit;
   padding: 2px;
   -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
   border-radius: 3px;
   font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Droid Sans Mono', 'Consolas', monospace;
   font-size: 11px;

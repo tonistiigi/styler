@@ -55,11 +55,13 @@
 }
 .editor-container > .toolbar > .tools-group > .tool.is-selected {
   opacity: 0.8;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  filter: alpha(opacity=80);
 }
 .editor-container > .toolbar > .tools-group > .tool:hover {
   opacity: 0.9;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
+  filter: alpha(opacity=90);
 }
 .editor-container > .toolbar > .tools-group > .tool.tool-save {
   background-position: 0px -150px;
@@ -67,7 +69,8 @@
 }
 .editor-container > .toolbar > .tools-group > .tool.is-disabled {
   opacity: 0.3;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
+  filter: alpha(opacity=30);
   cursor: default;
 }
 .editor-container > .editor {
@@ -96,7 +99,6 @@
   padding-left: 15px;
   border-top: 1px solid #ddd;
   -webkit-border-radius: 0 0 3px 3px;
-  -moz-border-radius: 0 0 3px 3px;
   border-radius: 0 0 3px 3px;
   line-height: 100%;
   background: #fff;
@@ -114,7 +116,6 @@
   padding: 5px 6px;
   border: 1px solid #bbb;
   -webkit-border-radius: 0 0 3px 3px;
-  -moz-border-radius: 0 0 3px 3px;
   border-radius: 0 0 3px 3px;
   background: #f4f4f4;
 }
@@ -198,7 +199,6 @@
   padding: 6px 25px 1px 7px;
   margin: 2px 6px 0 0;
   -webkit-border-radius: 3px 3px 0 0;
-  -moz-border-radius: 3px 3px 0 0;
   border-radius: 3px 3px 0 0;
   font-family: Helvetica, sans-serif;
   color: #fff;
@@ -239,7 +239,8 @@
 }
 .tabs > .tab > .close-btn:hover {
   opacity: 0.8;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  filter: alpha(opacity=80);
 }
 .infobar {
   height: 0px;
@@ -297,7 +298,8 @@
 }
 .infobar-editor > .infobar-toggle:hover {
   opacity: 0.8;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  filter: alpha(opacity=80);
 }
 .has-infobar .infobar-editor > .infobar-toggle {
   top: -1px;
@@ -383,7 +385,6 @@
   background: #fff;
   margin: 2px 4px;
   -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
   border-radius: 3px;
 }
 .infobar-editor > .editor-info > .selected-rule > .selection-hint {

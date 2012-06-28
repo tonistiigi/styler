@@ -32,7 +32,6 @@
 .nearby-rules {
   border: 1px solid #e8e8e8;
   -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
   border-radius: 4px;
 }
 .nearby-rules > .head {
@@ -51,7 +50,6 @@
   margin-bottom: 2px;
   border: 1px solid #eee;
   -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
   border-radius: 3px;
   white-space: nowrap;
   cursor: default;
@@ -92,7 +90,6 @@
 }
 .style-item > .name.is-highlighted {
   -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
   border-radius: 2px;
   background: #cdf;
 }
@@ -153,7 +150,6 @@
 }
 .style-prop-container > .style-prop.is-highlighted {
   -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
   border-radius: 2px;
   background: #cdf;
 }
@@ -204,7 +200,6 @@
   margin: 0px 2px;
   padding: 0 7px;
   -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
   border-radius: 3px;
 }
 .style-prop-value > .color-name {
@@ -213,7 +208,6 @@
 .style-prop-value > .url {
   padding: 0 3px;
   -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
   border-radius: 3px;
   margin: 0 2px;
   color: #008;

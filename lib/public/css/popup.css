@@ -12,7 +12,6 @@
   padding: 20px;
   background: #fff;
   -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
   border-radius: 5px;
 }
 .popup .msg {
@@ -46,7 +45,6 @@
   cursor: pointer;
   font-size: 14px;
   -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
   border-radius: 3px;
   border-bottom: 1px solid #ccc;
 }

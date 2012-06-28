@@ -1,5 +1,5 @@
-{existsSync, join} = require "path"
-{writeFileSync} = require "fs"
+{join} = require "path"
+{existsSync, writeFileSync} = require "fs"
 
 {_} = require 'underscore'
 Backbone = require 'backbone'

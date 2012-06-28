@@ -37,7 +37,7 @@ global.rootDir += '/' unless global.rootDir.length && global.rootDir[global.root
 
 # Set home directory.
 global.homeDir = path.resolve(argv.pfx + '/.styler')
-if !path.existsSync global.homeDir
+if !fs.existsSync global.homeDir
   mkdirp.sync global.homeDir
 
 # Setup logging.

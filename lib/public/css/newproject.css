@@ -15,7 +15,8 @@
 .new-project-view .errors-summary {
   height: 0px;
   opacity: 0;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  filter: alpha(opacity=0);
   overflow: hidden;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -23,7 +24,6 @@
   background-color: #dc143c;
   color: #fff;
   -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
   border-radius: 3px;
   -webkit-transition: opacity 0.3s, height 0.5s;
   -moz-transition: opacity 0.3s, height 0.5s;
@@ -43,7 +43,8 @@
 .new-project-view .errors-summary.visible {
   height: auto;
   opacity: 1;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  -ms-filter: none;
+  filter: none;
 }
 .new-project-view .input-row {
   clear: both;
@@ -88,7 +89,6 @@
   background: #dc143c;
   color: #fff;
   -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
   border-radius: 3px;
   margin-bottom: 3px;
   -webkit-transition: opacity 0.3s, height 0.5s;
@@ -98,7 +98,8 @@
   transition: opacity 0.3s, height 0.5s;
   height: 0;
   opacity: 0;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  filter: alpha(opacity=0);
   width: 397px;
   margin-left: 162px;
 }
@@ -106,7 +107,8 @@
   padding: 3px 6px;
   height: auto;
   opacity: 1;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  -ms-filter: none;
+  filter: none;
 }
 .new-project-view .input-row.has-error .note-indicator {
   background-position: 0px -450px;
@@ -117,7 +119,8 @@
   color: #333;
   height: auto;
   opacity: 1;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  -ms-filter: none;
+  filter: none;
   padding: 3px 6px;
 }
 .new-project-view .input-row.has-warning .note-indicator {
@@ -178,7 +181,8 @@
   top: 5px;
   color: #939;
   opacity: 0;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  filter: alpha(opacity=0);
   overflow: hidden;
 }
 .new-project-view .sources .item .input-container .completion-pfx {
@@ -188,7 +192,8 @@
   margin-left: 4px;
   color: #999;
   opacity: 1;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  -ms-filter: none;
+  filter: none;
 }
 .new-project-view .sources .item .btn {
   float: right;
@@ -196,7 +201,8 @@
 }
 .new-project-view .sources .item .btn:hover {
   opacity: 0.7;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+  filter: alpha(opacity=70);
 }
 .new-project-view .sources .item .btn.edit,
 .sources-list .stylus-switch-hint .btn.convert {
@@ -205,7 +211,6 @@
   font-weight: bold;
   padding: 3px 6px;
   -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
   border-radius: 2px;
   margin: 5px 4px 4px 10px;
 }
@@ -218,7 +223,6 @@
   margin: 2px 5px;
   background-color: #1e90ff;
   -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
   border-radius: 3px;
 }
 .new-project-view .sources .item .editing input.url {
@@ -259,7 +263,6 @@
   border: 1px solid #888;
   padding: 5px 8px 2px 24px;
   -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
   border-radius: 3px;
   margin-right: 10px;
   font-weight: bold;
@@ -269,21 +272,25 @@
   text-transform: uppercase;
   background: url("../img/icons.png") no-repeat 6px -346px;
   opacity: 0.7;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+  filter: alpha(opacity=70);
 }
 .new-project-view .sources .item input[type="radio"] + label:hover {
   opacity: 1;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  -ms-filter: none;
+  filter: none;
 }
 .new-project-view .sources .item input[type="radio"]:disabled + label,
 .new-project-view .sources .item input[type="radio"]:disabled + label:hover {
   opacity: 0.3;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
+  filter: alpha(opacity=30);
   cursor: default;
 }
 .new-project-view .sources .item input[type="radio"]:checked + label {
   opacity: 1;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  -ms-filter: none;
+  filter: none;
   border-color: #080;
   color: #060;
   background-position: 5px -376px;
@@ -313,7 +320,8 @@
 }
 .new-project-view .btn.add-source:hover {
   opacity: 0.8;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  filter: alpha(opacity=80);
 }
 .new-project-view .btn.add-source:before {
   content: "+";
@@ -329,14 +337,14 @@
   font-size: 15px;
   padding: 3px 10px 4px;
   -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
   border-radius: 3px;
   cursor: pointer;
   margin-top: 18px;
 }
 .new-project-view input[type="submit"]:hover {
   opacity: 0.8;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  filter: alpha(opacity=80);
 }
 .sources-list .input-row {
   margin-top: 5px;
@@ -359,7 +367,8 @@
   height: 0px;
   overflow: hidden;
   opacity: 0;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  filter: alpha(opacity=0);
   -webkit-transition: height 0.3s, opacity 0.3s;
   -moz-transition: height 0.3s, opacity 0.3s;
   -o-transition: height 0.3s, opacity 0.3s;
@@ -370,7 +379,8 @@
 .sources-list .input-row.missing-files.visible,
 .sources-list .input-row.stylus-out.visible {
   opacity: 1;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  -ms-filter: none;
+  filter: none;
   height: auto;
 }
 .sources-list .stylus-switch-hint {
@@ -412,7 +422,8 @@
   color: #333;
   overflow: hidden;
   opacity: 0;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  filter: alpha(opacity=0);
   font-size: 13px;
   font-weight: bold;
   padding-right: 10px;
@@ -432,7 +443,8 @@
 .locations-info .foot-note.all-matches .all-matches {
   height: auto;
   opacity: 1;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  -ms-filter: none;
+  filter: none;
 }
 .locations-info .head-note span,
 .locations-info .foot-note span {

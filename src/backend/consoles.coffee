@@ -1,6 +1,5 @@
 fs = require "fs"
 {_} = require "underscore"
-{exists, existsSync} = require "path"
 Backbone = require "backbone"
 io = require "socket.io"
 Console = require "./console"
@@ -31,17 +30,17 @@ checkDir =  (clientId, url, path, stylusoutPath, cb) ->
     files = {}
     type = "unknown"
     stylusout = false
-    stylusoutExists = existsSync stylusoutPath
+    stylusoutExists = fs.existsSync stylusoutPath
     for filename in filenames
       fullPath = path + filename
       fullPathStylus = fullPath.replace /\.css$/i, ".styl"
-      existsStylus = existsSync fullPathStylus
+      existsStylus = fs.existsSync fullPathStylus
       if existsStylus
         type = "stylus"
         files[filename] = true
-        stylusout = true if stylusoutExists && existsSync stylusoutPath + filename
+        stylusout = true if stylusoutExists && fs.existsSync stylusoutPath + filename
       else 
-        existsCSS = existsSync fullPath
+        existsCSS = fs.existsSync fullPath
         if existsCSS
           type = "css"
           files[filename] = true

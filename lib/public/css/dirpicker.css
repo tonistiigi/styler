@@ -88,7 +88,6 @@
   color: #fff;
   font-weight: bold;
   -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
   border-radius: 2px;
 }
 .dirpicker .buttons .btn.cancel {
@@ -97,5 +96,6 @@
 }
 .dirpicker .buttons .btn:hover {
   opacity: 0.8;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  filter: alpha(opacity=80);
 }

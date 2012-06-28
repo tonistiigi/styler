@@ -73,7 +73,6 @@ div.clear {
   height: 24px;
   margin: 8px 5px 5px 2px;
   -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
   border-radius: 3px;
   font-size: 11px;
   text-align: center;
@@ -104,7 +103,6 @@ div.clear {
   white-space: nowrap;
   text-align: left;
   -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
   border-radius: 3px;
   background: #444;
 }
@@ -149,7 +147,8 @@ div.clear {
 }
 .main-toolbar > .sidebar-toggle:hover {
   opacity: 0.8;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  filter: alpha(opacity=80);
 }
 .no-sidebar .main-toolbar > .sidebar-toggle {
   -webkit-transform: rotate(180deg);
@@ -162,7 +161,6 @@ div.clear {
   height: 3px;
   background: #fff;
   -webkit-border-radius: 3px 3px 0 0;
-  -moz-border-radius: 3px 3px 0 0;
   border-radius: 3px 3px 0 0;
 }
 .main-container {
@@ -289,7 +287,6 @@ div.clear {
   box-flex: 1;
   margin-bottom: 4px;
   -webkit-border-radius: 0 0 3px 3px;
-  -moz-border-radius: 0 0 3px 3px;
   border-radius: 0 0 3px 3px;
   position: relative;
 }
@@ -299,7 +296,6 @@ div.clear {
   margin: 4px;
   color: #555;
   -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
   border-radius: 5px;
   padding: 2px 5px;
   background: #e5e5e5;
@@ -381,8 +377,6 @@ div.clear {
   float: left;
   background: url("../img/browser_icons.png") no-repeat 0px 100px;
   -webkit-background-size: 16px;
-  -moz-background-size: 16px;
-  -o-background-size: 16px;
   background-size: 16px;
   margin-top: 2px;
 }
@@ -510,7 +504,8 @@ div.clear {
   height: 100%;
   z-index: 101;
   opacity: 0;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  filter: alpha(opacity=0);
   -webkit-transition: opacity 0.3s;
   -moz-transition: opacity 0.3s;
   -o-transition: opacity 0.3s;
@@ -519,7 +514,8 @@ div.clear {
 }
 .overlay.is-loaded {
   opacity: 1;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  -ms-filter: none;
+  filter: none;
 }
 .overlay.is-loaded > div:first-child {
   top: 90px;
