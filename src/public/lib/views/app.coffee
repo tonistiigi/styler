@@ -125,3 +125,9 @@ define (require, exports, module) ->
       !!(match && parseInt(match[1], 10) >= 8)
 
   module.exports = AppView
+
+if nativeapp
+  window.addEventListener 'keydown', (e) -> 
+    if e.keyCode == 82 && e.shiftKey && e.metaKey
+      window.location.reload()
+  , true

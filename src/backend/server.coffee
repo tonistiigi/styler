@@ -174,5 +174,16 @@ setTimeout ->
   settings = Settings.at(0);
   settings.bind 'change:devmode', setDevSettings
   setDevSettings settings
+  
+  if process.features.nativeapp
+    app.on 'listening', ->
+      process.emit 'serverload', port
+             
+    app.on 'error', (err) ->
+      if err.code == 'EADDRINUSE'
+        port++
+        app.listen port
+  
   app.listen port
+  
 , 200
