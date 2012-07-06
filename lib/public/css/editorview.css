@@ -147,7 +147,7 @@
   margin-left: -15px;
 }
 .ace_editor .selection-marker {
-  background: rgba(255,200,0,0.10);
+  background: rgba(255,200,0,0.1);
   position: absolute;
   margin-left: -4px;
 }
@@ -155,7 +155,7 @@
   position: absolute;
   display: none;
   z-index: 10000;
-  background: rgba(255,0,0,0.20);
+  background: rgba(255,0,0,0.2);
   cursor: ns-resize;
 }
 .ace_editor .editor-command-highlight.is-selectable {

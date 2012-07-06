@@ -303,7 +303,7 @@
 }
 .instructions fieldset .indication .negative {
   clear: left;
-  color: rgba(150,0,0,0.70);
+  color: rgba(150,0,0,0.7);
 }
 .instructions fieldset .indication .negative:before {
   content: "-";
