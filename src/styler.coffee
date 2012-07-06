@@ -78,7 +78,8 @@ util =
 
   getMatchedCSSRulesForElements: (elements) ->
     for element in elements
-      if window.getMatchedCSSRules
+      # https://bugs.webkit.org/show_bug.cgi?id=89240
+      if window.getMatchedCSSRules && !ua.isWebkit
         window.getMatchedCSSRules element
       else
         result = []
