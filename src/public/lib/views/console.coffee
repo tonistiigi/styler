@@ -200,7 +200,7 @@ define (require, exports, module) ->
           _.delay =>
             @reloadOutline()
             if @getMedia() != 'screen'
-              @callClient 'setMedia', {value: media}, ->
+              @callClient 'setMedia', {value: @getMedia()}, ->
             @trigger 'change:media'
           , 50
 
@@ -703,5 +703,7 @@ define (require, exports, module) ->
         when 'change:dom'
           @_wasSilentRefresh = true
           @outline.setTreeData data.tree
+        when 'change:media'
+          @setMedia data.media
 
   module.exports = ConsoleView

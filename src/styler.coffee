@@ -416,6 +416,8 @@ publicAPI =
           sendMessage 'inspect', id: getOutlineId lastRightClickedElement
         inspectOnActivation = false
       , 700
+    if _media != 'sheet'
+      sendMessage? 'change:media', media: _media
 
   elementsForSelector: (params, cb) ->
     try

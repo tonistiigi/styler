@@ -126,7 +126,7 @@ define (require, exports, module) ->
 
   module.exports = AppView
 
-if nativeapp
+if window.nativeapp
   window.addEventListener 'keydown', (e) -> 
     if e.keyCode == 82 && e.shiftKey && e.metaKey
       window.location.reload()
