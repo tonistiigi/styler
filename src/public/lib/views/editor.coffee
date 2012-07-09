@@ -25,6 +25,10 @@ define (require, exports, module) ->
 
       @$el.html @template()
 
+      @$('.file-filter input').on 'change', (el) ->
+        app.Settings.save activeonly: el.currentTarget.checked
+      @$('.file-filter input').attr(checked: true) if app.Settings.get('activeonly')
+
       @tabs = new TabList
       @tabs.on 'empty', @openFileView, @
       new TabListView collection: @tabs, el: @$('.tabs')[0]

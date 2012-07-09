@@ -47,6 +47,7 @@ define (require, exports, module) ->
       
       @model.on 'destroy', @remove, @
       @model.on 'change', @render, @
+      app.Settings.on 'change:activeonly', @render, @
       
       if @model.get('type') == 'file'
         @model.get('file').on 'change', @render, @
@@ -139,25 +140,30 @@ define (require, exports, module) ->
 
     render: ->
       items = @model.get('items')
-      
       depth = @model.getDepth()
       unless depth == @lastDepth
         @$('.info').css paddingLeft: depth * 20
         @lastDepth = depth
-      
+
       if file = @model.get('file')
         mtime = moment(file.get('mtime'))
         fromNow = new Date() - mtime
         @$('.lastmod').text if fromNow >= 36e5 * 24 * 3
           moment(mtime).format 'D/M/YYYY'
-        else  
+        else
           @renderDebounce()
           moment(mtime).fromNow()
-          
+
         @$('.size').text formatFileSize file.get('fsize')
         clientId = app.console?.client?.id
-        @$('.active-indicator').toggle clientId && (file.get('clients').indexOf clientId) != -1
-        @$('.open-indicator').toggle !!file.get('edit')
+
+        isActive = clientId && (file.get('clients').indexOf clientId) != -1
+        @$('.active-indicator').toggle isActive
+
+        isOpen = !!file.get('edit')
+        @$('.open-indicator').toggle isOpen
+
+        @$el.toggle !app.Settings.get('activeonly') || isActive || isOpen
       
       return @ unless items
       

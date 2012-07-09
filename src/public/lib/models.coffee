@@ -197,6 +197,7 @@ define (require, exports, module) ->
       autocomplete: true
       fpsstats: false
       devmode: true
+      activeonly: false
 
   SettingsList = Backbone.Collection.extend
     model: Settings
