@@ -1,4 +1,5 @@
 @import nib
+@import util
 
 .new-project-view
   padding 20px 20px
@@ -70,6 +71,7 @@
         float left
         margin 7px 4px 0 0
         background url(../img/icons.png) no-repeat -100px
+        retina()
         
     .note
       clear both
@@ -228,6 +230,7 @@
           text-transform uppercase
           background url(../img/icons.png) no-repeat 6px -346px
           opacity 0.7
+          retina()
           
           &:hover
             opacity 1
@@ -347,8 +350,10 @@
     color #444
     &.found
       background url(../img/icons.png) no-repeat 2px -396px
+      retina()
     &.missing
       background url(../img/icons.png) no-repeat 2px -411px
+      retina()
 
   .head-note
   .foot-note

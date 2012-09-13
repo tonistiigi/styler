@@ -22,6 +22,13 @@
 .selectable > .options > .option.is-selected {
   background: url("../img/icons.png") no-repeat 5px -577px;
 }
+@media (-webkit-min-device-pixel-ratio:2), (min-device-pixel-ratio:2) {
+  .selectable > .options > .option.is-selected {
+    background-image: url("../img/icons@2x.png");
+    -webkit-background-size: 41px;
+    background-size: 41px;
+  }
+}
 .selectable > .options > .option:hover {
   background-color: #ccc;
 }
@@ -89,13 +96,34 @@
   background: url("../img/icons.png") no-repeat 0px -711px;
   margin: 1px 0 0 3px;
 }
+@media (-webkit-min-device-pixel-ratio:2), (min-device-pixel-ratio:2) {
+  .element-tools .pseudo-selector {
+    background-image: url("../img/icons@2x.png");
+    -webkit-background-size: 41px;
+    background-size: 41px;
+  }
+}
 .element-tools .media-selector {
   background: url("../img/icons.png") no-repeat 0px -711px;
   margin: 1px 0 0 3px;
 }
+@media (-webkit-min-device-pixel-ratio:2), (min-device-pixel-ratio:2) {
+  .element-tools .media-selector {
+    background-image: url("../img/icons@2x.png");
+    -webkit-background-size: 41px;
+    background-size: 41px;
+  }
+}
 .element-tools .parent-selector {
   width: 18px;
   background: url("../img/icons.png") no-repeat 1px -728px;
+}
+@media (-webkit-min-device-pixel-ratio:2), (min-device-pixel-ratio:2) {
+  .element-tools .parent-selector {
+    background-image: url("../img/icons@2x.png");
+    -webkit-background-size: 41px;
+    background-size: 41px;
+  }
 }
 .element-tools .parent-selector > .options {
   max-width: 120px;

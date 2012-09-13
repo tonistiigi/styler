@@ -53,6 +53,13 @@
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
   filter: alpha(opacity=70);
 }
+@media (-webkit-min-device-pixel-ratio:2), (min-device-pixel-ratio:2) {
+  .file-item .info > .expand-bullet {
+    background-image: url("../img/icons@2x.png");
+    -webkit-background-size: 41px;
+    background-size: 41px;
+  }
+}
 .file-item.is-collapsed > .info > .expand-bullet {
   background-position: 4px -285px;
 }
@@ -72,12 +79,26 @@
   font-size: 14px;
   background: url("../img/icons.png") 0px -471px no-repeat;
 }
+@media (-webkit-min-device-pixel-ratio:2), (min-device-pixel-ratio:2) {
+  .file-item.is-dir > .info > .name {
+    background-image: url("../img/icons@2x.png");
+    -webkit-background-size: 41px;
+    background-size: 41px;
+  }
+}
 .file-item.is-file {
   border-bottom: 1px solid #eee;
 }
 .file-item.is-file > .info > .name {
   padding-left: 20px;
   background: url("../img/icons.png") 0px -495px no-repeat;
+}
+@media (-webkit-min-device-pixel-ratio:2), (min-device-pixel-ratio:2) {
+  .file-item.is-file > .info > .name {
+    background-image: url("../img/icons@2x.png");
+    -webkit-background-size: 41px;
+    background-size: 41px;
+  }
 }
 .file-item.is-file > .info > .name:hover {
   text-decoration: underline;

@@ -39,6 +39,13 @@
   cursor: default;
   background: url("../img/icons.png") no-repeat 5px -490px;
 }
+@media (-webkit-min-device-pixel-ratio:2), (min-device-pixel-ratio:2) {
+  .stack-cont .stack .item {
+    background-image: url("../img/icons@2x.png");
+    -webkit-background-size: 41px;
+    background-size: 41px;
+  }
+}
 .stack-cont .stack .item.diritem {
   background-position: 5px -473px;
 }

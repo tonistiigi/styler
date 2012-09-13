@@ -78,8 +78,15 @@ div.clear {
   text-align: center;
   color: #f0f8ff;
   font-weight: bold;
-  background: url("../img/icons.png") no-repeat;
+  background: url("../img/icons.png") 0 0 no-repeat;
   cursor: pointer;
+}
+@media (-webkit-min-device-pixel-ratio:2), (min-device-pixel-ratio:2) {
+  .main-toolbar > .tools-group > .tool {
+    background-image: url("../img/icons@2x.png");
+    -webkit-background-size: 41px;
+    background-size: 41px;
+  }
 }
 .main-toolbar > .tools-group > .tool.is-selected {
   background-color: #666;
@@ -95,15 +102,15 @@ div.clear {
   float: none;
   position: absolute;
   top: 4px;
-  left: 24px;
+  left: 23px;
   z-index: 50;
   width: auto;
   padding: 1px 4px;
   font-size: 10px;
   white-space: nowrap;
   text-align: left;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -webkit-border-radius: 0 3px 3px 0;
+  border-radius: 0 3px 3px 0;
   background: #444;
 }
 .main-toolbar > .tools-group > .tool.tool-back {
@@ -144,6 +151,13 @@ div.clear {
   -o-transition: -webkit-transform 0.4s;
   -ms-transition: -webkit-transform 0.4s;
   transition: -webkit-transform 0.4s;
+}
+@media (-webkit-min-device-pixel-ratio:2), (min-device-pixel-ratio:2) {
+  .main-toolbar > .sidebar-toggle {
+    background-image: url("../img/icons@2x.png");
+    -webkit-background-size: 41px;
+    background-size: 41px;
+  }
 }
 .main-toolbar > .sidebar-toggle:hover {
   opacity: 0.8;

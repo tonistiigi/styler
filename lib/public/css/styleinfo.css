@@ -179,6 +179,13 @@
   -ms-transition: -webkit-transform 0.2s;
   transition: -webkit-transform 0.2s;
 }
+@media (-webkit-min-device-pixel-ratio:2), (min-device-pixel-ratio:2) {
+  .style-prop-container > .style-prop > .expand-bullet.is-visible {
+    background-image: url("../img/icons@2x.png");
+    -webkit-background-size: 41px;
+    background-size: 41px;
+  }
+}
 .style-prop-container > .style-prop-sub {
   display: none;
 }

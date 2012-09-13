@@ -1,4 +1,5 @@
 @import nib
+@import util
 
 .selectable
   outline none
@@ -21,6 +22,7 @@
       
       &.is-selected
         background url(../img/icons.png) no-repeat 5px -577px
+        retina()
       &:hover
         background-color #ccc
         
@@ -85,15 +87,18 @@
 
   .pseudo-selector
     background url(../img/icons.png) no-repeat 0px -711px
+    retina()
     margin 1px 0 0 3px
 
   .media-selector
     background url(../img/icons.png) no-repeat 0px -711px
+    retina()
     margin 1px 0 0 3px
       
   .parent-selector
     width 18px
     background url(../img/icons.png) no-repeat 1px -728px
+    retina()
     
     > .options
       max-width 120px

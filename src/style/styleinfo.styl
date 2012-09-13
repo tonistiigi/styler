@@ -1,4 +1,5 @@
-@import "nib"
+@import nib
+@import util
 
 $monospace_family = 'Monaco', 'Menlo', 'Ubuntu Mono', 'Droid Sans Mono', 'Consolas', monospace
 
@@ -157,6 +158,7 @@ $monospace_family = 'Monaco', 'Menlo', 'Ubuntu Mono', 'Droid Sans Mono', 'Consol
 
       &.is-visible
         background url(../img/icons.png) no-repeat 3px -539px
+        retina()
         transform translateZ(0)
         transition -webkit-transform .2s
 

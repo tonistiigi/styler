@@ -1,5 +1,5 @@
 @import nib
-@import 'util.styl'
+@import util
 
 .elements-outline
   box vertical
@@ -32,6 +32,7 @@
       padding 0px 5px
       cursor pointer
       background url(../img/icons.png) no-repeat 0px -553px
+      retina()
       margin-right 3px
       transform rotate(-90deg)
       &:hover
@@ -100,6 +101,7 @@
   > .fold-btn
     @extends .outline-item > .fold-btn-blank
     background url(../img/icons.png) 3px -539px
+    retina()
     transform rotate(90deg)
     
   &.is-folded > .fold-btn
@@ -119,6 +121,7 @@
     cursor pointer
     visibility hidden
     background url(../img/icons.png) no-repeat 0px -560px
+    retina()
   
   &:hover > .select-subtree-btn
     visibility visible

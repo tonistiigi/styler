@@ -53,6 +53,13 @@
   background: url("../img/icons.png") no-repeat 0px -30px;
   cursor: default;
 }
+@media (-webkit-min-device-pixel-ratio:2), (min-device-pixel-ratio:2) {
+  .editor-container > .toolbar > .tools-group > .tool {
+    background-image: url("../img/icons@2x.png");
+    -webkit-background-size: 41px;
+    background-size: 41px;
+  }
+}
 .editor-container > .toolbar > .tools-group > .tool.is-selected {
   opacity: 0.8;
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
@@ -206,6 +213,13 @@
   background: url("../img/icons.png") repeat-x 0px -770px;
   cursor: default;
 }
+@media (-webkit-min-device-pixel-ratio:2), (min-device-pixel-ratio:2) {
+  .tabs > .tab {
+    background-image: url("../img/icons@2x.png");
+    -webkit-background-size: 41px;
+    background-size: 41px;
+  }
+}
 .tabs > .tab.is-loaded {
   -webkit-transition: left 0.3s;
   -moz-transition: left 0.3s;
@@ -236,6 +250,13 @@
   width: 14px;
   height: 14px;
   background: url("../img/icons.png") no-repeat 0px -750px;
+}
+@media (-webkit-min-device-pixel-ratio:2), (min-device-pixel-ratio:2) {
+  .tabs > .tab > .close-btn {
+    background-image: url("../img/icons@2x.png");
+    -webkit-background-size: 41px;
+    background-size: 41px;
+  }
 }
 .tabs > .tab > .close-btn:hover {
   opacity: 0.8;
@@ -296,6 +317,13 @@
   -ms-transition: top 0.2s, -webkit-transform 0.4s;
   transition: top 0.2s, -webkit-transform 0.4s;
 }
+@media (-webkit-min-device-pixel-ratio:2), (min-device-pixel-ratio:2) {
+  .infobar-editor > .infobar-toggle {
+    background-image: url("../img/icons@2x.png");
+    -webkit-background-size: 41px;
+    background-size: 41px;
+  }
+}
 .infobar-editor > .infobar-toggle:hover {
   opacity: 0.8;
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
@@ -339,6 +367,13 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   background: #ededed url("../img/icons.png") no-repeat 18px -236px;
+}
+@media (-webkit-min-device-pixel-ratio:2), (min-device-pixel-ratio:2) {
+  .infobar-editor > .editor-info > .locking-toggle {
+    background-image: url("../img/icons@2x.png");
+    -webkit-background-size: 41px;
+    background-size: 41px;
+  }
 }
 .is-editormode .infobar-editor > .editor-info > .locking-toggle {
   display: block;

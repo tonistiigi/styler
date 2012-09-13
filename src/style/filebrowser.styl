@@ -1,4 +1,5 @@
 @import nib
+@import util
 
 empty_file()
   > .info
@@ -41,6 +42,7 @@ empty_file()
     width 20px
     height 26px
     background url(../img/icons.png) -13px -283px no-repeat
+    retina()
     opacity .7
     
   &.is-collapsed
@@ -60,6 +62,7 @@ empty_file()
       padding-left 24px
       font-size 14px
       background url(../img/icons.png) 0px -471px no-repeat
+      retina()
       
   &.is-file
     border-bottom 1px solid #eee
@@ -68,6 +71,7 @@ empty_file()
       > .name
         padding-left 20px
         background url(../img/icons.png) 0px -495px no-repeat
+        retina()
         &:hover
           text-decoration underline
         

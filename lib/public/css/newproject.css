@@ -84,6 +84,13 @@
   margin: 7px 4px 0 0;
   background: url("../img/icons.png") no-repeat -100px;
 }
+@media (-webkit-min-device-pixel-ratio:2), (min-device-pixel-ratio:2) {
+  .new-project-view .input-row .field .note-indicator {
+    background-image: url("../img/icons@2x.png");
+    -webkit-background-size: 41px;
+    background-size: 41px;
+  }
+}
 .new-project-view .input-row .note {
   clear: both;
   background: #dc143c;
@@ -275,6 +282,13 @@
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
   filter: alpha(opacity=70);
 }
+@media (-webkit-min-device-pixel-ratio:2), (min-device-pixel-ratio:2) {
+  .new-project-view .sources .item input[type="radio"] + label {
+    background-image: url("../img/icons@2x.png");
+    -webkit-background-size: 41px;
+    background-size: 41px;
+  }
+}
 .new-project-view .sources .item input[type="radio"] + label:hover {
   opacity: 1;
   -ms-filter: none;
@@ -413,8 +427,22 @@
 .locations-info .searched-file-item.found {
   background: url("../img/icons.png") no-repeat 2px -396px;
 }
+@media (-webkit-min-device-pixel-ratio:2), (min-device-pixel-ratio:2) {
+  .locations-info .searched-file-item.found {
+    background-image: url("../img/icons@2x.png");
+    -webkit-background-size: 41px;
+    background-size: 41px;
+  }
+}
 .locations-info .searched-file-item.missing {
   background: url("../img/icons.png") no-repeat 2px -411px;
+}
+@media (-webkit-min-device-pixel-ratio:2), (min-device-pixel-ratio:2) {
+  .locations-info .searched-file-item.missing {
+    background-image: url("../img/icons@2x.png");
+    -webkit-background-size: 41px;
+    background-size: 41px;
+  }
 }
 .locations-info .head-note .msg,
 .locations-info .foot-note .msg {

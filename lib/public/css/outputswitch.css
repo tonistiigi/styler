@@ -23,6 +23,13 @@
   -webkit-border-radius: 3px;
   border-radius: 3px;
 }
+@media (-webkit-min-device-pixel-ratio:2), (min-device-pixel-ratio:2) {
+  .client-select.client-select-sidebar {
+    background-image: url("../img/icons@2x.png");
+    -webkit-background-size: 41px;
+    background-size: 41px;
+  }
+}
 .client-select.client-select-toolbar {
   height: 0px;
   opacity: 0;

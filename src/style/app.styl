@@ -62,8 +62,9 @@ div.clear
       text-align center
       color aliceblue
       font-weight bold
-      background url(../img/icons.png) no-repeat
+      background url(../img/icons.png) 0 0 no-repeat
       cursor pointer
+      retina()
       
       &.is-selected
         background-color #666
@@ -78,14 +79,14 @@ div.clear
         float none
         position absolute
         top 4px
-        left 24px
+        left 23px
         z-index 50
         width auto
         padding 1px 4px
         font-size 10px
         white-space nowrap
         text-align left
-        border-radius 3px
+        border-radius 0 3px 3px 0
         background #444
       
       &.tool-back
@@ -120,6 +121,7 @@ div.clear
     background url(../img/icons.png) no-repeat 5px -265px
     cursor pointer
     transition -webkit-transform .4s
+    retina()
       
     &:hover
       opacity .8
