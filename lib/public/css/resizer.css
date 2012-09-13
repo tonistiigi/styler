@@ -18,6 +18,13 @@
   height: 50px;
   top: 250px;
   left: 2px;
+  -webkit-background-size: 7px;
+  background-size: 7px;
+}
+@media (-webkit-min-device-pixel-ratio:2), (min-device-pixel-ratio:2) {
+  .resizer.resizer-horizontal > .inner > .thumb {
+    background-image: url("../img/resizer_h@2x.png");
+  }
 }
 .no-sidebar .resizer.resizer-horizontal {
   display: none;

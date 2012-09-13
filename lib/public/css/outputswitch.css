@@ -19,7 +19,6 @@
   box-sizing: border-box;
   background: #000 url("../img/icons.png") repeat-x 0px -770px;
   margin: 5px 0;
-  border: 1px solid #666;
   -webkit-border-radius: 3px;
   border-radius: 3px;
 }
@@ -68,7 +67,7 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  padding: 0px 3px 0px 4px;
+  padding: 1px 3px 0px 4px;
   overflow: hidden;
   cursor: pointer;
   height: 19px;
