@@ -5,16 +5,16 @@ define (require, exports, module) ->
 
   {node, formatFileSize} = require 'lib/utils'
   {addKeyboardListener} = require 'lib/keyboard'
-  
+
   ITEM_HEIGHT = 70
-  
+
   FileItem = Backbone.Model.extend
     defaults: ->
       type: 'file'
       file: null
       items: null
       parent: null
-    
+
     getName: ->
       name = (if @_pfx? then @_pfx + '/' else '') + @get('path')
 
@@ -28,7 +28,7 @@ define (require, exports, module) ->
 
   FileItemList = Backbone.Collection.extend
     model: FileItem
-    
+
     comparator: (p) ->
       [p.get('type'), p.get('path')?[0] == '#', p.get('path'), p.get('file')?.get('name')]
 
@@ -44,11 +44,11 @@ define (require, exports, module) ->
     initialize: ->
       @model.view = @el.view = @
       @renderDebounce = _.debounce @render, 61000
-      
+
       @model.on 'destroy', @remove, @
       @model.on 'change', @render, @
       app.Settings.on 'change:activeonly', @render, @
-      
+
       if @model.get('type') == 'file'
         @model.get('file').on 'change', @render, @
         parsedName = @model.get('file').get('name').match /^(.+)(\.[^\.]+)$/
@@ -65,20 +65,20 @@ define (require, exports, module) ->
       else
         @$el.addClass 'is-dir'
         @$el.append [
-          node 'div', class: 'info', 
+          node 'div', class: 'info',
             node 'div', class: 'expand-bullet'
             node 'div', class: 'name', (@model.get('path'))
           @itemsEl = node 'div', class: 'items'
         ]
-        
+
         items = @model.get('items')
         items.on 'add', @onItemAdd, @
         items.on 'reset', @onItemAddAll, @
-        
+
         collapsed = app.console.state.get('dirCollapsed')
         path = @model.getPath()
         @setExpanded !collapsed[path]
-      
+
       app.console.on 'change:client', @render, @
 
     toggleExpand: ->
@@ -108,7 +108,7 @@ define (require, exports, module) ->
       else
         $(previousView.el).after(view.el)
       @render()
-      
+
     onItemAddAll: (items) ->
       $(@itemsEl).empty()
       @model.get('items').each @onItemAdd, @
@@ -118,7 +118,7 @@ define (require, exports, module) ->
         @toggleExpand()
       else
         app.console.openFile @model.get('file')?.get 'url'
-        
+
       e.stopPropagation()
       e.preventDefault()
 
@@ -164,9 +164,9 @@ define (require, exports, module) ->
         @$('.open-indicator').toggle isOpen
 
         @$el.toggle !app.Settings.get('activeonly') || isActive || isOpen
-      
+
       return @ unless items
-      
+
       if @model.get('type') == 'dir' && items.size() == 1 && items.at(0).get('type') == 'dir'
         @model.empty = items.at(0)
         @model.empty._pfx = @model.getName()
@@ -177,12 +177,12 @@ define (require, exports, module) ->
         @model.empty.view.render()
         @model.empty = null
         @$el.removeClass 'is-empty'
-      
+
       name = @model.getName()
       name = 'Nib extensions library' if name == '#local/nib'
       name = 'Local imports' if name == '#local'
       $(@$('.name')[0]).text name
-      
+
       @
 
   FileBrowser = Backbone.View.extend
@@ -201,17 +201,17 @@ define (require, exports, module) ->
       @el.listenKey 'file-first', mac: 'home', exec: => @collection.first().view.select()
       @el.listenKey 'file-last', mac: 'end', exec: => @collection.last().view.select()
       @el.listenKey 'select-file', mac: 'return', exec: => @selectedFile?.view?.openFile()
-      
+
       @root = new FileItem type: 'dir', path: '', items: new FileItemList
       rootView = new FileItemView model: @root
       rootView.on 'select', @onSelect
       @$el.append rootView.render().el
-      
+
       @$el.on 'keydown', @onKeyDown
       @search = ''
 
     destroy: ->
-      @collection.each (file) -> file.view.destroy()
+      #@collection.each (file) -> file.view.destroy()
       @collection.off 'add', @addOne, @
       @collection.off 'reset', @addAll, @
 
@@ -221,7 +221,7 @@ define (require, exports, module) ->
       return @search = '' unless char.length && /[\w-\.]/.test char
       curTime = new Date()
       @search = '' if curTime - @lastCharTime > 700
-          
+
       @search += char.toLowerCase()
       @lastCharTime = curTime
       search = @search
@@ -249,29 +249,29 @@ define (require, exports, module) ->
     getParent: (item, path) ->
       return item if !path.length || path.length == 1 && path[0] == item.get('path')
       items = item.get('items')
-      
+
       found = false
       items.each (subitem) =>
         if subitem.get('type') == 'dir' && subitem.get('path') == path[0]
           found = @getParent subitem, path[1..]
       return found if found
-      
+
       newitem = new FileItem parent: item, path: path[0], type: 'dir', items: new FileItemList
       items.add newitem
-      
+
       return @getParent newitem, path[1..]
 
     onAddFile: (file) ->
       path = file.get('url').replace /\/[^\/]*$/, ''
       #path = 'locals' if /^#local/.test file.get('url')
       parent = @getParent @root, path.split('/')
-      
+
       fileitem = new FileItem type: 'file', file: file, parent: parent
       parent.get('items').add fileitem
 
     onAddAllFiles: ->
       @collection.each @onAddFile, @
-      
+
     onSelect: (file) ->
       selectedFile = @selectedFile
       @selectedFile = file
