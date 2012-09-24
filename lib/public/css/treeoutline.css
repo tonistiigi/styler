@@ -178,7 +178,8 @@
 }
 .outline-item > .pseudos > .pseudo-indicator {
   display: inline-block;
-  margin-top: -4px;
+  margin-top: -2px;
+  padding-top: 2px;
 }
 .outline-item > .select-subtree-btn {
   position: absolute;

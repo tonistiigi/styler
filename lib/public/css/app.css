@@ -114,28 +114,28 @@ div.clear {
   background: #444;
 }
 .main-toolbar > .tools-group > .tool.tool-back {
-  background-position: 3px -175px;
+  background-position: 4px -177px;
 }
 .main-toolbar > .tools-group > .tool.tool-settings {
-  background-position: 2px -58px;
+  background-position: 4px -56px;
 }
 .main-toolbar > .tools-group > .tool.tool-edit {
-  background-position: 2px -88px;
+  background-position: 4px -87px;
 }
 .main-toolbar > .tools-group > .tool.tool-inspect {
-  background-position: 4px -117px;
+  background-position: 5px -115px;
 }
 .main-toolbar > .tools-group > .tool.tool-refresh {
-  background-position: 3px -307px;
+  background-position: 4px -307px;
 }
 .main-toolbar > .tools-group > .tool.tool-identify {
-  background-position: 4px 2px;
+  background-position: 4px 3px;
 }
 .main-toolbar > .tools-group > .tool.tool-embed {
-  background-position: 2px -687px;
+  background-position: 4px -685px;
 }
 .main-toolbar > .tools-group > .tool.tool-sidebyside {
-  background-position: 2px -657px;
+  background-position: 4px -660px;
   display: none;
 }
 .main-toolbar > .sidebar-toggle {
