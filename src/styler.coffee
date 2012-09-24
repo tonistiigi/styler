@@ -49,7 +49,7 @@ util =
 
   style: (element, styles) ->
     element.style[property] = value for property, value of styles
-    
+
   toggleClass: (element, className, bool) ->
     classes = element.className.split /\s+/
     exists = className in classes
@@ -88,7 +88,7 @@ util =
             continue unless styleSheet.cssRules
             util._addMatchingRules element, styleSheet, result
         result
-  
+
   _addMatchingRules: (element, sheet, result, returnMedia) ->
     for cssRule in sheet.cssRules
       if cssRule.cssRules
@@ -104,7 +104,7 @@ util =
           continue unless match.matches
         unless returnMedia
           result.push cssRule
-    
+
   getPossibleMediaQueries: (element) ->
     result = []
     for styleSheet in document.styleSheets
@@ -116,7 +116,11 @@ util =
   elementMatchesSelector: do ->
     d = document.createElement 'div'
     func = d.matchesSelector || d.webkitMatchesSelector || d.mozMatchesSelector || d.msMatchesSelector || -> false
-    (el, selector) -> func.call el, selector
+    (el, selector) ->
+      try
+        func.call el, selector
+      catch e
+        false
 
   keys: Object.keys || (obj) -> key for key, val of obj
 
@@ -138,8 +142,8 @@ util =
     return false if aKeys.length isnt bKeys.length
     return false for key, val of a when !(key of b) or !util.isEqual(val, b[key])
     true
-    
-  ruleSpecificy: (rule) -> 
+
+  ruleSpecificy: (rule) ->
     # <http://www.w3.org/TR/CSS2/cascade.html#specificity>
     sp1 = sp2 = sp3 = 0
     rule = rule.replace /::[a-z-]+|:(after|before|first-letter|first-line)/ig, ->
@@ -153,8 +157,8 @@ util =
       ''
     sp3 += rule.match(/[a-z]+/ig)?.length || 0
     sp1 * 1e6 + sp2 * 1e3 + sp3
-    
-  
+
+
 
 getSessionId = (newvalue=null) ->
   sessionId = storage.getItem '_styler_session_id'
@@ -234,12 +238,12 @@ init = (h) ->
   host = h
   start = -> setTimeout (-> loadSocketIO ->
     _fixPrototypeJSON()
-    
+
     if window.__styler_bookmarklet
       return startEmbedMode()
-      
-    socket = io.connect "//#{host}/clients"
-    
+
+    socket = io.connect "http://#{host}/clients"
+
     stylesheets = []
     socket.on 'connect', ->
       stylesheets = getStyleSheets()
@@ -322,7 +326,7 @@ onConnected = ->
   , 1e4
 
   window.addEventListener 'keydown', onKeyDown, true
-  
+
   unload_time = (new Date).setTime parseInt(storage.getItem('_styler_unload_time'))
   load_diff = (new Date) - unload_time
   mode = storage.getItem('_styler_mode')
@@ -376,7 +380,7 @@ publicAPI =
     setTimeout ->
       setupMatchMediaListeners lastStyledElement
     , 1
-    
+
   toggleIframe: (params, cb) ->
     tryToggleHideIframe() if isActive
 
@@ -431,7 +435,7 @@ publicAPI =
     return unless el
     setElementPseudo el, params.pseudos
     cb()
-    
+
   clearPseudos: (params, cb) ->
     clearPseudos()
     cb()
@@ -439,7 +443,7 @@ publicAPI =
   deactivate: ->
     isActive = false
     stopInspector() if isInspecting
-    
+
   setMedia: (params, cb) ->
     setMedia params.value
     cb()
@@ -677,7 +681,7 @@ getSortedSelectors = (styles, element, usedRules) ->
         if pseudoRegExp.test selector
           selector = selector.replace pseudoRegExp, (match, pseudo) -> ':' + pseudo
         selectors.push selector: selector, specificy: (util.ruleSpecificy selector), rule: rule
-  
+
   selectors.sort (a, b) ->
     if a.specificy == b.specificy then 0 else if a.specificy < b.specificy then 1 else -1
 
@@ -697,7 +701,7 @@ getStyles = (element) ->
 
     usedRules = []
     explicitInherit = []
-    
+
     #console.log 'elements', elements, elementRules
     for styles, index in util.getMatchedCSSRulesForElements els, ''
       for {selector, rule} in getSortedSelectors styles, els[index], usedRules
@@ -725,23 +729,23 @@ getStyles = (element) ->
             styles: filteredStyles
             media: media
       if index == 0
-        explicitInherit = for name, prop of usedProperties 
+        explicitInherit = for name, prop of usedProperties
           continue unless prop.value == 'inherit'
           delete usedProperties[name]
           name
-  
-    nearEls = (el for el in  [element.parentElement, element.previousElementSibling, element.nextElementSibling, element.firstChild] when el) 
+
+    nearEls = (el for el in  [element.parentElement, element.previousElementSibling, element.nextElementSibling, element.firstChild] when el)
     for styles, index in util.getMatchedCSSRulesForElements nearEls, ''
       bestrule = getBestRule nearEls[index], styles, usedRules
       nearby.push bestrule if bestrule
-  
+
   result: result, nearby: nearby
 
 
 fakePseudos = []
 clearPseudos = ->
   setElementPseudo el, [] for {el} in fakePseudos
-  
+
 setElementPseudo = (element, newClasses) ->
   [fakePseudo] = (fakePseudo for fakePseudo in fakePseudos when fakePseudo.el == element)
   fakePseudos.push fakePseudo = el: element, pseudos: [] unless fakePseudo
@@ -755,7 +759,7 @@ setElementPseudo = (element, newClasses) ->
     newPseudos.push klass
     util.toggleClass element, '_styler_fake_' + klass, true
   fakePseudo.pseudos = newPseudos
-  
+
 # # Inspector.
 
 inspectorControlsElement = null
@@ -825,8 +829,8 @@ onInspectorMove = (e) ->
     else unless inspectorResult.onLeft?
       util.style inspectorResult.el, display: 'block', right: '0px', left: ''
       inspectorResult.onLeft = false
-      
-    
+
+
   else
     inspectorResult.clear()
     util.style inspectorInfo.el, display: 'none'
@@ -893,14 +897,15 @@ class InspectorResult
 
 # # Console launch and mode switch.
 
+
 getIframeMode = ->
   storage.getItem('_styler_iframe_mode') || 'sidebyside'
-  
+
 setIframeMode = (mode) ->
   storage.setItem '_styler_iframe_mode', mode
   if window.__styler_embed
     util.toggleClass document.body, 'is-sidebyside', mode == 'sidebyside'
-      
+
 toggleIframeMode = ->
   setIframeMode if getIframeMode() == 'sidebyside' then 'hovered' else 'sidebyside'
   renderIframes()
@@ -937,7 +942,7 @@ openConsole = (mode) ->
       renderIframes()
       setIframeMode getIframeMode()
       tryToggleHideIframe true
-    
+
       detectIframeReload()
       iframeContainer.addEventListener 'mousedown', resizerMouseDown
     else
@@ -989,7 +994,7 @@ resizerMouseMove = (e) ->
   renderIframes()
   e.stopPropagation()
   e.preventDefault()
-  
+
 resizerMouseUp = ->
   target = util.$('_styler_iframe')
   util.toggleClass document.body, 'is-resizing', false
@@ -997,7 +1002,7 @@ resizerMouseUp = ->
   window.removeEventListener 'mouseup', resizerMouseUp, true
   isResizing = false
   storage.setItem '_styler_iframe_width', iframeWidth
-  
+
 renderIframes = ->
   util.style util.$('_styler_iframe'), width: iframeWidth + '%', right: 0, opacity: 1
   if getIframeMode() == 'sidebyside'
@@ -1041,7 +1046,7 @@ setStyleSheetData = (url, styleData) ->
   el.innerHTML = styleData
   sheet = el.sheet
   unless el.lastSheet == sheet
-    replacePseudos sheet 
+    replacePseudos sheet
     replaceMedia sheet unless _media == 'sheet'
   el.lastSheet = sheet
 
@@ -1085,7 +1090,7 @@ replaceMedia = (sheet) ->
       value = media.replace _media, 'screen', 'g'
       sheet.media.mediaText = value
       sheet._orig_media = media
-  
+
   try
     if sheet.cssRules
       for rule, index in sheet.cssRules
@@ -1195,7 +1200,7 @@ toggleApplicationMode = (cb) ->
 
 getEmbedMode = ->
   window.parent?.__styler_embed if window.parent != window
-  
+
 embed = null
 startEmbedMode = ->
   return if window.__styler_embed
@@ -1214,7 +1219,7 @@ startEmbedMode = ->
         document.body.removeChild(child)
   else
     document.write '<body></body>'
-  
+
   window.addEventListener 'message', (e) ->
     if e.data == 'close-iframe'
       iframe = util.$('_styler_iframe')
@@ -1226,7 +1231,7 @@ startEmbedMode = ->
       toggleIframeMode()
       e.source.postMessage embedInfo: true, iframeMode: getIframeMode(), '*'
   , false
-  
+
   util.installStyles STYLER_CSS
   timeoutIndex = setTimeout (->), 1e6
   clearTimeout i for i in [0..timeoutIndex]
@@ -1238,7 +1243,7 @@ startEmbedMode = ->
   window.__styler_embed =
     tryToggleHideIframe: tryToggleHideIframe
     toggleApplicationMode: toggleApplicationMode
-    
+
   embed.addEventListener 'load', ->
     try
       url = embed.contentWindow.location.href.replace /[\?&]_styler_embed=1/, ''
