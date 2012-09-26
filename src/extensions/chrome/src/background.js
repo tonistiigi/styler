@@ -4,8 +4,8 @@ var ioLoaded = false,
 
 var STATES = {DISCONNECTED: 1, CONNECTED: 2, ACTIVE: 3};
 
-this.id = "styler_background"; // Remember so popup finds it.    
-this.url = localStorage.getItem("url") || "http://localhost:3000/";
+this.id = "styler_background"; // Remember so popup finds it.
+this.url = localStorage.getItem("url") || "http://localhost:5100/";
 this.connected = false;
 this.socket = null;
 
@@ -57,7 +57,7 @@ function checkProjectPath(path, cb) {
 }
 
 function showDisconnectedIcon() {
-  connected = false; 
+  connected = false;
   chrome.tabs.query({}, function (tabs) {
     for (var i = 0 ; i < tabs.length ; i++) {
       chrome.browserAction.setIcon({path: "../icons/icon_no_connection.png", tabId: tabs[i].id});

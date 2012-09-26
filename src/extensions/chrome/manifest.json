@@ -1,13 +1,13 @@
 {
   "name": "Styler",
-  "version": "0.0.4.2",
-  "description": "Alpha version of Styler extension",
+  "version": "0.0.5",
+  "description": "Beta version of Styler extension",
   "icons": { "16": "icons/icon16.png",
              "48": "icons/icon48.png",
             "128": "icons/icon128.png" },
   "default_locale": "en",
   "browser_action": {
-    "default_icon":  "icons/icon19.png",
+    "default_icon":  "icons/icon128.png",
     "default_title": "Styler",
     "default_popup": "src/popup.html"
   },
