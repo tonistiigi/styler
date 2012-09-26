@@ -1,9 +1,5 @@
-/* http://code.google.com/chrome/extensions/i18n.html */
-
 {
-  /*
-  "hello_string": {
-    "message": "Greetings, elf!",
-    "description": "Shown when the app loads"
-  }*/
+  "name": {
+    "message": "Styler"
+  }
 }
