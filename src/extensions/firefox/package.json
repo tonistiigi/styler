@@ -1,9 +1,9 @@
 {
-    "name": "styler", 
-    "license": "MPL 1.1/GPL 2.0/LGPL 2.1", 
-    "author": "Tõnis Tiigi", 
-    "version": "0.1", 
-    "fullName": "styler", 
-    "id": "jid1-mmNeMXiybiYfRQ", 
+    "name": "styler",
+    "license": "MPL 1.1/GPL 2.0/LGPL 2.1",
+    "author": "Tõnis Tiigi",
+    "version": "0.1",
+    "fullName": "styler",
+    "id": "jid1-mmNeMXiybiYfRQ",
     "description": "a basic styler add-on"
 }

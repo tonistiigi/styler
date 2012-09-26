@@ -8,14 +8,14 @@ var browserWindows = require("windows").browserWindows,
     Widget = require("widget").Widget;
 
 var ICONS = {
-  DEFAULT: data.url("icons/icon19.png"),
+  DEFAULT: data.url("icons/icon128.png"),
   DISCONNECTED: data.url("icons/icon_no_connection.png"),
   CONNECTED: data.url("icons/icon_has_connection.png"),
   ACTIVE: data.url("icons/icon_active.png")
 };
 
 if (!storage.url) {
-  storage.url = "http://localhost:3000/";
+  storage.url = "http://localhost:5100/";
 }
 var url = storage.url,
     connected = false,
@@ -48,12 +48,12 @@ exports.main = function(options, callbacks) {
       }
     }
   });
-  
+
   panel.port.on("openurl", function (url) {
     tabs.open(url);
     panel.hide();
   });
-  
+
   panel.port.on("seturl", function(value){
     if (!value.length) return;
     if (value[value.length-1] != '/') value += '/';
@@ -61,10 +61,10 @@ exports.main = function(options, callbacks) {
     doConnect();
     panel.hide();
   });
-  
-  panel.port.on("reconnect", doConnect);  
+
+  panel.port.on("reconnect", doConnect);
   panel.port.on("launchConsole", launchConsole);
-    
+
   function launchConsole() {
     var worker = tabs.activeTab.attach({contentScript: inlineFunction(CONTENT_SCRIPTS.LAUNCH, getInjectCode())});
     worker.port.on("activate", function(sessionId){
@@ -84,7 +84,7 @@ exports.main = function(options, callbacks) {
     panel: panel,
     contentURL: ICONS.DEFAULT
   });
-    
+
 
   function doConnect() {
     if (bgPage) {
@@ -96,39 +96,39 @@ exports.main = function(options, callbacks) {
       contentScriptWhen: "ready",
       onMessage: function (message) {
         switch (message.type) {
-          
+
           case 'show_connected':
             showConnectedIcon();
           break;
-          
+
           case 'show_disconnected':
             showDisconnectedIcon();
           break;
-          
+
           case 'ready':
             bgPage.postMessage({type: "loadSocketIO", url: url});
           break;
-          
+
           case 'log':
             console.log("log >", message.data);
           break;
-          
+
           case 'setFocus':
             setFocus(message.data);
           break;
-          
+
           case 'response':
             var func = _callbacks[message.data.callback];
             if (func)
               func(message.data);
-          break; 
+          break;
         }
       }
     });
     createMenu();
   };
-  
-  
+
+
   function showDisconnectedIcon() {
     connected = false;
     for each (var window in browserWindows){
@@ -136,7 +136,7 @@ exports.main = function(options, callbacks) {
       view.contentURL = ICONS.DISCONNECTED;
     }
   }
-  
+
   var _callbacks = {};
   function postCallback(data, callback) {
     var id = ~~(Math.random() * 10e6);
@@ -144,7 +144,7 @@ exports.main = function(options, callbacks) {
     data['callback'] = id;
     bgPage.postMessage(data);
   }
-    
+
   function updateTabIcon(tab, window) {
     postCallback({type: "checkproject", url: tab.url}, function (info) {
       var view = icon.getView(window);
@@ -157,7 +157,7 @@ exports.main = function(options, callbacks) {
       }
     });
   }
-  
+
   function showConnectedIcon() {
     connected = true;
     for each (var window in browserWindows){
@@ -166,7 +166,7 @@ exports.main = function(options, callbacks) {
       updateTabIcon(activeTab, window);
     }
   }
-    
+
   function windowForTab(tab) {
     for each (var window in browserWindows){
       for each (var t in window.tabs)
@@ -176,7 +176,7 @@ exports.main = function(options, callbacks) {
     }
     return null;
   }
-    
+
   function setFocus(titleId) {
     for each (var tab in tabs){
       var title = tab.title;
@@ -189,7 +189,7 @@ exports.main = function(options, callbacks) {
       }
     }
   }
-    
+
   tabs.on("ready", function(tab){
     var win = windowForTab(tab);
     if(!win || win.tabs.activeTab!=tab){;
@@ -197,11 +197,11 @@ exports.main = function(options, callbacks) {
     }
     updateTabIcon(tab, win);
   });
-  
+
   tabs.on("activate", function(tab){
     updateTabIcon(tab, windowForTab(tab));
   });
-    
+
   var cmItemInstall, cmItemInspect;
   function createMenu(){
     if(cmItemInstall) cmItemInstall.destroy();
@@ -232,18 +232,18 @@ exports.main = function(options, callbacks) {
           }
         }
       }
-    });   
+    });
   }
-  
+
   function inlineFunction(func) {
     var args = Array.prototype.slice.call(arguments, 1);
     return '(' + func.toString()  + ')(' + args.join(', ') + ')';
   }
-  
+
   // Next functions can't be called(or reference closure vars).
   // They are turned into strings and injected to the page.
   var CONTENT_SCRIPTS = {
-    
+
     INJECT: function (url) {
       var script = false;
       var scripts = document.getElementsByTagName('script');
@@ -268,9 +268,9 @@ exports.main = function(options, callbacks) {
       });
       */
       return script;
-      
+
     },
-    
+
     LAUNCH: function (script) {
       var port = self.port;
       var sessionId = script.getAttribute('data-session-id');
@@ -284,7 +284,7 @@ exports.main = function(options, callbacks) {
         });
       }
     },
-    
+
     ACTIVATE: function(url) {
       self.on('context', function () {
         var scripts = document.getElementsByTagName('script');
@@ -299,7 +299,7 @@ exports.main = function(options, callbacks) {
         self.postMessage('activate');
       });
     },
-    
+
     INSPECT: function(url) {
       self.on('context', function () {
         var scripts = document.getElementsByTagName('script');
@@ -322,13 +322,13 @@ exports.main = function(options, callbacks) {
         document.dispatchEvent(customEvent);
       });
     }
-    
+
   };
-  
+
   function getInjectCode(){
     return inlineFunction(CONTENT_SCRIPTS.INJECT, '"' + url + 'styler.js"');
   };
-  
-  
+
+
   doConnect();
 };
