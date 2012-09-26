@@ -66,7 +66,7 @@ app.configure ->
   app.set 'views', __dirname + '/../../src/templates'
   app.set 'view engine', 'jade'
 app.use express.errorHandler dumpExceptions: true, showStack: true
-app.use express.favicon()
+app.use express.favicon(__dirname + '/../public/img/favicon.ico')
 #app.use express.staticCache()
 
 # Authorization middleware.

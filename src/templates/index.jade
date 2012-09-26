@@ -4,10 +4,11 @@ html
     title Styler
     if !devmode
       link(href='/build/styles.css', rel="stylesheet", type="text/css")
+    link(rel='icon', type='image/x-icon', href='/img/favicon.png')
   body
     div#page_loader(style='position:fixed; top: 50%; left: 50%; margin: -50px 0 0 -15px; display: none')
       img(src='/img/ajax-loader.gif')
-      
+
     script(type="text/javascript")
       setTimeout(function(){
         var loader = document.getElementById('page_loader');
@@ -18,7 +19,7 @@ html
     script(type='text/javascript')
       window.app = {};
       app.socket = io.connect('/console', {'sync disconnect on unload': false});
-    if devmode 
+    if devmode
       script(src='/vendor/require.js', data-main='/lib/main')
     else
       script(src='/build/main.js')
