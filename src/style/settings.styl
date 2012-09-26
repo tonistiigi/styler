@@ -1,34 +1,40 @@
 @import nib
 
 .settings
-  max-width 70%
+  max-width 700px
   min-width 600px
   height 400px
   transition top .6s
-  border-radius 5px
+  border-radius 2px
   background #fff
   .forms
     position relative
     padding-top 10px
+    height 100%
+    background #111
     
     .sheet 
       .title
         padding 10px
         background #afc1f6
-        width 100px
-        margin-bottom 10px
+        width 120px
+        margin-bottom 5px
         height 30px
         cursor default
+        text-transform uppercase
+        color #eee
+        background #333
       .contents
         position absolute
+        background #fff
         top 10px
-        left 130px
+        left 140px
         width auto
         right 0px
         height 390px
         visibility hidden
         box-sizing border-box
-        padding 0 10px
+        padding 5px 12px
         overflow-y auto
         opacity 0
         transition opacity .2s
@@ -39,7 +45,8 @@
         
       &.is-selected
         .title
-          background #9793ed 
+          background #fff
+          color #333
         .contents
           visibility visible
           opacity 1
@@ -72,12 +79,12 @@
     .warning
       background-color beige
   .button
-    background #f90
+    background #eee
     padding 5px 10px
     font-size 13px
     font-weight bold
     position absolute
-    top 410px
+    top -25px
     right 0px
     text-transform upercase
     
