@@ -14,13 +14,13 @@ devmode = false
 optimist = require('optimist')
   .options('allowed', default: '', describe: 'List of IP masks that are allowed to access.')
   .options('root', alias: 'r', default: '/', describe: 'Root directory for file sandboxing.')
-  .options('port', alias: 'p', default:'3000', describe: 'Port used by the server.')
+  .options('port', alias: 'p', default:'5100', describe: 'Port used by the server.')
   .options('pfx', describe: 'Where to store configuration and log files.', default: getHomeDir())
   .options('log', alias: 'l', default: 'info', describe: 'Log level (debug, info, notice, warning, error).')
   .options('nologfile', describe: 'Do not write debug log files.')
   .options('reset', describe: 'Clear configuration file and write new')
   .options('help', describe: 'Show this help message.')
-  .options('version', alias: 'v', describe: 'Show application version.')  
+  .options('version', alias: 'v', describe: 'Show application version.')
 argv = optimist.argv
 
 # Usage help:
@@ -82,12 +82,12 @@ app.use (req, res, next) ->
   if /^\/(css\/istokweb|img)\//.test req.url
     res.header 'Cache-Control', 'maxAge=86400'
   next()
-  
+
 # Provide Jade runtime from NPM module source.
 app.get '/vendor/jade.js', (req, res) ->
   res.header 'Cache-Control', 'max-age=86400'
   res.sendfile path.resolve (require.resolve 'jade'), '../runtime.min.js'
-  
+
 app.get '/data/:clientId', (req, res) ->
   {Projects, Clients, Settings} = require "./data"
   res.header 'Content-Type', 'text/javascript'
@@ -108,7 +108,7 @@ app.get '/styler.js', (req, resp) ->
     throw err if err
     resp.writeHead 200, 'Content-Type': 'text/javascript'
     resp.write data
-    
+
     host = req.headers.host
     resp.write "if(!window._styler_loaded){styler.init('#{host}');window._styler_loaded=1;}"
     resp.end()
@@ -174,16 +174,16 @@ setTimeout ->
   settings = Settings.at(0);
   settings.bind 'change:devmode', setDevSettings
   setDevSettings settings
-  
+
   if process.features.nativeapp
     app.on 'listening', ->
       process.emit 'serverload', port
-             
+
     app.on 'error', (err) ->
       if err.code == 'EADDRINUSE'
         port++
         app.listen port
-  
+
   app.listen port
-  
+
 , 200
