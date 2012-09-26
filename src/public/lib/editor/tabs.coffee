@@ -42,7 +42,7 @@ define (require, exports, module) ->
           (@get 'editor').completer?.disable()
 
       file = @get 'file'
-      file.on 'change:lastModified', @filedidchange
+      file.on 'change:mtime', @filedidchange
       file.save edit: true
 
       @set lastSelectTime: new Date()
@@ -108,7 +108,7 @@ define (require, exports, module) ->
       app.console.callAPI 'GetFileData', url: (@get 'url'), @onLoaded
 
     onRemove: ->
-      @get('file').off 'change:lastModified', @filedidchange
+      @get('file').off 'change:mtime', @filedidchange
 
     selectionchange: ->
       pos = @session.selection.getCursor()
@@ -156,7 +156,7 @@ define (require, exports, module) ->
       return editor.completer?.disable() if !completions
       return unless @_completionCursor == cursor
       {row, column} = @session.selection.getCursor()
-      return unless @session.getLength() > row 
+      return unless @session.getLength() > row
       editor.completer?.activate @, completions, row, column
 
     tryCompletion: (force = false) -> #todo: force is not implemented
@@ -256,7 +256,7 @@ define (require, exports, module) ->
     close: ->
       if not @get "saved"
         app.console.callAPI 'PublishSaved', url: (@get 'url')
-        
+
       file = @get 'file'
       file.save edit: false
       @destroy()
@@ -287,7 +287,7 @@ define (require, exports, module) ->
       else
         rule = @contentManager.nextRule rule
       return if rule == -1
-      
+
       @markSelector rule
 
     markSelector: (rule, property = null) ->
