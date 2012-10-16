@@ -96,7 +96,7 @@ util =
         continue
       if util.elementMatchesSelector element, cssRule.selectorText
         if sheet.media?.length
-          media = Array::join.call sheet.media, ' and '
+          media = Array::join.call sheet.media, ','
           if returnMedia && media not in result
             result.push media
             continue
@@ -712,7 +712,7 @@ getStyles = (element) ->
           media = media.concat Array::slice.call rule.parentStyleSheet.media
         if rule.parentRule instanceof CSSMediaRule
           media = media.concat Array::slice.call rule.parentRule.media
-        media = rule._orig_media || rule.parentStyleSheet?._orig_media || if media.length then media.join(' and ') else null
+        media = rule._orig_media || rule.parentStyleSheet?._orig_media || if media.length then media.join(', ') else null
         for property, value of _getStyleData rule.style, usedProperties, index
           if !index || property in inheritProperties || (index == 1 && property in explicitInherit)
             filteredStyles[property] = value
