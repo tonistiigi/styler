@@ -58,7 +58,7 @@ define (require, exports, module) ->
       @infoTip?.hide()
       require ['lib/views/ui/imagepreview'], (ImagePreview) ->
         new ImagePreview url
-        
+
     showImageInfo: (urlvalue, e) ->
       url = (urlvalue.match /^url\(['"]?(.*)["']?\)$/i)[1]
       require ['lib/views/ui/infotip', 'lib/views/ui/imagepreview'], (infoTip, ImagePreview) =>
@@ -71,8 +71,8 @@ define (require, exports, module) ->
     createValueElement: (value) ->
       fragment = node 'span', class: 'style-prop-value'
       i = 0
-    
-      value.replace /#[a-f\d]{3,6}|rgba?\([\d,\.\s]{5,}\)|url\([\w'":\/\.\?-]{5,}\)|'.*?'|".*?"|-?[\d\.]+(?:px|em|ex|cm|mm|in|pt|pc|deg|rad|grad|ms|s|hz|khz|\%)(?:\b|;)/gi, (match, offset) =>
+
+      value.replace /#[a-f\d]{3,6}|rgba?\([\d,\.\s]{5,}\)|url\([\w'":\/\.\?_@-]{5,}\)|'.*?'|".*?"|-?[\d\.]+(?:px|em|ex|cm|mm|in|pt|pc|deg|rad|grad|ms|s|hz|khz|\%)(?:\b|;)/gi, (match, offset) =>
         fragment.appendChild node 'span', (value.substring i, offset) if i < offset
         valuePart = value.substr offset, match.length
         if match[..2].toLowerCase() == 'url'
@@ -83,7 +83,7 @@ define (require, exports, module) ->
         else if match[0] in ['"', "'"]
           fragment.appendChild node 'span', class: 'quoted', valuePart
         else if num = match.match /^[\d-\.]+/
-          fragment.appendChild node 'span', class: 'numeric', 
+          fragment.appendChild node 'span', class: 'numeric',
             node 'span', class: 'value', (value.substr offset, num[0].length)
             (value.substr offset + num[0].length, match.length - num[0].length)
         else
@@ -92,7 +92,7 @@ define (require, exports, module) ->
         i = offset + match.length
       fragment.appendChild node 'span', (value.substring i, value.length) if i < value.length
       fragment
-      
+
     focusSelector: (sel, force=false) ->
       return if sel == @lastFocus && !force
       @$('.name').each (i, el) =>
@@ -102,15 +102,15 @@ define (require, exports, module) ->
 
     _onInheritedElementClick: (id) ->
       app.console?.outline.select id
-      
+
     getFilename: (url) ->
       sources = app.console.project.get 'files'
-      source = _.find sources, (source) -> 0 == url.indexOf source.url 
+      source = _.find sources, (source) -> 0 == url.indexOf source.url
       name = basename url
       if source?.type == 'stylus'
         name = name.replace /\.css$/i, '.styl'
       name
-      
+
     setStyleData: (id = 0, data = [], nearby = [], elinfo = null) ->
       @$el.toggleClass 'has-items', !!data.length
 
@@ -145,7 +145,7 @@ define (require, exports, module) ->
           item.appendChild node 'div', class: 'media',
             node 'span', class: 'label', '@media'
             node 'span', class: 'value', (sdata.media)
-        
+
         item.sdata = sdata
         item.appendChild properties = node 'div', class: 'properties'
 
@@ -180,9 +180,9 @@ define (require, exports, module) ->
           nearbyEl.appendChild item = node 'div', class: 'item', (highlightSelector rule.selector)
           $(item).bind 'click', _.bind @onFileClick, @, rule.file, rule.selector
         fragment.appendChild nearbyEl
-      
+
       $(@items).append fragment
-      
+
       if @lastId==id
         @focusSelector @lastFocus, true
       else
@@ -202,7 +202,7 @@ define (require, exports, module) ->
       @$('.is-focused').removeClass 'is-focused'
       $el.closest('.style-item').addClass 'is-focused'
       @highlightElement = el
-      
+
       styleItem = $el.closest('.style-item')[0]
       if styleItem.scrollIntoViewIfNeeded
         styleItem.scrollIntoViewIfNeeded()

@@ -3,16 +3,16 @@ define (require, exports, module) ->
   ua = require 'ace/lib/useragent'
   {combineUrl, node, hexToRgb} = require 'lib/utils'
   {listenKey} = require 'lib/keyboard'
-  
+
   MouseCommands = Backbone.View.extend
-    
+
     className: 'editor-command-highlight'
-    
+
     initialize: (opt) ->
       _.bindAll @, 'onActivationKeyDown', 'onActivationKeyUp', 'onContainerMouseMove', 'onMouseDown', 'onNumericMouseMove', 'onNumericMouseUp', 'onMouseMove', 'onMouseWheel'
-      
+
       @editor = opt.editor
-      
+
       @editor.navigateUpDown = (delta) ->
         document = @getSession()?.doc
         return unless document
@@ -34,7 +34,7 @@ define (require, exports, module) ->
       @editor.navigateDown = (times) ->
         times = times || 1
         @navigateUpDown times
-              
+
       listenKey 'editor', 'numeric-increment', exec: => @offsetNumeric 1
       listenKey 'editor', 'numeric-decrement', exec: => @offsetNumeric -1
       listenKey 'editor', 'numeric-increment-many', exec: => @offsetNumeric 10
@@ -43,16 +43,16 @@ define (require, exports, module) ->
       @commandKey = (if ua.isMac then (if ua.isGecko then 224 else 91) else 17)
       @activated = false
       @action = {}
-      
+
       $(window).on('keydown', @onActivationKeyDown).on('keyup', @onActivationKeyUp)
-      
+
       @$el.on('mousedown', @onMouseDown).on('mousemove', @onMouseMove)
-      
+
       @editor.addEventListener 'mousewheel', @onMouseWheel
-      
+
     onActivationKeyDown: (e) ->
       if e.keyCode == @commandKey && app.isEditorMode && !@activated
-        @activated = true 
+        @activated = true
         $(@editor.container).on 'mousemove', @onContainerMouseMove
 
     onActivationKeyUp: (e) ->
@@ -73,18 +73,18 @@ define (require, exports, module) ->
         height: @editor.renderer.lineHeight
         display: 'block'
       @visible = true
-      @lastUrl = null if type != 'url' 
-        
+      @lastUrl = null if type != 'url'
+
     startCommand: (coord) ->
       if match = @checkValidNumeric coord
         @showCmdHighlight coord, match, 'numeric'
       else if match = @checkValidPattern coord, /#[0-9a-f]{3,6}(?:\b|;|$)/ig
         @showCmdHighlight coord, match, 'color'
-      else if match = @checkValidPattern coord, /url\([a-z0-9"'\/\\\._-]+\)/ig
+      else if match = @checkValidPattern coord, /url\([a-z0-9"'\/\\\.@_-]+\)/ig
         @showCmdHighlight coord, match, 'url'
       else if @visible
         @stopCommand()
-      
+
     onMouseWheel: (e) ->
       if e.domEvent.target == @el && @action.type == 'numeric'
         unless @action.wheelDelta?
@@ -95,7 +95,7 @@ define (require, exports, module) ->
         e.stop()
       else
         @stopCommand()
-      
+
     stopCommand: ->
       @action = {}
       @lastUrl = null
@@ -153,7 +153,7 @@ define (require, exports, module) ->
       replaced = @replaceNumeric coord, match, newValue
       @editor.session.$syncInformUndoManager()
       @$el.css width: replaced.length * @editor.renderer.characterWidth
-    
+
     startColorPicker: (match, coord) ->
       stackPosition = @editor.session.getUndoManager().$undoStack.length
       popup = window.open '', 'colorpicker', 'width=410,height=300,resizable=no,scrollbars=no'
@@ -165,7 +165,7 @@ define (require, exports, module) ->
         if match == false
           match = @checkValidPattern coord, /[^\s;]+/ig
           match = match: '', offset: coord.column unless match
-          
+
         require ['vendor/colorpicker'], (colorPicker) =>
           colorPicker.cP = null
           colorPicker.exportColor = =>
@@ -191,7 +191,7 @@ define (require, exports, module) ->
             .on 'keydown', (e) =>
               if e.keyCode == 27
                 @editor.session.getUndoManager().undo(true) while stackPosition < @editor.session.getUndoManager().$undoStack.length
-                popup.close() 
+                popup.close()
               popup.close() if e.keyCode == 13
 
     onMouseMove: (e) ->
@@ -209,7 +209,7 @@ define (require, exports, module) ->
               ImagePreview.getPreviewElement url, 120, 70, (err, el) ->
                 return if err
                 cb el
-                
+
         when 'color'
           color = @action.match.match
           require ['lib/views/ui/infotip', 'vendor/colorpicker'], (infoTip, colorPicker) =>
@@ -222,7 +222,7 @@ define (require, exports, module) ->
                   node 'div', 'R: ' + rgb[0]
                   node 'div', 'G: ' + rgb[1]
                   node 'div', 'B: ' + rgb[2]
-                  
+
 
 
     offsetNumeric: (delta=1) ->
@@ -262,8 +262,8 @@ define (require, exports, module) ->
       newValue += match.match.substr match.len
       session.doc.replace new Range(cursor.row, match.offset, cursor.row, match.offset + match.match.length), newValue
       return newValue
-      
+
     destroy: ->
-      
+
 
   module.exports = MouseCommands
