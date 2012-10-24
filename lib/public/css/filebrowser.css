@@ -1,8 +1,14 @@
 .filebrowser {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
+  -o-box-flex: 1;
+  -ms-box-flex: 1;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
   overflow-y: auto;
   min-height: 200px;
   position: relative;
@@ -57,6 +63,7 @@
   .file-item .info > .expand-bullet {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
@@ -83,6 +90,7 @@
   .file-item.is-dir > .info > .name {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
@@ -97,6 +105,7 @@
   .file-item.is-file > .info > .name {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
@@ -114,6 +123,7 @@
 .file-item > .info > .name {
   font-weight: bold;
   white-space: nowrap;
+  -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   color: #333;
   overflow: hidden;

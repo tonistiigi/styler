@@ -88,6 +88,7 @@
   .new-project-view .input-row .field .note-indicator {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
@@ -286,6 +287,7 @@
   .new-project-view .sources .item input[type="radio"] + label {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
@@ -431,6 +433,7 @@
   .locations-info .searched-file-item.found {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
@@ -441,6 +444,7 @@
   .locations-info .searched-file-item.missing {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }

@@ -2,7 +2,7 @@
 @import util
 
 .stack-scroller-cont
-  box-flex 1
+  flex 1
     
 .stack-scroller
   overflow-x: scroll
@@ -11,7 +11,8 @@
   overflow-y hidden
 
 .stack-cont
-  box horizontal
+  display flex
+  flex-direction row
   .stack
     width: 180px
     height 325px
@@ -46,11 +47,12 @@
         background-position 5px -519px
 
 .dirpicker
-  background: #fafafa
-  box-sizing: border-box
+  background #fafafa
+  box-sizing border-box
   width 680px
   height 380px
-  box vertical
+  display flex
+  flex-direction column
   
   .buttons
     background: #eee

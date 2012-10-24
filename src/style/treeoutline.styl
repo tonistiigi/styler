@@ -2,8 +2,9 @@
 @import util
 
 .elements-outline
-  box vertical
-  box-flex 1
+  display flex
+  flex-direction column
+  flex 1
   min-height 220px
   margin 0 0 4px 0
   padding 2px 2px 2px4px
@@ -12,7 +13,8 @@
   background #fff
 
   > .subtree-heading
-    box horizontal
+    display flex
+    flex-direction row
     overflow hidden
     visibility hidden
     height 0px
@@ -44,12 +46,13 @@
       font-weight bold
       
   > .scroller-container
-    box vertical
-    box-flex 1
+    display flex
+    flex-direction column
+    flex 1
     overflow hidden
     
   .scroller
-    box-flex 1
+    flex 1
     overflow-y auto
     overflow-x hidden
     

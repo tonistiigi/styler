@@ -26,6 +26,7 @@
   .client-select.client-select-sidebar {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
@@ -98,13 +99,16 @@
   padding: 3px;
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: horizontal;
   -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
   -ms-box-orient: horizontal;
-  box-orient: horizontal;
+  -webkit-flex-direction: row;
+  flex-direction: row;
   height: 40px;
   cursor: pointer;
   -webkit-box-sizing: border-box;
@@ -128,6 +132,7 @@
   width: 28px;
   height: 28px;
   -webkit-background-size: 28px;
+  -moz-background-size: 28px;
   background-size: 28px;
   margin: 3px 0;
   overflow: hidden;
@@ -135,8 +140,14 @@
 .client-select .agentinfo {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
+  -o-box-flex: 1;
+  -ms-box-flex: 1;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
   padding: 0 5px;
   overflow: hidden;
 }
@@ -145,6 +156,7 @@
   color: #666;
   white-space: nowrap;
   font-weight: normal;
+  -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   overflow: hidden;
 }

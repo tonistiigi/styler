@@ -115,13 +115,16 @@
   clear: both;
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: horizontal;
   -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
   -ms-box-orient: horizontal;
-  box-orient: horizontal;
+  -webkit-flex-direction: row;
+  flex-direction: row;
 }
 .settings .item .lbl {
   width: 120px;
@@ -130,8 +133,14 @@
 .settings .item .value {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
+  -o-box-flex: 1;
+  -ms-box-flex: 1;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
 }
 .keyenterhint {
   font-size: 15px;

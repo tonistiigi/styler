@@ -1,17 +1,26 @@
 .elements-outline {
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: vertical;
   -moz-box-orient: vertical;
+  -o-box-orient: vertical;
   -ms-box-orient: vertical;
-  box-orient: vertical;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  -ms-box-flex: 1;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
   min-height: 220px;
   margin: 0 0 4px 0;
   padding: 2px 2px 2px 4px;
@@ -23,13 +32,16 @@
 .elements-outline > .subtree-heading {
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: horizontal;
   -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
   -ms-box-orient: horizontal;
-  box-orient: horizontal;
+  -webkit-flex-direction: row;
+  flex-direction: row;
   overflow: hidden;
   visibility: hidden;
   height: 0px;
@@ -65,6 +77,7 @@
   .elements-outline > .subtree-heading > .clear-subtree-btn {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
@@ -81,24 +94,39 @@
 .elements-outline > .scroller-container {
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: vertical;
   -moz-box-orient: vertical;
+  -o-box-orient: vertical;
   -ms-box-orient: vertical;
-  box-orient: vertical;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  -ms-box-flex: 1;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
   overflow: hidden;
 }
 .elements-outline .scroller {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
+  -o-box-flex: 1;
+  -ms-box-flex: 1;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -163,6 +191,7 @@
   .outline-item > .fold-btn {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
@@ -196,6 +225,7 @@
   .outline-item > .select-subtree-btn {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }

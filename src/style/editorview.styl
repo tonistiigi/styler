@@ -2,12 +2,14 @@
 @import util
 
 .editor-container
-  box vertical
-  box-flex 1
+  display flex
+  flex-direction column
+  flex 1
   position relative
     
   > .toolbar
-    box horizontal
+    display flex
+    flex-direction row
     height 32px
     background-color #333
     transition margin-bottom 0.2s
@@ -48,7 +50,7 @@
 
   > .editor
     display none
-    box-flex 1
+    flex 1
     position relative
     background-color #fff
     
@@ -57,7 +59,8 @@
       display block
   
   > .statusbar
-    box horizontal
+    display flex
+    flex-direction row
     height 14px
     padding-left 15px
     border-top 1px solid #ddd
@@ -118,7 +121,7 @@
       cursor pointer
     
 .tabs
-  box-flex 1
+  flex 1
   height 30px
   position: relative
   user-select none
@@ -191,11 +194,13 @@
     border-bottom 4px solid #fff
     
     .editor-info
-      box horizontal
+      display flex
+      flex-direction row
 
 
 .infobar-editor
-  box horizontal
+  display flex
+  flex-direction row
   width 100%
   background #eee
   
@@ -219,7 +224,7 @@
   
   > .editor-info
     display none
-    box-flex 1
+    flex 1
     visibility hidden
     padding-right 25px
     width 95%
@@ -253,14 +258,15 @@
         
     > .selected-rule
       display none
-      box-flex 1
+      flex 1
       
       .is-editormode &
-        box horizontal
+        display flex
+        flex-direction row
       
       > .selector
         overflow hidden
-        box-flex 1
+        flex 1
         padding 4px 10px
         height 12px
         font-weight bold

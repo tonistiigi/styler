@@ -1,29 +1,41 @@
 .editor-container {
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: vertical;
   -moz-box-orient: vertical;
+  -o-box-orient: vertical;
   -ms-box-orient: vertical;
-  box-orient: vertical;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  -ms-box-flex: 1;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
   position: relative;
 }
 .editor-container > .toolbar {
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: horizontal;
   -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
   -ms-box-orient: horizontal;
-  box-orient: horizontal;
+  -webkit-flex-direction: row;
+  flex-direction: row;
   height: 32px;
   background-color: #333;
   -webkit-transition: margin-bottom 0.2s;
@@ -57,6 +69,7 @@
   .editor-container > .toolbar > .tools-group > .tool {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
@@ -84,8 +97,14 @@
   display: none;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
+  -o-box-flex: 1;
+  -ms-box-flex: 1;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
   position: relative;
   background-color: #fff;
 }
@@ -95,13 +114,16 @@
 .editor-container > .statusbar {
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: horizontal;
   -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
   -ms-box-orient: horizontal;
-  box-orient: horizontal;
+  -webkit-flex-direction: row;
+  flex-direction: row;
   height: 14px;
   padding-left: 15px;
   border-top: 1px solid #ddd;
@@ -171,8 +193,14 @@
 .tabs {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
+  -o-box-flex: 1;
+  -ms-box-flex: 1;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
   height: 30px;
   position: relative;
   -webkit-user-select: none;
@@ -217,6 +245,7 @@
   .tabs > .tab {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
@@ -255,6 +284,7 @@
   .tabs > .tab > .close-btn {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
@@ -281,24 +311,30 @@
 .has-infobar .infobar .editor-info {
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: horizontal;
   -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
   -ms-box-orient: horizontal;
-  box-orient: horizontal;
+  -webkit-flex-direction: row;
+  flex-direction: row;
 }
 .infobar-editor {
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: horizontal;
   -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
   -ms-box-orient: horizontal;
-  box-orient: horizontal;
+  -webkit-flex-direction: row;
+  flex-direction: row;
   width: 100%;
   background: #eee;
 }
@@ -321,6 +357,7 @@
   .infobar-editor > .infobar-toggle {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
@@ -342,8 +379,14 @@
   display: none;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
+  -o-box-flex: 1;
+  -ms-box-flex: 1;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
   visibility: hidden;
   padding-right: 25px;
   width: 95%;
@@ -372,6 +415,7 @@
   .infobar-editor > .editor-info > .locking-toggle {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
@@ -388,26 +432,41 @@
   display: none;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
+  -o-box-flex: 1;
+  -ms-box-flex: 1;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
 }
 .is-editormode .infobar-editor > .editor-info > .selected-rule {
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: horizontal;
   -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
   -ms-box-orient: horizontal;
-  box-orient: horizontal;
+  -webkit-flex-direction: row;
+  flex-direction: row;
 }
 .infobar-editor > .editor-info > .selected-rule > .selector {
   overflow: hidden;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
+  -o-box-flex: 1;
+  -ms-box-flex: 1;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
   padding: 4px 10px;
   height: 12px;
   font-weight: bold;

@@ -99,6 +99,7 @@
   max-width: 100px;
   margin: 2px 3px 0 5px;
   color: #0b0bff;
+  -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   text-decoration: none;
   cursor: pointer;
@@ -115,6 +116,7 @@
   margin: 0 4px;
   color: #b22929;
   white-space: nowrap;
+  -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
 }
 .style-item > .media > .label {
@@ -143,6 +145,7 @@
   font-size: 11px;
   font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Droid Sans Mono', 'Consolas', monospace;
   color: #999;
+  -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
 }
 .style-prop-container > .style-prop.style-prop-sub {
@@ -183,6 +186,7 @@
   .style-prop-container > .style-prop > .expand-bullet.is-visible {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }

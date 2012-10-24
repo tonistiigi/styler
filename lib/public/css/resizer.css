@@ -19,6 +19,7 @@
   top: 250px;
   left: 2px;
   -webkit-background-size: 7px;
+  -moz-background-size: 7px;
   background-size: 7px;
 }
 @media (-webkit-min-device-pixel-ratio:2), (min-device-pixel-ratio:2) {
