@@ -33,9 +33,12 @@ All paths are automatically validated. If you see green checkmarks you have prob
 
 If you want Styler to automatically create source files based on the stylesheets it sees on the page set the Source folder to an empty directory.
 
+### Tutorials
 
+[Live preview in iOS/Android](https://github.com/tonistiigi/styler/issues/13)
 
 More tutorials and a list of features are on the way. If you get into trouble start a new issue.
+
 
 ### Command line options
 
