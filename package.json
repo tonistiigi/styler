@@ -10,7 +10,7 @@
   },
   "main": "./lib/index.js",
   "dependencies": {
-    "backbone": "~0.9.1",
+    "backbone": "0.9.2",
     "cli-color": "~0.1.6",
     "express": "~2.5.6",
     "jade": "~0.26.3",
