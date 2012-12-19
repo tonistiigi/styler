@@ -2,7 +2,7 @@
   "name": "styler",
   "description": "CSS/Stylus live editor",
   "author": "Tõnis Tiigi",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "licenses": "MIT",
   "repository": {
     "type": "git",
