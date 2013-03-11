@@ -64,7 +64,7 @@ define (require, exports, module) ->
           @stackcont = node 'div', class: 'stack-cont'
 
       @$el.append node 'div', class: 'buttons',
-        node 'div', class: 'btn cancel', 'Cancel',
+        node 'div', class: 'btn cancel', 'Cancel'
         node 'div', class: 'btn select', 'Select'
       path = opt.path or '/'
       path = '/' + path if path[0] != '/'
@@ -107,7 +107,7 @@ define (require, exports, module) ->
 
     cancel: ->
       @close()
-      
+
     cleanPath: (path) ->
       parts = path.split '/'
       parts.shift() if parts[1].match /^[a-z]\:$/i
