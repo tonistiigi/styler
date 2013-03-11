@@ -34,30 +34,39 @@ div.clear {
 .app {
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: horizontal;
   -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
   -ms-box-orient: horizontal;
-  box-orient: horizontal;
+  -webkit-flex-direction: row;
+  flex-direction: row;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
+  -o-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
   width: 100%;
   height: 100%;
 }
 .main-toolbar {
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: vertical;
   -moz-box-orient: vertical;
+  -o-box-orient: vertical;
   -ms-box-orient: vertical;
-  box-orient: vertical;
+  -webkit-flex-direction: column;
+  flex-direction: column;
   width: 29px;
   background: #333;
 }
@@ -85,6 +94,7 @@ div.clear {
   .main-toolbar > .tools-group > .tool {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
@@ -156,13 +166,14 @@ div.clear {
   .main-toolbar > .sidebar-toggle {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
 .main-toolbar > .sidebar-toggle:hover {
   opacity: 0.8;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   filter: alpha(opacity=80);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
 }
 .no-sidebar .main-toolbar > .sidebar-toggle {
   -webkit-transform: rotate(180deg);
@@ -180,44 +191,59 @@ div.clear {
 .main-container {
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: vertical;
   -moz-box-orient: vertical;
+  -o-box-orient: vertical;
   -ms-box-orient: vertical;
-  box-orient: vertical;
+  -webkit-flex-direction: column;
+  flex-direction: column;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
+  -o-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
 }
 .main-container > .main {
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: horizontal;
   -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
   -ms-box-orient: horizontal;
-  box-orient: horizontal;
+  -webkit-flex-direction: row;
+  flex-direction: row;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
+  -o-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
   background: #333;
 }
 .main-container > .main > .sidebar {
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: vertical;
   -moz-box-orient: vertical;
+  -o-box-orient: vertical;
   -ms-box-orient: vertical;
-  box-orient: vertical;
+  -webkit-flex-direction: column;
+  flex-direction: column;
   min-width: 170px;
   width: 300px;
   -webkit-box-sizing: border-box;
@@ -241,13 +267,16 @@ div.clear {
 .main-container > .main > .sidebar.no-clients > .no-clients-fallback {
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: vertical;
   -moz-box-orient: vertical;
+  -o-box-orient: vertical;
   -ms-box-orient: vertical;
-  box-orient: vertical;
+  -webkit-flex-direction: column;
+  flex-direction: column;
 }
 .no-client-loaded .main-container > .main > .sidebar > .styleinfo > div,
 .no-client-loaded .main-container > .main > .sidebar > .infobar > div {
@@ -265,20 +294,26 @@ div.clear {
   transition: none;
 }
 .main-container > .main > .main-content {
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  -ms-box-flex: 1;
-  box-flex: 1;
-  min-width: 330px;
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: vertical;
   -moz-box-orient: vertical;
+  -o-box-orient: vertical;
   -ms-box-orient: vertical;
-  box-orient: vertical;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  -ms-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  min-width: 330px;
   width: 0;
   position: relative;
   margin: 0 4px 4px 0;
@@ -297,8 +332,11 @@ div.clear {
   background: #fff;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
+  -o-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
   margin-bottom: 4px;
   -webkit-border-radius: 0 0 3px 3px;
   border-radius: 0 0 3px 3px;
@@ -338,6 +376,7 @@ div.clear {
   cursor: pointer;
   max-width: 90%;
   overflow: hidden;
+  -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   display: inline-block;
 }
@@ -391,6 +430,7 @@ div.clear {
   float: left;
   background: url("../img/browser_icons.png") no-repeat 0px 100px;
   -webkit-background-size: 16px;
+  -moz-background-size: 16px;
   background-size: 16px;
   margin-top: 2px;
 }
@@ -518,8 +558,8 @@ div.clear {
   height: 100%;
   z-index: 101;
   opacity: 0;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   filter: alpha(opacity=0);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   -webkit-transition: opacity 0.3s;
   -moz-transition: opacity 0.3s;
   -o-transition: opacity 0.3s;
@@ -678,6 +718,7 @@ div.clear {
   width: 100%;
   height: 100%;
   -webkit-background-size: 100%;
+  -moz-background-size: 100%;
   background-size: 100%;
 }
 .completer > .preview .imginfo {
@@ -699,8 +740,11 @@ div.clear {
 .stack-scroller-cont {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
+  -o-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
 }
 .stack-scroller {
   overflow-x: scroll;
@@ -711,13 +755,16 @@ div.clear {
 .stack-cont {
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: horizontal;
   -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
   -ms-box-orient: horizontal;
-  box-orient: horizontal;
+  -webkit-flex-direction: row;
+  flex-direction: row;
 }
 .stack-cont .stack {
   width: 180px;
@@ -741,6 +788,7 @@ div.clear {
   .stack-cont .stack .item {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
@@ -769,13 +817,16 @@ div.clear {
   height: 380px;
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: vertical;
   -moz-box-orient: vertical;
+  -o-box-orient: vertical;
   -ms-box-orient: vertical;
-  box-orient: vertical;
+  -webkit-flex-direction: column;
+  flex-direction: column;
 }
 .dirpicker .buttons {
   background: #eee;
@@ -801,35 +852,44 @@ div.clear {
 }
 .dirpicker .buttons .btn:hover {
   opacity: 0.8;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   filter: alpha(opacity=80);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
 }
 .editor-container {
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: vertical;
   -moz-box-orient: vertical;
+  -o-box-orient: vertical;
   -ms-box-orient: vertical;
-  box-orient: vertical;
+  -webkit-flex-direction: column;
+  flex-direction: column;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
+  -o-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
   position: relative;
 }
 .editor-container > .toolbar {
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: horizontal;
   -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
   -ms-box-orient: horizontal;
-  box-orient: horizontal;
+  -webkit-flex-direction: row;
+  flex-direction: row;
   height: 32px;
   background-color: #333;
   -webkit-transition: margin-bottom 0.2s;
@@ -863,18 +923,19 @@ div.clear {
   .editor-container > .toolbar > .tools-group > .tool {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
 .editor-container > .toolbar > .tools-group > .tool.is-selected {
   opacity: 0.8;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   filter: alpha(opacity=80);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
 }
 .editor-container > .toolbar > .tools-group > .tool:hover {
   opacity: 0.9;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
   filter: alpha(opacity=90);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
 }
 .editor-container > .toolbar > .tools-group > .tool.tool-save {
   background-position: 4px -147px;
@@ -882,16 +943,19 @@ div.clear {
 }
 .editor-container > .toolbar > .tools-group > .tool.is-disabled {
   opacity: 0.3;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
   filter: alpha(opacity=30);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
   cursor: default;
 }
 .editor-container > .editor {
   display: none;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
+  -o-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
   position: relative;
   background-color: #fff;
 }
@@ -901,13 +965,16 @@ div.clear {
 .editor-container > .statusbar {
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: horizontal;
   -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
   -ms-box-orient: horizontal;
-  box-orient: horizontal;
+  -webkit-flex-direction: row;
+  flex-direction: row;
   height: 14px;
   padding-left: 15px;
   border-top: 1px solid #ddd;
@@ -977,8 +1044,11 @@ div.clear {
 .tabs {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
+  -o-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
   height: 30px;
   position: relative;
   -webkit-user-select: none;
@@ -1023,6 +1093,7 @@ div.clear {
   .tabs > .tab {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
@@ -1061,13 +1132,14 @@ div.clear {
   .tabs > .tab > .close-btn {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
 .tabs > .tab > .close-btn:hover {
   opacity: 0.8;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   filter: alpha(opacity=80);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
 }
 .infobar {
   height: 0px;
@@ -1087,24 +1159,30 @@ div.clear {
 .has-infobar .infobar .editor-info {
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: horizontal;
   -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
   -ms-box-orient: horizontal;
-  box-orient: horizontal;
+  -webkit-flex-direction: row;
+  flex-direction: row;
 }
 .infobar-editor {
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: horizontal;
   -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
   -ms-box-orient: horizontal;
-  box-orient: horizontal;
+  -webkit-flex-direction: row;
+  flex-direction: row;
   width: 100%;
   background: #eee;
 }
@@ -1127,13 +1205,14 @@ div.clear {
   .infobar-editor > .infobar-toggle {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
 .infobar-editor > .infobar-toggle:hover {
   opacity: 0.8;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   filter: alpha(opacity=80);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
 }
 .has-infobar .infobar-editor > .infobar-toggle {
   top: -1px;
@@ -1148,8 +1227,11 @@ div.clear {
   display: none;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
+  -o-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
   visibility: hidden;
   padding-right: 25px;
   width: 95%;
@@ -1178,6 +1260,7 @@ div.clear {
   .infobar-editor > .editor-info > .locking-toggle {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
@@ -1194,26 +1277,35 @@ div.clear {
   display: none;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
+  -o-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
 }
 .is-editormode .infobar-editor > .editor-info > .selected-rule {
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: horizontal;
   -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
   -ms-box-orient: horizontal;
-  box-orient: horizontal;
+  -webkit-flex-direction: row;
+  flex-direction: row;
 }
 .infobar-editor > .editor-info > .selected-rule > .selector {
   overflow: hidden;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
+  -o-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
   padding: 4px 10px;
   height: 12px;
   font-weight: bold;
@@ -1271,8 +1363,11 @@ div.clear {
 .filebrowser {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
+  -o-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
   overflow-y: auto;
   min-height: 200px;
   position: relative;
@@ -1320,13 +1415,14 @@ div.clear {
   height: 26px;
   background: url("../img/icons.png") -13px -283px no-repeat;
   opacity: 0.7;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
   filter: alpha(opacity=70);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
 }
 @media (-webkit-min-device-pixel-ratio:2), (min-device-pixel-ratio:2) {
   .file-item .info > .expand-bullet {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
@@ -1353,6 +1449,7 @@ div.clear {
   .file-item.is-dir > .info > .name {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
@@ -1367,6 +1464,7 @@ div.clear {
   .file-item.is-file > .info > .name {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
@@ -1384,6 +1482,7 @@ div.clear {
 .file-item > .info > .name {
   font-weight: bold;
   white-space: nowrap;
+  -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   color: #333;
   overflow: hidden;
@@ -1454,6 +1553,7 @@ div.clear {
   width: 100%;
   height: 100%;
   -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
   background-size: 100% 100%;
 }
 .imagepreview .imginfo {
@@ -1550,8 +1650,8 @@ div.clear {
   height: 0px;
   overflow: hidden;
   opacity: 0;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   filter: alpha(opacity=0);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   -webkit-transition: opacity 0.5s;
   -moz-transition: opacity 0.5s;
   -o-transition: opacity 0.5s;
@@ -1604,14 +1704,16 @@ div.clear {
 .project-item .project-line {
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: horizontal;
   -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
   -ms-box-orient: horizontal;
-  box-orient: horizontal;
-  width: 100%;
+  -webkit-flex-direction: row;
+  flex-direction: row;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -1632,13 +1734,14 @@ div.clear {
   .project-item .expand .inner {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
 .project-item .expand .inner:hover {
   opacity: 0.7;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
   filter: alpha(opacity=70);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
 }
 .project-item.has-clients .expand .inner {
   display: block;
@@ -1660,18 +1763,21 @@ div.clear {
 .project-item .project-name {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
+  -o-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
   font-size: 14px;
   font-weight: bold;
   padding: 4px;
   color: #351100;
 }
 .project-item .project-name .name {
+  -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  width: 500px;
   display: block;
 }
 .project-item .num-clients {
@@ -1703,8 +1809,8 @@ div.clear {
 .project-item .btn.edit,
 .project-item .btn.delete {
   opacity: 0.6;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
   filter: alpha(opacity=60);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
   width: 20px;
   height: 20px;
   margin: 2px 1px;
@@ -1715,14 +1821,15 @@ div.clear {
   .project-item .btn.delete {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
 .project-item .btn.edit:hover,
 .project-item .btn.delete:hover {
   opacity: 0.9;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
   filter: alpha(opacity=90);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
 }
 .project-item .btn.delete {
   background-position: 0px -618px;
@@ -1778,6 +1885,7 @@ div.clear {
 }
 .project-item .client-item .agenttype {
   -webkit-background-size: 20px;
+  -moz-background-size: 20px;
   background-size: 20px;
   height: 20px;
 }
@@ -1803,7 +1911,7 @@ div.clear {
 }
 .instructions fieldset {
   border: 2px solid #ddc;
-  width: 275px;
+  width: 273px;
   float: left;
   height: 230px;
   overflow: hidden;
@@ -1872,6 +1980,7 @@ div.clear {
   height: 15px;
   background: url("../img/browser_icons.png") no-repeat;
   -webkit-background-size: 20px;
+  -moz-background-size: 20px;
   background-size: 20px;
   font-size: 13px;
   margin: 5px 2px;
@@ -1897,8 +2006,8 @@ div.clear {
 .new-project-view .errors-summary {
   height: 0px;
   opacity: 0;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   filter: alpha(opacity=0);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   overflow: hidden;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -1970,6 +2079,7 @@ div.clear {
   .new-project-view .input-row .field .note-indicator {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
@@ -1987,8 +2097,8 @@ div.clear {
   transition: opacity 0.3s, height 0.5s;
   height: 0;
   opacity: 0;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   filter: alpha(opacity=0);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   width: 397px;
   margin-left: 162px;
 }
@@ -2070,8 +2180,8 @@ div.clear {
   top: 5px;
   color: #939;
   opacity: 0;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   filter: alpha(opacity=0);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   overflow: hidden;
 }
 .new-project-view .sources .item .input-container .completion-pfx {
@@ -2090,8 +2200,8 @@ div.clear {
 }
 .new-project-view .sources .item .btn:hover {
   opacity: 0.7;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
   filter: alpha(opacity=70);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
 }
 .new-project-view .sources .item .btn.edit,
 .sources-list .stylus-switch-hint .btn.convert {
@@ -2161,13 +2271,14 @@ div.clear {
   text-transform: uppercase;
   background: url("../img/icons.png") no-repeat 6px -346px;
   opacity: 0.7;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
   filter: alpha(opacity=70);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
 }
 @media (-webkit-min-device-pixel-ratio:2), (min-device-pixel-ratio:2) {
   .new-project-view .sources .item input[type="radio"] + label {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
@@ -2179,8 +2290,8 @@ div.clear {
 .new-project-view .sources .item input[type="radio"]:disabled + label,
 .new-project-view .sources .item input[type="radio"]:disabled + label:hover {
   opacity: 0.3;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
   filter: alpha(opacity=30);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
   cursor: default;
 }
 .new-project-view .sources .item input[type="radio"]:checked + label {
@@ -2216,8 +2327,8 @@ div.clear {
 }
 .new-project-view .btn.add-source:hover {
   opacity: 0.8;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   filter: alpha(opacity=80);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
 }
 .new-project-view .btn.add-source:before {
   content: "+";
@@ -2239,8 +2350,8 @@ div.clear {
 }
 .new-project-view input[type="submit"]:hover {
   opacity: 0.8;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   filter: alpha(opacity=80);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
 }
 .sources-list .input-row {
   margin-top: 5px;
@@ -2263,8 +2374,8 @@ div.clear {
   height: 0px;
   overflow: hidden;
   opacity: 0;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   filter: alpha(opacity=0);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   -webkit-transition: height 0.3s, opacity 0.3s;
   -moz-transition: height 0.3s, opacity 0.3s;
   -o-transition: height 0.3s, opacity 0.3s;
@@ -2313,6 +2424,7 @@ div.clear {
   .locations-info .searched-file-item.found {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
@@ -2323,6 +2435,7 @@ div.clear {
   .locations-info .searched-file-item.missing {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
@@ -2332,8 +2445,8 @@ div.clear {
   color: #333;
   overflow: hidden;
   opacity: 0;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   filter: alpha(opacity=0);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   font-size: 13px;
   font-weight: bold;
   padding-right: 10px;
@@ -2398,6 +2511,7 @@ div.clear {
   .selectable > .options > .option.is-selected {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
@@ -2472,6 +2586,7 @@ div.clear {
   .element-tools .pseudo-selector {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
@@ -2483,6 +2598,7 @@ div.clear {
   .element-tools .media-selector {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
@@ -2494,6 +2610,7 @@ div.clear {
   .element-tools .parent-selector {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
@@ -2547,8 +2664,8 @@ div.clear {
 }
 .pseudo-indicator:hover {
   opacity: 0.7;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
   filter: alpha(opacity=70);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
 }
 .client-select {
   position: relative;
@@ -2578,14 +2695,15 @@ div.clear {
   .client-select.client-select-sidebar {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
 .client-select.client-select-toolbar {
   height: 0px;
   opacity: 0;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   filter: alpha(opacity=0);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   margin-top: 15px;
   width: 30px;
   border: 0;
@@ -2650,13 +2768,16 @@ div.clear {
   padding: 3px;
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: horizontal;
   -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
   -ms-box-orient: horizontal;
-  box-orient: horizontal;
+  -webkit-flex-direction: row;
+  flex-direction: row;
   height: 40px;
   cursor: pointer;
   -webkit-box-sizing: border-box;
@@ -2680,6 +2801,7 @@ div.clear {
   width: 28px;
   height: 28px;
   -webkit-background-size: 28px;
+  -moz-background-size: 28px;
   background-size: 28px;
   margin: 3px 0;
   overflow: hidden;
@@ -2687,8 +2809,11 @@ div.clear {
 .client-select .agentinfo {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
+  -o-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
   padding: 0 5px;
   overflow: hidden;
 }
@@ -2697,6 +2822,7 @@ div.clear {
   color: #666;
   white-space: nowrap;
   font-weight: normal;
+  -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   overflow: hidden;
 }
@@ -2720,13 +2846,16 @@ div.clear {
   width: 350px;
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: vertical;
   -moz-box-orient: vertical;
+  -o-box-orient: vertical;
   -ms-box-orient: vertical;
-  box-orient: vertical;
+  -webkit-flex-direction: column;
+  flex-direction: column;
   padding: 20px;
   background: #fff;
   -webkit-border-radius: 5px;
@@ -2740,13 +2869,16 @@ div.clear {
 .popup .buttons {
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: horizontal;
   -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
   -ms-box-orient: horizontal;
-  box-orient: horizontal;
+  -webkit-flex-direction: row;
+  flex-direction: row;
   -webkit-box-align: end;
   -moz-box-align: end;
   -ms-box-align: end;
@@ -2793,6 +2925,7 @@ div.clear {
   top: 250px;
   left: 2px;
   -webkit-background-size: 7px;
+  -moz-background-size: 7px;
   background-size: 7px;
 }
 @media (-webkit-min-device-pixel-ratio:2), (min-device-pixel-ratio:2) {
@@ -2868,8 +3001,8 @@ div.clear {
   padding: 5px 12px;
   overflow-y: auto;
   opacity: 0;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   filter: alpha(opacity=0);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   -webkit-transition: opacity 0.2s;
   -moz-transition: opacity 0.2s;
   -o-transition: opacity 0.2s;
@@ -2940,13 +3073,16 @@ div.clear {
   clear: both;
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: horizontal;
   -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
   -ms-box-orient: horizontal;
-  box-orient: horizontal;
+  -webkit-flex-direction: row;
+  flex-direction: row;
 }
 .settings .item .lbl {
   width: 120px;
@@ -2955,8 +3091,11 @@ div.clear {
 .settings .item .value {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
+  -o-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
 }
 .keyenterhint {
   font-size: 15px;
@@ -3076,6 +3215,7 @@ div.clear {
   max-width: 100px;
   margin: 2px 3px 0 5px;
   color: #0b0bff;
+  -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   text-decoration: none;
   cursor: pointer;
@@ -3092,6 +3232,7 @@ div.clear {
   margin: 0 4px;
   color: #b22929;
   white-space: nowrap;
+  -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
 }
 .style-item > .media > .label {
@@ -3120,6 +3261,7 @@ div.clear {
   font-size: 11px;
   font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Droid Sans Mono', 'Consolas', monospace;
   color: #999;
+  -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
 }
 .style-prop-container > .style-prop.style-prop-sub {
@@ -3160,6 +3302,7 @@ div.clear {
   .style-prop-container > .style-prop > .expand-bullet.is-visible {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
@@ -3208,17 +3351,23 @@ div.clear {
 .elements-outline {
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: vertical;
   -moz-box-orient: vertical;
+  -o-box-orient: vertical;
   -ms-box-orient: vertical;
-  box-orient: vertical;
+  -webkit-flex-direction: column;
+  flex-direction: column;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
+  -o-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
   min-height: 220px;
   margin: 0 0 4px 0;
   padding: 2px 2px 2px 4px;
@@ -3230,13 +3379,16 @@ div.clear {
 .elements-outline > .subtree-heading {
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: horizontal;
   -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
   -ms-box-orient: horizontal;
-  box-orient: horizontal;
+  -webkit-flex-direction: row;
+  flex-direction: row;
   overflow: hidden;
   visibility: hidden;
   height: 0px;
@@ -3272,13 +3424,14 @@ div.clear {
   .elements-outline > .subtree-heading > .clear-subtree-btn {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
 .elements-outline > .subtree-heading > .clear-subtree-btn:hover {
   opacity: 0.7;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
   filter: alpha(opacity=70);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
 }
 .elements-outline > .subtree-heading > .element-name {
   padding: 2px 4px;
@@ -3288,24 +3441,33 @@ div.clear {
 .elements-outline > .scroller-container {
   display: -webkit-box;
   display: -moz-box;
-  display: -o-box;
   display: -ms-box;
+  display: -webkit-flex;
   display: box;
+  display: flex;
   -webkit-box-orient: vertical;
   -moz-box-orient: vertical;
+  -o-box-orient: vertical;
   -ms-box-orient: vertical;
-  box-orient: vertical;
+  -webkit-flex-direction: column;
+  flex-direction: column;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
+  -o-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
   overflow: hidden;
 }
 .elements-outline .scroller {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
+  -o-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -3370,6 +3532,7 @@ div.clear {
   .outline-item > .fold-btn {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
@@ -3403,6 +3566,7 @@ div.clear {
   .outline-item > .select-subtree-btn {
     background-image: url("../img/icons@2x.png");
     -webkit-background-size: 41px;
+    -moz-background-size: 41px;
     background-size: 41px;
   }
 }
