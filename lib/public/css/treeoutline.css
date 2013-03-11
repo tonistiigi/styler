@@ -15,9 +15,6 @@
   -moz-box-flex: 1;
   -o-box-flex: 1;
   -ms-box-flex: 1;
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  -ms-box-flex: 1;
   box-flex: 1;
   -webkit-flex: 1;
   flex: 1;
@@ -83,8 +80,8 @@
 }
 .elements-outline > .subtree-heading > .clear-subtree-btn:hover {
   opacity: 0.7;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
   filter: alpha(opacity=70);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
 }
 .elements-outline > .subtree-heading > .element-name {
   padding: 2px 4px;
@@ -108,9 +105,6 @@
   -moz-box-flex: 1;
   -o-box-flex: 1;
   -ms-box-flex: 1;
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  -ms-box-flex: 1;
   box-flex: 1;
   -webkit-flex: 1;
   flex: 1;
@@ -120,9 +114,6 @@
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -o-box-flex: 1;
-  -ms-box-flex: 1;
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
   -webkit-flex: 1;

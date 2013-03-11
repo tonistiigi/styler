@@ -5,7 +5,7 @@ jade          = require 'jade'
 path          = require 'path'
 {_}           = require 'underscore'
 
-views_conf =   
+views_conf =
     './src/templates/project_item.jade'   : './lib/public/lib/templates/project_item.js'
     './src/templates/output_item.jade'    : './lib/public/lib/templates/output_item.js'
     './src/templates/main.jade'           : './lib/public/lib/templates/main.js'
@@ -34,7 +34,7 @@ build = (watch, callback) ->
   coffee.stdout.on 'data', (data) -> print data.toString()
   coffee.stderr.on 'data', (data) -> print data.toString()
   coffee.on 'exit', (status) -> callback?() if status is 0
-  
+
   build_views views_conf, watch
   build_stylus watch
 
@@ -45,28 +45,28 @@ build_views = (conf, watch) ->
     data = jade.compile(fs.readFileSync(infile),compileDebug: false, client:true).toString()
     out = """
       define(function(require, exports, module){
-        require("vendor/jade"); 
+        require("vendor/jade");
         module.exports = #{data};
       });
     """
     fs.writeFileSync outfile, out
     console.log "Compiled #{outfile}"
-    
+
     if watch
       fs.watchFile infile, (curr, prev) ->
         if curr.mtime.getTime() != prev.mtime.getTime()
           prop = {}
           prop[infile] = outfile
           build_views prop, false
-  
+
 build_stylus = (watch) ->
   options = ['--out', 'lib/public/css/', '--include', 'node_modules/nib/lib', 'src/style']
   options.unshift '-w' if watch
-  
+  console.log 'stylus', options
   stylus = spawn 'stylus', options
   stylus.stdout.on 'data', (data) -> print data.toString()
   stylus.stderr.on 'data', (data) -> print data.toString()
-  
+
 
 task 'docs', 'Generate annotated source code with Docco', ->
   fs.readdir 'src/public/lib', (err, contents) ->
@@ -93,13 +93,13 @@ task 'jade', 'Prebuild views', ->
   build_views views_conf
 
 task 'stylus', 'Build stylus files to css', ->
-  build_stylus
-  
-  
+  build_stylus()
+
+
 task 'dryice', 'Build compressed modules', ->
   {copy} = require(__dirname + '/support/dryice')
   targetDir = __dirname + '/lib/public/build'
-  
+
   filter = (input)->
     input = input.replace /vendor\/text!/g, 'text!'
     #input = input.replace /ace\/requirejs\/text!(\.|ace)\//, 'vendor/text_'
@@ -113,7 +113,7 @@ task 'dryice', 'Build compressed modules', ->
       #filter: [copy.filter.uglifyjs],
       dest: __dirname + '/lib/public/build/styles.css'
   });
-  
+
   project = copy.createCommonJsProject
       roots: [
           __dirname + '/support/ace/lib'
@@ -121,7 +121,7 @@ task 'dryice', 'Build compressed modules', ->
       ]
       ignores: [ 'css/editorview.css' ]
       textPluginPattern: /^(vendor|ace\/requirejs)\/text!/
-  
+
   ace = copy.createDataObject();
   copy({
       source: (value: 'window.__packaged = true;'),
@@ -131,7 +131,7 @@ task 'dryice', 'Build compressed modules', ->
       source: [__dirname + "/lib/public/vendor/require.js"],
       dest: ace,
       filter: [copy.filter.moduleDefines],
-  });    
+  });
   copy({
       source: (value: 'define("empty");' + (fs.readFileSync (path.resolve (require.resolve 'jade'), '../runtime.min.js')) + ';define("vendor/jade", jade);'),
       dest: ace
@@ -215,7 +215,7 @@ task 'dryice', 'Build compressed modules', ->
       filter: [copy.filter.moduleDefines, filter], # , copy.filter.uglifyjs
       dest:  __dirname + '/lib/public/build/settings.js'
   })
-  
+
   project.assumeAllFilesLoaded()
   for mode in ['css', 'stylus']
     console.log 'Mode for', mode
@@ -229,7 +229,7 @@ task 'dryice', 'Build compressed modules', ->
         filter:filters,
         dest:   targetDir + "/mode-" + mode + '.js'
     });
-  
+
   for mode in ['css', 'stylus']
     console.log("worker for " + mode + " mode")
     worker = copy.createDataObject()
@@ -239,7 +239,7 @@ task 'dryice', 'Build compressed modules', ->
             __dirname + '/lib/public'
         ]
         #textPluginPattern: /^ace\/requirejs\/text!/
-  
+
     copy({
         source: [
             {

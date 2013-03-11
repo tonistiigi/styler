@@ -3,9 +3,6 @@
   -moz-box-flex: 1;
   -o-box-flex: 1;
   -ms-box-flex: 1;
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  -ms-box-flex: 1;
   box-flex: 1;
   -webkit-flex: 1;
   flex: 1;
@@ -116,6 +113,6 @@
 }
 .dirpicker .buttons .btn:hover {
   opacity: 0.8;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   filter: alpha(opacity=80);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
 }

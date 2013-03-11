@@ -3,9 +3,6 @@
   -moz-box-flex: 1;
   -o-box-flex: 1;
   -ms-box-flex: 1;
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  -ms-box-flex: 1;
   box-flex: 1;
   -webkit-flex: 1;
   flex: 1;
@@ -56,8 +53,8 @@
   height: 26px;
   background: url("../img/icons.png") -13px -283px no-repeat;
   opacity: 0.7;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
   filter: alpha(opacity=70);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
 }
 @media (-webkit-min-device-pixel-ratio:2), (min-device-pixel-ratio:2) {
   .file-item .info > .expand-bullet {
