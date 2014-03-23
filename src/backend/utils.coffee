@@ -4,7 +4,7 @@ mkdirp = require 'mkdirp'
 os = require 'os'
 request = require 'request'
 {_} = require 'underscore'
-winston = require 'winston'
+log = require './log'
 
 # Try to return style file path based on a url using project configuration. 
 exports.getFileLocation = (project, fileurl, cb) ->
@@ -21,34 +21,34 @@ exports.getFileLocation = (project, fileurl, cb) ->
           if found
             cb null, srcfile, cssfile
           else if newfiles && fileurl.match /^http/
-            winston.notice 'File was not found. Trying to create new.', project: project.id, file: srcfile 
+            log.info project: project.id, file: srcfile, 'File was not found. Trying to create new.'
             # Create empty file and fill it with HTTP request result.
             request fileurl, (error, response, body) ->
               if error || response.statusCode != 200
-                winston.warning 'Failed to get contents for the file.', file: srcfile, url: fileurl, err: error, statusCode: response?.statusCode
+                log.warn file: srcfile, url: fileurl, err: error, statusCode: response?.statusCode, 'Failed to get contents for the file.'
                 body = "" 
               else
-                winston.info 'Received contents for file.', file: srcfile, url: fileurl, statusCode: response.statusCode, length: body.length
+                log.info file: srcfile, url: fileurl, statusCode: response.statusCode, length: body.length, 'Received contents for file.'
               srcdir = path.dirname srcfile
               writefile = ->
                 fs.writeFile srcfile, body, 'utf8', (err) ->
                   if err
-                    winston.error 'Failed to write new file', file: srcfile, err: err
+                    log.error file: srcfile, err: err, 'Failed to write new file'
                     cb true
                   else
-                    winston.info 'Created new file', file: srcfile
+                    log.info file: srcfile, 'Created new file'
                     cb null, srcfile, cssfile
               fs.exists srcdir, (found) ->
                 if found
                   writefile()
                 else
-                  winston.info 'Creating directory', path: dir
+                  log.info path: dir, 'Creating directory'
                   mkdirp dir, 0o755, -> writefile()
               
           else
-            winston.notice 'File was not found. Igroing.', file: srcfile
+            log.warn file: srcfile, 'File was not found. Ignoring.'
             cb true # File should be ignored.
-  winston.debug 'File didn\'t match project configuration', project: project.id, url: fileurl
+  log.debug project: project.id, url: fileurl, 'File didn\'t match project configuration'
   cb true # No file configuration.
 
 ###
@@ -112,7 +112,7 @@ exports.getDriveNames = (cb) ->
   command = 'wmic logicaldisk get name'
   exec command, (error, stdout, sterr) ->
     if error
-      winston.warning 'Failed to get drive names using wmic', err: error, output: stdout
+      log.warn err: error, output: stdout, 'Failed to get drive names using wmic'
       return callback error 
     # extract IPs
     matches = stdout.match /[a-z]\:/ig

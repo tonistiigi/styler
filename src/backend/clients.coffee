@@ -1,10 +1,10 @@
 fs = require "fs"
 {_} = require "underscore"
-io = require "socket.io"
 useragent = require 'useragent'
 {Projects, Clients, Settings} = require "./data"
 {isAllowedIP} = require './utils'
-winston = require 'winston'
+log = require './log'
+io = global.io
 
 # Call an async method in client's side.
 exports.callClient = (clientId, method, params={}, cb=->) ->
@@ -24,14 +24,14 @@ getKeyCommands = ->
   keys
 
 # Info namespace is used in extensions to detect if daemon is running.
-io.server.of("/info").on 'connection', (socket) ->
+io.of("/info").on 'connection', (socket) ->
   return socket.disconnect() unless isAllowedIP global.allowed, socket.handshake.address.address
   # Check if url is part of some project.
   socket.on 'checkproject', (url, cb) ->
     cb !!Projects.find (p) -> 0 == url.indexOf p.get("baseurl")
 
 # Client connection handler.
-io.server.of("/clients").on 'connection', (socket) ->
+io.of("/clients").on 'connection', (socket) ->
   return socket.disconnect() unless isAllowedIP global.allowed, socket.handshake.address.address
   client = null
   
@@ -44,7 +44,7 @@ io.server.of("/clients").on 'connection', (socket) ->
       sendBaseURL = -> socket.emit 'baseurl', Projects.get(projectId).get 'baseurl'
       Projects.get(projectId).bind 'change:baseurl', sendBaseURL
       sendBaseURL()
-    winston.info 'Client connected', id: client.id, project: projectId, url: client.get 'url'
+    log.info id: client.id, project: projectId, url: client.get 'url', 'Client connected'
   
   socket.on "register", (info) ->
     projectId = 0
@@ -108,4 +108,4 @@ io.server.of("/clients").on 'connection', (socket) ->
     return unless client
     client.save connected: false
     client._clientRemoveTimeout = setTimeout (-> client.destroy()), 4e3
-    winston.debug 'Client disconnected', id: client.id
+    log.debug id: client.id, 'Client disconnected'

@@ -1,0 +1,9 @@
+{
+  "logger": {
+    "path": "./log/styler.log",
+    "type": "rotating-file",
+    "period": "1d",
+    "count": 10,
+    "level": "debug"
+  }
+}

@@ -5,7 +5,7 @@ express = require 'express'
 mkdirp = require 'mkdirp'
 moment = require 'moment'
 io = require 'socket.io'
-winston = require 'winston'
+log = require './log'
 {getLocalIPs, getDriveNames, isAllowedIP, getHomeDir} = require './utils'
 
 devmode = false
@@ -40,27 +40,18 @@ global.homeDir = path.resolve(argv.pfx + '/.styler')
 if !fs.existsSync global.homeDir
   mkdirp.sync global.homeDir
 
-# Setup logging.
-argv.log = 'info' unless winston.config.syslog.levels[argv.log]?
-winston.setLevels winston.config.syslog.levels
-unless argv.nologfile
-  winston.handleExceptions new winston.transports.File filename: path.join global.homeDir, 'crash.log'
-  winston.add winston.transports.File, filename: path.join(global.homeDir, moment().format('YYYYMMDD_HHmmss') + '.log'), level: 'debug', timestamp: (-> (tm = moment()).format('YYYY-MM-DD HH:mm:ss.') + tm.milliseconds()), handleExceptions: true
-winston.remove winston.transports.Console
-winston.add winston.transports.Console, colorize: true, level: argv.log, handleExceptions: true
-
 # Clear database file if needed.
 if argv.reset
   dbpath = path.join global.homeDir, 'db.json'
   fs.unlinkSync dbpath
-  winston.info 'Deleted DB file: ' + dbpath
+  log.info path: dbpath, 'Deleted DB file'
 
 # Setup all IPs that are allowed.
 global.allowed = argv.allowed?.split?(',') || []
 getLocalIPs (ips) -> global.allowed = global.allowed.concat ips
 
 # Create Express server.
-app = express.createServer()
+app = express()
 app.configure ->
   app.set 'view options', {layout: false}
   app.set 'views', __dirname + '/../../src/templates'
@@ -74,7 +65,7 @@ app.use (req, res, next) ->
   if isAllowedIP global.allowed, req.connection.remoteAddress
     next()
   else
-    winston.notice 'Access denied for ' + req.connection.remoteAddress, {request: req.url}
+    log.warn req: req, 'Access denied'
     res.render 'notallowed'
 
 # Always cache fonts and images to avoid flicker
@@ -139,36 +130,31 @@ app.get '/', (req, res) ->
 
 port = parseInt argv.port
 
-
-io.server = io.listen app, 'log level': 1
-#io.server.enable('browser client minification')
-io.server.enable('browser client etag')
-#io.server.enable('browser client gzip')
-#io.server.set('transports', ['websocket', 'flashsocket', 'htmlfile', 'xhr-polling', 'jsonp-polling'])
-
-msg = "Please open http://localhost:#{port}/ to get started"
-cols = 55
-console.log '┌' + Array(cols).join('─') + '┐\n│ ' + (msg.replace /http:.*\//, (link) -> clc.bold clc.underline link) + Array(cols - msg.length - 1).join(' ') + '│\n└' + Array(cols).join('─') + '┘'
-
-winston.debug 'Daemon started', port: port, home: global.homeDir, root: global.rootDir, allowed: global.allowed, argv: process.argv
-
-if process.platform != 'win32'
-  process.on 'SIGINT', ->
-    winston.debug 'Daemon closed with SIGINT'
-    process.exit(0)
-
-require './clients'
-require './consoles'
-
 {Settings} = require "./data"
 setDevSettings = (settings) ->
   devmode = settings.get 'devmode'
   if devmode
     app.disable('view cache')
-    winston.debug 'Development mode enabled'
   else
     app.enable('view cache')
-    winston.debug 'Development mode disabled'
+  log.debug enabled: devmode, "Set devmode"
+
+
+msg = "Please open http://localhost:#{port}/ to get started"
+cols = 55
+console.log '┌' + Array(cols).join('─') + '┐\n│ ' + (msg.replace /http:.*\//, (link) -> clc.bold clc.underline link) + Array(cols - msg.length - 1).join(' ') + '│\n└' + Array(cols).join('─') + '┘'
+
+log.info port: port, home: global.homeDir, root: global.rootDir, allowed: global.allowed, 'Daemon info'
+
+server = require('http').createServer(app).listen(port)
+
+global.io = io = io.listen server
+io.set 'log level', 1
+#io.enable('browser client etag')
+
+require './clients'
+require './consoles'
+
 
 setTimeout ->
   settings = Settings.at(0);
@@ -179,11 +165,9 @@ setTimeout ->
     app.on 'listening', ->
       process.emit 'serverload', port
 
-    app.on 'error', (err) ->
+    server.on 'error', (err) ->
       if err.code == 'EADDRINUSE'
         port++
-        app.listen port
-
-  app.listen port
+        server.listen port
 
 , 200

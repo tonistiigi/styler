@@ -1,13 +1,13 @@
 fs = require "fs"
 {_} = require "underscore"
 Backbone = require "backbone"
-io = require "socket.io"
 Console = require "./console"
 {Clients} = require "./data"
 {pathIsAllowed, getDriveNames, isAllowedIP} = require "./utils"
-winston = require 'winston'
+log = require './log'
+io = global.io
 
-io.server.of("/console").on 'connection', (socket) ->
+io.of("/console").on 'connection', (socket) ->
   return socket.disconnect() unless isAllowedIP global.allowed, socket.handshake.address.address
   socket.on 'checkDir', checkDir
   socket.on 'browseFiles', browseFiles
@@ -51,10 +51,10 @@ checkDir =  (clientId, url, path, stylusoutPath, cb) ->
 browseFiles = (path, cb) ->
   path = path.replace /^\//, global.rootDir if global.rootDir != '/'
   res = dirs: [], files: []
-  return winston.warning 'Browsing files not allowed for path.', path: path unless pathIsAllowed path
+  return log.warning path: path, 'Browsing files not allowed for path.' unless pathIsAllowed path
   fs.stat path, (err, stat) ->
     if err or !stat.isDirectory()
-      winston.notice 'Could not browse files inside directory.', path: path, err: err
+      lgo.warn path: path, err: err, 'Could not browse files inside directory.'
       return cb res 
     fs.readdir path, (err, files) ->
       if files

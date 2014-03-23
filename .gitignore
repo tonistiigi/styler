@@ -2,3 +2,4 @@
 /docs
 /node_modules
 /lib/backend/db.json
+/log

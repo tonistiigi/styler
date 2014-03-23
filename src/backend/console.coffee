@@ -3,13 +3,13 @@ fs = require "fs"
 Backbone = require "backbone"
 requirejs = require "requirejs"
 {_} = require "underscore"
-winston = require 'winston'
 {callClient} = require "./clients"
 {Clients, Projects} = require "./data"
 {getFileLocation, relativeURL, pathIsAllowed} = require "./utils"
 {FileList, File, StateList, FoldList, PseudoList} = requirejs "./../public/lib/models"
 {watcher} = require "./filewatcher"
 stylus = require "./stylus"
+log = require './log'
 
 STYLUS_FUNC_FILE = require("path").dirname(require.resolve 'stylus') + '/lib/functions/index.styl'
 
@@ -17,7 +17,7 @@ class Console
   constructor: (@project) ->
     _.bindAll @, "_onFileAdd", "_onFileRemove", "_onFileChange", "disableConsole", "callAPI", "callClient", "onBackup"
 
-    winston.info 'Create console', project: @project.id
+    log.info project: @project.id, 'Create console'
 
     @imports = {}
     @clientId = 0
@@ -38,7 +38,7 @@ class Console
     @project.bind "clients:add", @_onClientAdd, @
 
   _onClientAdd: (client) ->
-    winston.debug 'Client added', client: client.id
+    log.debug client: client.id, 'Client added'
     @setClientFiles client.id, client.get "css"
     client.bind "change:css", @_onClientChange, @
     client.bind "change:connected", @_onClientChange, @
@@ -57,9 +57,9 @@ class Console
     #get the files configuration
     files = @project.get "files"
     _.each files, ({url, path, type, newfiles, stylusout}) =>
-      return winston.error 'Access denied to scan files from', path: path unless pathIsAllowed path
+      return log.error path: path, 'Access denied to scan files' unless pathIsAllowed path
       fs.readdir path, (err, flist) =>
-        return winston.error 'Failed to scan directory for files', path: path, err: err if err
+        return log.error  path: path, err: err, 'Failed to scan directory for files' if err
         flist.forEach (file) =>
           return unless file[0] != '.' && file.match (if type == "stylus" then /\.styl$/i else /\.css$/i)
           #add watcher to all these files
@@ -77,7 +77,7 @@ class Console
   listenFile: (file) ->
     watcher.watch file.srcpath, => @files.trigger "updated", file
     @files.trigger "updated", file, true
-    winston.debug 'Listen on file', project: @project.id, url: file.get("url"), path: file.srcpath
+    log.debug project: @project.id, url: file.get("url"), path: file.srcpath, 'Listen on file'
 
   _onFileAdd: (file) ->
     @_added ?= {}
@@ -97,10 +97,10 @@ class Console
   _onFileRemove: (file) ->
     delete @_added[file.id]
     watcher.unwatch file.srcpath
-    winston.debug 'Deactivate file', project: @project.id, path: file.srcpath    
+    log.debug project: @project.id, path: file.srcpath, 'Deactivate file'
 
   _onFileChange: (f, isInitial) ->
-    winston.debug 'Updated file', path: f.srcpath
+    log.debug path: f.srcpath, 'Updated file'
     @publish f
     fs.stat f.srcpath, (err, stat) =>
       f.save mtime: stat.mtime, fsize: stat.size unless isInitial
@@ -111,7 +111,7 @@ class Console
           @publish file if file
 
   destroy: ->
-    winston.info 'Destory console', project: @project.id
+    log.info project: @project.id, 'Destory console'
     @files.each (file) => @_onFileRemove file
     @deactivateSocket @socket if @socket
 
@@ -126,19 +126,19 @@ class Console
     return unless file.csspath
     clients ?= file.get 'clients'
     url = file.get 'url'
-    return winston.error 'Could not publish', path: file.srcpath unless file.srcpath
+    return log.error path: file.srcpath, 'Could not publish' unless file.srcpath
     
     return unless pathIsAllowed file.srcpath
     fs.readFile file.srcpath, "utf8", (err, data) =>
-      return winston.error 'Failed to read source file', path: file.srcpath, err: err if err
+      return log.error path: file.srcpath, err: err, 'Failed to read source file' if err
       data = data.substr 1 if data.charCodeAt(0) == 65279 #todo: better solutions needed
       if file.get('type') == 'stylus'
-        winston.info 'Render Stylus file', file: file.srcpath
+        log.info file: file.srcpath, 'Render Stylus file'
         stylus.renderStylus file.srcpath, data, (err, css, imports) =>
-          return winston.warning 'Failed to render Stylus.', path: file.srcpath, err: err if err
+          return log.warn path: file.srcpath, err: err, 'Failed to render Stylus.' if err
           @stylusSetFileImports file.srcpath, imports
           @publishData file, css, clients
-          winston.debug "Writing compiled CSS file:", csspath: file.csspath, clients: clients.length
+          log.debug csspath: file.csspath, clients: clients.length, 'Writing compiled CSS file:'
           fs.writeFile file.csspath, css
           
       else
@@ -150,20 +150,19 @@ class Console
     data = data.substr 1 if data.charCodeAt(0) == 65279 #todo: better solutions needed
     _.each clients, (clientId) ->
       client = Clients.get(clientId)
-      return winston.notice "Client lost without cleanup", client: clientId unless client
+      return log.warn client: clientId, "Client lost without cleanup" unless client
       callClient clientId, "setStyles", url: url, data: data
-      winston.info "Sending new styles", client: clientId, uid: client.cid, url: url, length: data.length
+      log.info client: clientId, uid: client.cid, url: url, length: data.length, "Sending new styles"
 
   publishFile: (file, clients) ->
     clients ?= file.get 'clients'
-    return winston.error 'Could not publish file', file: file.csspath unless file.csspath
+    return log.error file: file.csspath, 'Could not publish file' unless file.csspath
     fs.readFile file.csspath, "utf8", (err, data) =>
-      return winston.error 'Failed to read file', file: file.csspath, err: err if err
-      #winston.debug 'Publish file', file: file.csspath
+      return log.error file: file.csspath, err: err, 'Failed to read file' if err
       @publishData file, data, clients
 
   addClientToFile: (file, clientId) ->
-    winston.debug 'addClientToFile', file: file.get('url'), client: clientId
+    log.debug file: file.get('url'), client: clientId, 'addClientToFile'
     clients = _.clone file.get "clients"
     if clientId not in clients
       clients.push clientId
@@ -177,7 +176,7 @@ class Console
 
   setClientFiles: (clientId, css) ->
     flist = @files #todo: use bind
-    winston.debug 'Set client files', files: css, client: clientId
+    log.debug files: css, client: clientId, 'Set client files'
     _.each css, (cssfile) =>
       file = flist.find (f) -> cssfile == f.get "url"
       if file
@@ -185,7 +184,7 @@ class Console
       else
         getFileLocation @project, cssfile, (err, srcpath) =>
           return if err
-          winston.debug 'Client got file location', file: cssfile, err: err, srcpath: srcpath
+          log.debug file: cssfile, err: err, srcpath: srcpath, 'Client got file location'
           
           # TODO: bad pattern.
           file = flist.find (f) -> cssfile == f.get "url"
@@ -243,7 +242,7 @@ class Console
     callClient arguments... if @clientId == clientId
 
   activateConsole: (socket, clientId) ->
-    winston.info 'Activate console', client: clientId, old: @clientId
+    log.info client: clientId, old: @clientId, 'Activate console'
     if socket.id != @socket?.id
       @deactivateSocket @socket if @socket
       @activateSocket socket
@@ -304,7 +303,7 @@ class Console
           return
 
   apiPublishChanges: (params, cb) ->
-    winston.debug 'API called publish changes'
+    log.debug 'API called publish changes'
     file = @files.find (f) -> params.url == f.get "url"
     @publishData file, params.data if file
     cb()
@@ -312,10 +311,10 @@ class Console
   apiGetFileData: (params, cb) ->
     file = @files.find (f) -> params.url == f.get "url"
     return unless file?.srcpath
-    winston.info "Reading file", path: file.srcpath, url: file.get('url')
+    log.info path: file.srcpath, url: file.get('url'), "Reading file"
     if file
       fs.readFile file.srcpath, "utf8", (err, data) -> 
-        return winston.error 'Failed to read file', file: file.srcpath, err: err if err
+        return log.error file: file.srcpath, err: err, 'Failed to read file'  if err
         cb data: data, name: basename file.srcpath
     else
       cb data: null
@@ -323,9 +322,9 @@ class Console
   apiSetFileData: (params, cb) ->
     file = @files.find (f) -> params.url == f.get "url"
     return unless file?.srcpath and pathIsAllowed file.srcpath
-    winston.info 'Writing file', file: file.srcpath, length: params.data.length
+    log.info file: file.srcpath, length: params.data.length, 'Writing file'
     fs.writeFile file.srcpath, params.data, (err) ->
-      winston.error 'Failed to write file', file: file.srcpath, err: err if err
+      log.error file: file.srcpath, err: err, 'Failed to write file' if err
       cb err
     
   apiPublishSaved: (params, cb) ->
@@ -356,7 +355,6 @@ class Console
     return unless file
     publish = !!params.publish
     stylus.getStylusOutline filename: file.srcpath, data: params.data, getcss: publish, (outline, css) =>
-      #winston.debug 'Requested outline', file: file.get('url'), publish: publish
       cb outline
       @publishData file, css if css
 
@@ -366,12 +364,12 @@ Console.getConsole = (projectId) ->
   return null unless project = Projects.get projectId
   Console.consoles[projectId] ?= new Console project
   project.bind "remove", ->
-    winston.info 'Remove console', project: projectId
+    log.info project: projectId, 'Remove console'
     Console.consoles[projectId]?.destroy()
     delete Console.consoles[projectId]
   
   project.bind "change:files", ->
-    winston.info 'Console conf changed', project: projectId
+    log.info project: projectId, 'Console conf changed'
     Console.consoles[projectId]?.destroy()
     delete Console.consoles[projectId]
     Console.getConsole(projectId)
