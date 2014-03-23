@@ -15,8 +15,8 @@
 .new-project-view .errors-summary {
   height: 0px;
   opacity: 0;
-  filter: alpha(opacity=0);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
   overflow: hidden;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -106,8 +106,8 @@
   transition: opacity 0.3s, height 0.5s;
   height: 0;
   opacity: 0;
-  filter: alpha(opacity=0);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
   width: 397px;
   margin-left: 162px;
 }
@@ -189,8 +189,8 @@
   top: 5px;
   color: #939;
   opacity: 0;
-  filter: alpha(opacity=0);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
   overflow: hidden;
 }
 .new-project-view .sources .item .input-container .completion-pfx {
@@ -209,8 +209,8 @@
 }
 .new-project-view .sources .item .btn:hover {
   opacity: 0.7;
-  filter: alpha(opacity=70);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+  filter: alpha(opacity=70);
 }
 .new-project-view .sources .item .btn.edit,
 .sources-list .stylus-switch-hint .btn.convert {
@@ -280,8 +280,8 @@
   text-transform: uppercase;
   background: url("../img/icons.png") no-repeat 6px -346px;
   opacity: 0.7;
-  filter: alpha(opacity=70);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+  filter: alpha(opacity=70);
 }
 @media (-webkit-min-device-pixel-ratio:2), (min-device-pixel-ratio:2) {
   .new-project-view .sources .item input[type="radio"] + label {
@@ -299,8 +299,8 @@
 .new-project-view .sources .item input[type="radio"]:disabled + label,
 .new-project-view .sources .item input[type="radio"]:disabled + label:hover {
   opacity: 0.3;
-  filter: alpha(opacity=30);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+  filter: alpha(opacity=30);
   cursor: default;
 }
 .new-project-view .sources .item input[type="radio"]:checked + label {
@@ -336,8 +336,8 @@
 }
 .new-project-view .btn.add-source:hover {
   opacity: 0.8;
-  filter: alpha(opacity=80);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
 }
 .new-project-view .btn.add-source:before {
   content: "+";
@@ -359,8 +359,8 @@
 }
 .new-project-view input[type="submit"]:hover {
   opacity: 0.8;
-  filter: alpha(opacity=80);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
 }
 .sources-list .input-row {
   margin-top: 5px;
@@ -383,8 +383,8 @@
   height: 0px;
   overflow: hidden;
   opacity: 0;
-  filter: alpha(opacity=0);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
   -webkit-transition: height 0.3s, opacity 0.3s;
   -moz-transition: height 0.3s, opacity 0.3s;
   -o-transition: height 0.3s, opacity 0.3s;
@@ -454,8 +454,8 @@
   color: #333;
   overflow: hidden;
   opacity: 0;
-  filter: alpha(opacity=0);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
   font-size: 13px;
   font-weight: bold;
   padding-right: 10px;

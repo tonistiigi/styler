@@ -72,13 +72,13 @@
 }
 .editor-container > .toolbar > .tools-group > .tool.is-selected {
   opacity: 0.8;
-  filter: alpha(opacity=80);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
 }
 .editor-container > .toolbar > .tools-group > .tool:hover {
   opacity: 0.9;
-  filter: alpha(opacity=90);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+  filter: alpha(opacity=90);
 }
 .editor-container > .toolbar > .tools-group > .tool.tool-save {
   background-position: 4px -147px;
@@ -86,8 +86,8 @@
 }
 .editor-container > .toolbar > .tools-group > .tool.is-disabled {
   opacity: 0.3;
-  filter: alpha(opacity=30);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+  filter: alpha(opacity=30);
   cursor: default;
 }
 .editor-container > .editor {
@@ -281,8 +281,8 @@
 }
 .tabs > .tab > .close-btn:hover {
   opacity: 0.8;
-  filter: alpha(opacity=80);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
 }
 .infobar {
   height: 0px;
@@ -354,8 +354,8 @@
 }
 .infobar-editor > .infobar-toggle:hover {
   opacity: 0.8;
-  filter: alpha(opacity=80);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
 }
 .has-infobar .infobar-editor > .infobar-toggle {
   top: -1px;

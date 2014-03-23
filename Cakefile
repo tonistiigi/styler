@@ -30,7 +30,7 @@ build = (watch, callback) ->
   options = ['-c', '-o', 'lib', 'src']
   options.unshift '-w' if watch
 
-  coffee = spawn 'coffee', options
+  coffee = spawn './node_modules/.bin/coffee', options
   coffee.stdout.on 'data', (data) -> print data.toString()
   coffee.stderr.on 'data', (data) -> print data.toString()
   coffee.on 'exit', (status) -> callback?() if status is 0
@@ -62,8 +62,8 @@ build_views = (conf, watch) ->
 build_stylus = (watch) ->
   options = ['--out', 'lib/public/css/', '--include', 'node_modules/nib/lib', 'src/style']
   options.unshift '-w' if watch
-  console.log 'stylus', options
-  stylus = spawn 'stylus', options
+  #console.log 'stylus', options
+  stylus = spawn './node_modules/.bin/stylus', options
   stylus.stdout.on 'data', (data) -> print data.toString()
   stylus.stderr.on 'data', (data) -> print data.toString()
 

@@ -113,6 +113,6 @@
 }
 .dirpicker .buttons .btn:hover {
   opacity: 0.8;
-  filter: alpha(opacity=80);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
 }
