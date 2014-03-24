@@ -11,7 +11,7 @@ exports.callClient = (clientId, method, params={}, cb=->) ->
   client = Clients.get clientId
   if method == 'focus'
     id = (params.title || clientId)
-    io.server.of('/info').emit 'focus', id
+    io.of('/info').emit 'focus', id
   else
     client?.socket?.emit "callclient", method, params, (response) -> cb response
 

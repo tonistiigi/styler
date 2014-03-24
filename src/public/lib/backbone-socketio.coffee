@@ -65,7 +65,7 @@ Backbone.sync = (method, model, options) ->
   options.clientId = model.collection?.clientId
 
   try
-    if !io?
+    if module?
       Backbone.serverSync method, backend, model.attributes, options, success
     else
       app.socket.emit 'serverSync', method, backend, model.attributes, options, success

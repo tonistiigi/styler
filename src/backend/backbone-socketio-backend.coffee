@@ -33,7 +33,7 @@ Backbone.serverSync = (method, name, model, options, success) ->
       catch e
         console.log e
       success(data, options)
-      io.server.of('/console').in('backbone').emit 'BackboneSync', name, method, data, options
+      global.io.of('/console').in('backbone').emit 'BackboneSync', name, method, data, options
 
 class Backbone.Backend
   constructor: (@storage_name="")->
